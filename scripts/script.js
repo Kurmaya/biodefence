@@ -67,19 +67,19 @@ gLoader.load('./3d/bd.glb', function(gltf){
   gltf.scene.scale.set(.005,.005,.005);
   bio.rotation.x= 0;
   bio.position.set(0,0,0);
-  console.log(bio.material);
+  // console.log(bio.material);
   bio.material= new THREE.MeshLambertMaterial({});
 
 });
 
 gLoader.load('./3d/BAcon.glb',function(gltf){
   scene2.add(gltf.scene);
-  gltf.scene.position.set(0,0,-1);
-  gltf.scene.scale.set(.05,.05,.05);
+  gltf.scene.position.set(0,-.5,-1);
+  gltf.scene.scale.set(.08,.08,.08);
   gltf.scene.rotation.x=1.2;
   pig = gltf.scene.children[0];
   gltf.scene.children[0].material = new THREE.MeshPhysicalMaterial({map:bacon});
-  console.log(gltf.scene.children[0].material);
+  // console.log(gltf.scene.children[0].material);
 })
 
 //objects
@@ -92,10 +92,11 @@ const torusGeometry = new THREE.TorusGeometry(1.7,.2,30,150);
 //materials
 
 const planeMaterial = new THREE.MeshBasicMaterial({
-  color:0x1e6dae,
+  // color:0x1e6dae,
+  color:0x89CFF0,
   map:planeTexture,
   transparent:true,
-  opacity:.6,
+  opacity:.3,
 
 })
 const plane2Material = new THREE.MeshBasicMaterial({
@@ -222,7 +223,35 @@ gsap.to('.back2',{
   visibility:'hidden'
 })
 });
+const tl2 = gsap.timeline();
+
 cam2.addEventListener('click', function(){
+  tl2.to(pig.rotation,{
+    y:.2,
+    z:.2,
+    duration:8,
+    ease:'none'
+  })
+  gsap.to(light3.position,{
+    x:4,
+    y:-5,
+    z:7,
+    duration:15
+  })
+
+  tl2.to(pig.rotation,{
+    y:-.2,
+    z:-.2,
+    duration:8,
+    ease:'none'
+  })
+
+  tl2.to(pig.rotation,{
+    y:0,
+    z:0,
+    duration:8,
+    ease:'none'
+  })
 
 tl.to(camera.position,{
   y:-2,
@@ -251,7 +280,7 @@ tl.to(document.body,{
   overflowY:'scroll'
 })
 gsap.to('.progressbar',{
-  display:'inline-block'
+    visibility:'visible'
 })
 });
 cam3.addEventListener('click', function(){
@@ -279,7 +308,7 @@ gsap.to(document.body,{
 
 })
 gsap.to('.progressbar',{
-  display:'none'
+  visibility:'hidden'
 })
 });
 cam4.addEventListener('click', function(){
@@ -307,7 +336,7 @@ gsap.to(document.body,{
 
 })
 gsap.to('.progressbar',{
-  display:'none'
+    visibility:'hidden'
 })
 });
 //update aspect on resize
@@ -331,8 +360,11 @@ window.addEventListener('resize', () =>{
 function torusRotate() {
   torus.rotation.z+=0.0003;
 }
+
 function pigIn(){
-  pig.position.z=0;
+tl2.repeat(-1);
+
+
 }
 function animate(){
   window.requestAnimationFrame(animate);
@@ -340,7 +372,16 @@ function animate(){
   camera2.updateProjectionMatrix();
   renderer.render(scene,camera);
   renderer2.render(scene2,camera2);
+pigIn()
   torusRotate();
-
+  // pig.rotation.x+=0.001;
+// tl.to(pig.rotation,{
+//   x:.4,
+//   duration:2
+// })
+// tl.to(pig.rotation,{
+//   x:-.4,
+//   duration:2
+// })
 }
 animate();
