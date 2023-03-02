@@ -1,81 +1,180 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta name="viewport" content="width=device-width , initial-scale=1.0">
-    <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/cydonia-century" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div class="vid-loader">
-      <video src="./videos/loading video.mp4" id="load-vid" playsinline muted autoplay>
 
-      </video>
-    </div>
-    <div class="positions">
-    <button id="cam1">Set 1</button>
-    <button id="cam2">Set 2</button>
-    <button id="cam3">Set 3</button>
-    <button id="cam4">Set 4</button>
-    </div>
-    <div class="back">
-      <span class="progressbar"></span>
+<head>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Righteous&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet" crossorigin>
+  <!-- <link href="https://fonts.cdnfonts.com/css/cydonia-century" rel="stylesheet" crossorigin> -->
+  <link rel="stylesheet" href="./styles/styles.css">
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <video id="video-texture" playsinline muted controls src="videos/WIP6.mp4"></video>
+  <div class="vid-loader">
+    <video src="videos/cant see .mp4" id="load-vid" playsinline muted autoplay>
+
+    </video>
+  </div>
+  <div class="positions">
+    <button class="active" id="cam1">Home</button>
+    <button id="cam2">Section 2</button>
+    <button id="cam3">Products</button>
+    <button id="cam4">Impact & Sustainablity</button>
+    <button id="cam5">Video</button>
+  </div>
+  <div class="back">
+    <span class="progressbar"></span>
+
 
     <div class="wrapper">
       <div class="container">
         <section class="pn1">
           <div class="holder">
 
-                <h2>Scaling Up Food Production,</h2>
-        <h2>Unable to Downsize Wastage?</h2>
-</div>
-        <canvas class="object">
-          this is a test
-        </canvas>
-              </section>
-              <section class="pn2">
-                <h2 class="anim">Developing Cutting Edge Medical Technology,
-         </h2>
-         <h2 class="anim">But, losing lives to microbial infections?</h3>
+            <h2 class="anim">Scaling Up Food Production,</h2>
+            <h2 class="anim">Unable to Downsize Wastage?</h2>
+          </div>
+          <canvas class="object">
 
-              </section>
-              <section class="pn3">
+          </canvas>
+        </section>
+        <section class="pn2">
+          <div class="holder">
+            <h2 class="anim">Developing Cutting Edge Medical Technology,</h2>
+            <h2 class="anim">But, losing lives to microbial infections?</h2>
+          </div>
+          <canvas class="object2">
+
+          </canvas>
+
+        </section>
+        <section class="pn3">
+          <div class="holder">
+            <h2 class="anim">problem statement</h2>
+            <h2 class="anim">problem statement</h2>
+          </div>
+        </section>
+        <!-- <section class="pn4">
+                <div class="holder">
                 <h2  class="anim">problem statement</h2>
                 <h2  class="anim">problem statement</h2>
-              </section>
-              <section class="pn4">
-                <h2  class="anim">problem statement</h2>
-                <h2  class="anim">problem statement</h2>
+                </div>
               </section>
               <section class="pn5">
+                <div class="holder">
                 <h2  class="anim">problem statement</h2>
                 <h2  class="anim">problem statement</h2>
-              </section>
+                </div>
+              </section> -->
 
-      </div>
-        </div>
-      <canvas class="webgl"></canvas>
-
-      <div class="back2">
-        <h2>Products</h2>
-        
       </div>
     </div>
+    <canvas class="webgl"></canvas>
 
 
 
-    <script type="importmap">
-  {
+
+    <div class="back2">
+      <h2>Products</h2>
+      <div class="products-holder">
+        <div class="trix">
+          <img src="images/set1.jpeg" alt="">
+          <img src="images/set2.jpeg" id="set2" alt="">
+          <div class="mouse-hover"></div>
+        </div>
+        <div class="sanibot">
+          <img src="images/set3.jpeg" alt="">
+          <img src="images/set4.jpeg" id="set4" alt="">
+          <div class="mouse-hover"></div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="back3">
+      <h2>Impact And Sustainablity</h2>
+      <button id="mute">Mute</button>
+      <button id="play">Play</button>
+
+
+    </div>
+  </div>
+  <script>
+    const vid = document.getElementById('load-vid');
+    vid.playbackRate = 1;
+    const set2 = document.getElementById('set2');
+    const set4 = document.getElementById('set4');
+    const box1 = document.querySelector('.trix .mouse-hover');
+    const box2 = document.querySelector('.sanibot .mouse-hover');
+
+
+    box1.addEventListener('click', function() {
+      set2.classList.toggle('active');
+      document.querySelector('.trix .mouse-hover').classList.toggle('active');
+      document.querySelector('.positions').classList.toggle('active');
+      document.querySelector('.back2 h2').classList.toggle('active');
+    })
+    // box1.addEventListener('mouseleave',function(){
+    //   set2.classList.remove('active');
+    //   document.querySelector('.back2 h2').style.opacity="1";
+    //   document.querySelector('.positions').style.opacity="1";
+    // })
+    box2.addEventListener('click', function() {
+      set4.classList.toggle('active');
+      document.querySelector('.sanibot .mouse-hover').classList.toggle('active');
+      document.querySelector('.positions').classList.toggle('active');
+      document.querySelector('.back2 h2').classList.toggle('active');
+    })
+    // box2.addEventListener('mouseleave',function(){
+    //   set4.classList.remove('active');
+    //   document.querySelector('.back2 h2').style.opacity="1";
+    //   document.querySelector('.positions').style.opacity="1";
+    // })
+
+
+    window.addEventListener("load", function() {
+      const vidLoader = document.querySelector('.vid-loader');
+      vid.addEventListener('ended', function() {
+        vidLoader.classList.add("hidden");
+      })
+    });
+  </script>
+  <script type="importmap">
+    {
     "imports": {
       "three": "https://unpkg.com/three@0.139.1/build/three.module",
       "three/": "https://unpkg.com/three@0.139.1/"
     }
   }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-<script src="./scripts/script.js" type="module" charset="utf-8"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script src="./scripts/script.js" type="module" charset="utf-8"></script>
+  <!-- <script src="./scripts/test.js" type="module" charset="utf-8"></script> -->
+
+  <!-- <script>
+
+const positions = document.querySelectorAll('.positions button');
+
+positions.forEach((position) => {
+  position.addEventListener('click', function(){
+    positions.forEach((pos) => {
+      pos.classList.remove('active');
+
+    });
+
+    position.classList.add('active');
+  })
+});
+
+
+
+</script> -->
+</body>
+
 </html>
