@@ -54,15 +54,47 @@ body{
 }
 .positions{
   position: fixed;
-  bottom:0;
+  /* bottom:0; */
+  left:15px;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:10px;
-  width: 100%;
+  gap:10px ;
+  width: 8%;
   z-index: 3;
 }
+.positions.active{
+  opacity: 0;
+}
+.positions button{
+  background: transparent;
+  border:none;
+  font-size: 1rem;
+  margin:2px 0;
+padding:.1rem;
+cursor: pointer;
+font-weight: 600;
+transition:all .5s ease-in-out;
+font-family: "century gothic", sans-serif;
+}
+.positions button:hover{
+  transform: scale(1.15);
+}
+.positions button.active{
+  /* visibility: hidden; */
+  /* cursor: not-allowed; */
+  pointer-events: none;
+  transform: scale(1.2);
+  font-weight:600;
+  margin:40px 0 ;
 
+
+}
+/* .pn2 h2{
+  color:red!important;
+} */
 .back section{
   width:100%;
   height: 100vh;
@@ -76,16 +108,38 @@ font-family: 'Cydonia Century', sans-serif;
 }
 .back section h2{
   font-size: 1.8rem;
+  /* color:rgba(50,50,50,1); */
+  color:white;
+  /* background: rgba(0,0,0,.6); */
 }
 .holder{
-  background:rgba(255,255,255,.5);
-  width:30%;
-  height: 30%;
+  /* background:rgba(255,255,255,.5); */
+  width:100%;
+  height: 45%;
   display: flex;
+  /* top:50%;
+  left:50%;
+  transform: translate(-50%,-50%); */
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 50px;
+  position: fixed;
+
+
+
+  /* bottom:50px; */
+  /* margin-top: 25%; */
+
+}
+.holder h2:nth-of-type(1){
+position:absolute;
+  top:-17%;
+
+}
+.holder h2:nth-of-type(2){
+  position: absolute;
+  bottom:-2%;
+
 }
 .progressbar{
   /* margin-top: 0; */
@@ -101,6 +155,7 @@ font-family: 'Cydonia Century', sans-serif;
   transform-origin: left;
   visibility: hidden;
 }
+
 .vid-loader{
 width:100%;
 height: 100vh;
@@ -120,24 +175,99 @@ height: 100%;
 object-fit: cover;
 
 }
+#video-texture{
+  display: none;
+}
 .vid-loader.hidden{
 animation: fadeOut 1.2s;
 animation-fill-mode: forwards;
 }
-.object{
+.object,.object2{
   /* margin: 5px 0 0; */
-max-width:100%;
-max-height: 100%;
+max-width:70%;
+max-height: 70%;
   display: none;
-  position: absolute;
+  position: relative;
   /* top:10%; */
-  top:50%;
+  /* top:20%;
   left:50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-20%); */
   z-index: -1;
   /* background: white; */
+  border-radius: 25px;
+  opacity:.7;
+  filter:drop-shadow(5px,3px,10px,black);
+  box-shadow: 6px 8px 15px black;
 }
 .back2{
+  position: absolute;
+  z-index: 2;
+  top:0;
+  width:100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  overflow-y: scroll;
+}
+.products-holder{
+  width:100%;
+  height: 100%;
+  position: relative;
+}
+.trix,.sanibot{
+  width:100%;
+  height: 100%;
+  position: relative;
+}
+.trix img , .sanibot img{
+  object-fit: cover;
+  position: absolute;
+  width:100%;
+  height: 100%;
+}
+.trix .mouse-hover{
+width:350px;
+height: 250px;
+  position: absolute;
+
+  background:rgba(0,0,0,.1);
+  border-radius: 25px;
+  top:7%;
+  right:17.5%;
+  cursor: pointer;
+  transition: .5s ease;
+}
+.sanibot .mouse-hover{
+width:27%;
+height: 50%;
+  position: absolute;
+  background:rgba(0,0,0,.1);
+  border-radius: 25px;
+bottom:15%;
+  left:15%;
+  cursor: pointer;
+  transition: .5s ease;
+}
+.mouse-hover.active{
+  background: transparent;
+}
+.mouse-hover:hover{
+  background:transparent;
+}
+#set2, #set4{
+  opacity: 0;
+  transition: .5s ease;
+}
+#set2.active, #set4.active{
+  opacity: 1;
+
+}
+
+.back3{
   position: fixed;
   top:0;
   width:100%;
@@ -147,14 +277,62 @@ max-height: 100%;
   align-items: center;
   flex-direction: column;
   visibility: hidden;
+  /* display: none; */
+}
+#mute,#play{
+  font-size: 1rem;
+  position: absolute;
+  color:White;
+  font-family: sans-serif;
+  background: rgba(150,150,150,.6);
+  padding: .6rem;
+  border-radius: 25px;
+  border:none;
+cursor: pointer;
+}
+#mute{
+  top:80%;
+  left:85%;
+}
+#play{
+  top:80%;
+  left:80%;
+}
+#play.active{
+
+}
+#mute.muted{
 
 }
 .back2 h2{
   position: absolute;
   top:5%;
+  font-family: 'Josefin sans',sans-serif;
+  /* font-family: sans-serif; */
+  z-index: 3;
+  transition: .5s ease;
+  color:white;
+  font-size: 2rem;
+}
+.back2 h2.active{
+  opacity: 0;
+}
+.back3 h2{
+  position: absolute;
+  top:5%;
+  font-family: 'Josefin sans',sans-serif;
 }
 @media only screen and (min-width:280px) and (max-width:676px){
   .back section h2{
     font-size: 1.5rem;
   }
+
+  }
+  @keyframes fadeOut {
+    100%{
+      opacity: 0;
+      display: none;
+      z-index: -2;
+
+    }
   }
