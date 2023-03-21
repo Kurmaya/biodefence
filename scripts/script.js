@@ -6,7 +6,14 @@ import {RGBELoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/R
 import {RenderPass} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/RenderPass.js'
 import {EffectComposer} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/EffectComposer.js'
 import {UnrealBloomPass} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/UnrealBloomPass.js'
+import {TTFLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/TTFLoader.js'
+import {FontLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/FontLoader.js'
+import {TextGeometry} from 'https://unpkg.com/three@0.139.1/examples/jsm/geometries/TextGeometry.js'
+import Stats from 'https://unpkg.com/three@0.139.1/examples/jsm/libs/stats.module.js'
 
+
+let stats ;
+stats = new Stats();
 
 const positions = document.querySelectorAll('.positions button');
 
@@ -20,7 +27,27 @@ positions.forEach((position) => {
     position.classList.add('active');
   })
 });
+
+// //loading manager
+// THREE.DefaultLoadingManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+//
+// 	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+//
+// };
+//
+//
+// THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+//
+// 	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+//
+// };
+// THREE.DefaultLoadingManager.onLoad = function ( ) {
+//
+// 	console.log( 'Loading Complete!');
+//
+// };
 //variable
+let gui = new dat.GUI();
 var container = document.querySelector('.container');
 const sections = gsap.utils.toArray('.container section');
 const text = gsap.utils.toArray('.anim');
@@ -30,7 +57,10 @@ const cam1= document.getElementById('cam1');
 const cam2= document.getElementById('cam2');
 const cam3= document.getElementById('cam3');
 const cam4= document.getElementById('cam4');
+const cam5 = document.getElementById('cam5');
 const veedeeo= document.getElementById('video-texture');
+document.body.appendChild(stats.dom);
+veedeeo.currentTime =.1;
 // veedeeo.play();
 let videoTexture = new THREE.VideoTexture(veedeeo);
 
@@ -85,16 +115,25 @@ const camera2 = new THREE.PerspectiveCamera(75,sizes.width/sizes.height,.1,1000)
 camera2.position.set(0,0,3);
 const camera3 = new THREE.PerspectiveCamera(75,sizes.width/sizes.height,.1,1000);
 camera3.position.set(0,0,3);
+//clipping plane
+
+const localPlane = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ),.73 );
+// const localPlane2 = new THREE.Plane( new THREE.Vector3( 5, 2, 0 ),.7 );
+// const helper1 = new THREE.PlaneHelper( localPlane2, 1, 0xffab00 );
+// scene.add(helper1);
+
+const globalPlane = new THREE.Plane( new THREE.Vector3( - 1, 0, 0 ), 0.1 );
 //renderer
 
 const renderer = new THREE.WebGLRenderer({
   antialias:true,
   canvas:canvas,
-  alpha:true
+  alpha:true,
+
 })
+renderer.localClippingEnabled=true;
 renderer.setPixelRatio(devicePixelRatio);
 renderer.setSize(sizes.width,sizes.height);
-// renderer.setClearColor(0xffffff);
 scene.background= new THREE.Color(0xffffff);
 // scene2.background= new THREE.Color(0x000000,.6);
 
@@ -103,12 +142,12 @@ const renderer2 = new THREE.WebGLRenderer({
   canvas:contObjects,
   alpha:true,
   // background:'#ececec',
-  opacity:.5
+  opacity:1
 })
 renderer2.setPixelRatio(devicePixelRatio);
 renderer2.setSize(sizes.width,sizes.height);
-// renderer2.setClearColor(0x121212);
-renderer2.setClearColor(0x89CFF0,.5);
+renderer2.setClearColor(0x121212);
+// renderer2.setClearColor(0x89CFF0,.5);
 const renderer3 = new THREE.WebGLRenderer({
   antialias:true,
   canvas:document.querySelector('.object2'),
@@ -127,20 +166,17 @@ const bacon =  textureLoader.load('https://ik.imagekit.io/768eoiozf/biodefence/s
 const gLoader =new GLTFLoader();
 let bio,pig ;
 gLoader.load('./3d/bd.glb', function(gltf){
-  scene.add(gltf.scene);
+  // scene.add(gltf.scene);
   bio = gltf.scene.children[0];
   gltf.scene.scale.set(.006,.006,.006);
   bio.rotation.x= 0;
-  // bio.rotation.y= 0.1;
+
   bio.position.set(0,0,0);
 
   bio.material= new THREE.MeshPhongMaterial({reflectivity:10,
   shininess:60,
 });
-// bio.material = new THREE.PointsMaterial({size:0.0001,color:0xff0000,alpha:true,
-// opacity:0.4});
-// console.log(bio.geometry.attributes.position);
-// bio.geometry.attributes.position= new THREE.BufferGeometry();
+
 if(screen.width<400){
   gltf.scene.scale.set(.004,.004,.004);
 }
@@ -157,7 +193,7 @@ gLoader.load('./3d/BAcon.glb',function(gltf){
     gltf.scene.scale.set(.03,.03,.03);
 
   }
-  // console.log(gltf.scene.children[0].material);
+
 })
 let pills;
 gLoader.load('./3d/pills.glb',function(gltf){
@@ -171,8 +207,33 @@ gLoader.load('./3d/pills.glb',function(gltf){
   if(screen.width<400){
     gltf.scene.scale.set(15,15,15);
   }
-  // console.log(gltf.scene.children[0].material);
+
 })
+let tex;
+gLoader.load('./3d/more 2 (1).glb',function(gltf){
+  scene.add(gltf.scene);
+  // gltf.scene.scale.set(0.28,.28,28);
+  tex= gltf.scene.children[0];
+  tex.material= new THREE.MeshStandardMaterial({
+    color:0xff0000,
+    clippingPlanes:[localPlane],
+    clipShadows:true
+  })
+  console.log(tex)
+
+  tex.scale.set(.028,.028,.028);
+  tex.position.z= -1;
+  tex.position.y= .1;
+  tex.rotation.z= -.001;
+  tex.rotation.y=.1;
+
+  gui.add(tex.rotation,'x',-5,5).name('text rotation x');
+gui.add(tex.rotation,'y',-5,5).name('text rotation y');
+gui.add(tex.position,'y',-5,5).name('text position y');
+gui.add(tex.rotation,'z',-5,5).name('text rotation z');
+
+})
+console.log(localPlane)
 //effects
 const composer=new EffectComposer(renderer3);
 composer.addPass(new RenderPass(scene3,camera3));
@@ -185,14 +246,14 @@ let tor=1.7;
 if(screen.width<400){
   tor=1.2
 }
-// else if(screen.width>679){
-//   tor=1.7
-// }
-const planeGeometry = new THREE.PlaneGeometry(500,200);
-const videoPlaneGeometry = new THREE.PlaneGeometry(10,5);
+else if(screen.width>679){
+  tor=1.7
+}
+
+const planeGeometry = new THREE.PlaneBufferGeometry(500,200,100,100);
+const videoPlaneGeometry = new THREE.PlaneBufferGeometry(10,5,100,100);
 const videoSphere = new THREE.SphereGeometry(5,32,16);
 const torusGeometry = new THREE.TorusGeometry(tor,.2,30,150);
-
 
 //materials
 const videoPlaneMaterial=  new THREE.MeshBasicMaterial({side:THREE.DoubleSide,
@@ -218,6 +279,7 @@ const torusMaterial = new THREE.PointsMaterial({
   color:0xff0000,
   transparent:true,
   opacity:1,
+
   // map:zz,
 
 
@@ -226,20 +288,21 @@ const particlesMaterial =new THREE.PointsMaterial({
   size : 0.02,
   // map: zz,
   transparent:true,
-  opacity:.48,
+  opacity:.58,
   // color: 0x85CDFD
   color:0x222222
 });
 
 const particlesGeometry = new THREE.BufferGeometry;
-const particlesCount = 5000;
+const particlesCount = 4000;
 
 const posArray = new Float32Array(particlesCount*3);
 
 for (let i=0;i<particlesCount*3;i++){
   // posArray[i] =(Math.random()-.5)*5;
   // posArray[i] =(Math.random()-.5)*10;
-  posArray[i] =(Math.random()-.5)*40;
+  // posArray[i] =(Math.random()-.5)*40;
+  posArray[i] =(Math.random(Math.sin(Math.random()))-.5)*40;
 }
 particlesGeometry.setAttribute('position',new THREE.BufferAttribute(posArray,3));
 
@@ -250,7 +313,10 @@ const particlesMesh= new THREE.Points(particlesGeometry,particlesMaterial);
 const plane = new THREE.Mesh(planeGeometry,planeMaterial);
 const videoPlane = new THREE.Mesh(videoPlaneGeometry,videoPlaneMaterial);
 const torus = new THREE.Points(torusGeometry,torusMaterial);
+// console.log(torus);
+torus.recieveShadow=true;
 torus.position.set(0,0,-1);
+// torus.rotation.x=.1;
 
 
 videoPlane.position.set(-10,0,-10);
@@ -266,8 +332,26 @@ scene2.add(camera2);
 scene3.add(camera3);
 scene.add(particlesMesh);
 
+//fonts
+const fontLoader= new FontLoader();
+fontLoader.load(
+  'https://unpkg.com/three@0.139.1/examples/fonts/helvetiker_regular.typeface.json',
+  (font) =>{
+    const textGeometry = new TextGeometry('BIODEFENCE',{
+      height:.1,
+      size:.45,
+      font:font,
 
-const controls =new OrbitControls(camera,canvas);
+
+    });
+    const textMaterial = new THREE.MeshLambertMaterial({color:0xff0000});
+    const textMesh = new THREE.Mesh(textGeometry,textMaterial);
+    textMesh.position.set(-.79,-.1,0);
+    textMesh.scale.set(.45,.45,.8)
+    scene.add(textMesh);
+  }
+)
+// const controls =new OrbitControls(camera,canvas);
 // const controls2 =new OrbitControls(camera2,contObjects);
 
 //lights
@@ -277,6 +361,8 @@ light1.position.set(0,5,3);
 const helper = new THREE.DirectionalLightHelper( light1, 5 );
 const light2 = new THREE.HemisphereLight(0xf00000,0xff0000,10);
 const spotLight= new THREE.SpotLight(0xffffff,1.5,30,15,.6,0)
+const videoSpot = new THREE.SpotLight(0xffffff,1,30,15,.6,0);
+videoSpot.position.set(-4,5,-4);
 const light3 = new THREE.DirectionalLight(0xaa0011,5);
 const light4 = new THREE.PointLight(0xababab,2);
 light4.position.set(-5,10,1);
@@ -289,7 +375,7 @@ spotLight.position.set(2,5,3);
 // scene.add(helper);
 // scene.add(light2);
 scene2.add(spotLight);
-scene.add(light1);
+scene.add(light1,videoSpot);
 scene.add(light4);
 // scene3.add(light4);
 renderer.render(scene,camera);
@@ -298,15 +384,15 @@ renderer3.render(scene3,camera3);
 let scrollTween=gsap.to(sections,{
   xPercent : -100 *(sections.length -1),
   ease:"none",
-  // ease:"power1.Out",
+
   scrollTrigger:{
     trigger:".back",
-    // trigger:canvas,
+
     pin:true,
-    scrub:.01,
+    scrub:true,
     // start:"center right",
     // end:"+=3000",
-    snap :1/(sections.length-1),
+    // snap :1/(sections.length-1),
     end:() => "+="+container.offsetWidth,
     // markers: true,
   }
@@ -348,10 +434,10 @@ sections.forEach((section) => {
 });
 //curved panel
 let params ={
-	bendDepth:1
+	bendDepth:.5
 }
 
-let geom = new THREE.PlaneGeometry(16, 9, 200, 200);
+let geom = new THREE.PlaneGeometry(13, 7, 200, 200);
 planeCurve(geom, params.bendDepth);
 let mat = new THREE.MeshPhysicalMaterial({
 	// wireframe: true,
@@ -359,31 +445,49 @@ let mat = new THREE.MeshPhysicalMaterial({
   side:THREE.FrontSide,
   color:0xffffff,
   transparent:true,
-  opacity:.3,
+  opacity:0,
   reflectivity:1.4,
 });
 let curvedPanel = new THREE.Mesh(geom, mat);
 scene.add(curvedPanel);
-curvedPanel.position.set(-30,0,-10);
+curvedPanel.position.set(-30,0,-9.5);
 curvedPanel.rotation.set(1.2,2,0);
 
 
 // gui settings
-let gui = new dat.GUI();
-gui.add(mat, "wireframe");
-gui.add(curvedPanel.position,'x',-25,25);
-gui.add(curvedPanel.position,'y',-25,25);
-gui.add(curvedPanel.position,'z',-25,25);
-gui.add(light1.position,'x',-7,10).name('light1 x');
-gui.add(light1.position,'y',-7,10).name('light1 y');
-gui.add(light1.position,'z',-7,10).name('light1 z');
-const c1=gui.addFolder('curvedPanel');
 
+const c1=gui.addFolder('curvedPanel');
+c1.add(mat, "wireframe");
+c1.add(curvedPanel.position,'x',-25,25);
+c1.add(curvedPanel.position,'y',-25,25);
+c1.add(curvedPanel.position,'z',-25,25);
 c1.add(curvedPanel.rotation,'x',-5,5).name('curvedPanel x rot');
 c1.add(curvedPanel.rotation,'y',-5,5).name('curvedPanel y rot');
 c1.add(curvedPanel.rotation,'z',-5,5).name('curvedPanel z rot');
-gui.add(params, "bendDepth", 1, 25).name("bend depth").onChange(v => {
+c1.add(params, "bendDepth", .1, 25).name("bend depth").onChange(v => {
 	planeCurve(geom, v);
+})
+
+
+
+const l1 = gui.addFolder('Light 1');
+l1.add(light1.position,'x',-7,10).name('light1 x');
+l1.add(light1.position,'y',-7,10).name('light1 y');
+l1.add(light1.position,'z',-7,10).name('light1 z');
+
+
+const spot2 = gui.addFolder('video spotlight');
+videoSpot.castShadow= true;
+spot2.add(videoSpot.position,'x',-10,10).name('video SpotLight x');
+spot2.add(videoSpot.position,'y',-10,10).name('video SpotLight y');
+spot2.add(videoSpot.position,'z',-10,10).name('video SpotLight z');
+spot2.add(videoSpot,'intensity',1,5).name('video SpotLight Intensity');
+
+let spotColor = {
+  color:0xececec
+}
+spot2.addColor(spotColor,'color').onChange(() =>{
+  videoSpot.color.set(spotColor.color);
 })
 
 
@@ -424,7 +528,7 @@ function planeCurve(g, z){
   pos.needsUpdate = true;
 
 }
-
+// console.log(particlesMesh);
 //timelines
 const tl2 = gsap.timeline();
 const tl3=gsap.timeline();
@@ -435,6 +539,13 @@ cam1.addEventListener('click', function(){
   positions.forEach((position) => {
     position.style.color="black";
   });
+  gsap.to(particlesMesh.material,{
+    opacity:.38
+  })
+  gsap.to('.positions',{
+    left:'15px',
+    duration:1.5
+  })
   gsap.to(light1.position,{
     x:0,
     y:5,
@@ -463,7 +574,8 @@ tl.to(camera.position,{
   x:0,
   y:0,
   z:3,
-  duration:2
+  duration:3,
+  ease:'power1'
 })
 gsap.to(camera.rotation,{
   x:0,
@@ -490,17 +602,10 @@ cam2.addEventListener('click', function(){
 positions.forEach((position) => {
   position.style.color="black";
 });
-  //
-  // gsap.to(scene.background,{
-  //   duration:2,
-  //   r:0,
-  //   g:0,
-  //   b:0
-  // })
-  // gsap.to(torus.position,{
-  //   z:-1,
-  //   duration:2
-  // })
+gsap.to(particlesMesh.material,{
+  opacity:.38
+})
+
 gsap.to(curvedPanel.position,{
   x:-30,
   y:0,
@@ -578,8 +683,12 @@ gsap.to('.progressbar',{
 });
 cam3.addEventListener('click', function(){
   positions.forEach((position) => {
-    position.style.color="red";
+    position.style.color="black";
   });
+  gsap.to('.positions',{
+    left:'15px',
+    duration:1.5
+  })
   gsap.to(curvedPanel.material,{
     opacity:'0',
     delay:1,
@@ -623,17 +732,24 @@ cam4.addEventListener('click', function(){
   positions.forEach((position) => {
     position.style.color="black";
   });
+  gsap.to(particlesMesh.material,{
+    opacity:0
+  })
+  gsap.to('.positions',{
+    left:'15px',
+    duration:1.5
+  })
   gsap.to(light1.position,{
     x:-5,duration:4
   })
   gsap.to(curvedPanel.position,{
-    x:-6,
-    y:-2.2,
-    z:-9,
+    x:-5,
+    y:-2.1,
+    z:-9.2,
     duration:2
   })
   gsap.to(curvedPanel.material,{
-    opacity:'.8',
+    opacity:'1',
     delay:1,
     duration:2
   })
@@ -708,6 +824,33 @@ tl3.repeat(-1);
 function pigIn(){
 tl2.repeat(-1);
 }
+gsap.registerPlugin(ScrollTrigger);
+gsap.to(camera.position,{
+  scrollTrigger:{
+    trigger:canvas,
+    start:"top top",
+    // snap:true,
+    end:canvas.innerHeight,
+    scrub:true
+  },
+  y:-1,
+  z:-1.4,
+  x:1.2,
+  duration:4
+})
+gsap.to(camera.rotation,{
+  scrollTrigger:{
+    trigger:canvas,
+    start:"top top",
+    end:canvas.innerHeight,
+    scrub:true
+  },
+  x:0,
+  y:-1.3,
+  z:0,
+  duration:4
+})
+
 document.addEventListener('mousemove',onDocumentMouseMove)
 let mouseX= 0;
 let mouseY=0;
@@ -721,7 +864,7 @@ function onDocumentMouseMove(event){
   mouseX= (event.clientX - windowX);
   mouseY = (event.clientY-windowY);
 }
-
+//update aspect on resize
 window.addEventListener('resize', () =>{
   //update sizes
   sizes.width=window.innerWidth;
@@ -755,13 +898,14 @@ const elapsedTime= clock.getElapsedTime();
 particlesMesh.rotation.x= -.009 *elapsedTime;
 particlesMesh.rotation.z= -.009 *elapsedTime;
 if(mouseX < window.innerWidth || mouseY <window.innerHeight ){
-  particlesMesh.rotation.x = mouseY *0.0005;
-  particlesMesh.rotation.y = -(mouseX *0.0005);
+  particlesMesh.rotation.x = -(mouseY *0.00005);
+  particlesMesh.rotation.y = -(mouseX *0.00003);
   curvedPanel.rotation.y= -(mouseX *0.00001)+2;
   curvedPanel.rotation.z= -(mouseY *0.00001);
 
 }
   window.requestAnimationFrame(animate);
+
   videoTexture.needsUpdate = true;
   camera.updateProjectionMatrix();
   camera2.updateProjectionMatrix();
@@ -773,11 +917,11 @@ if(mouseX < window.innerWidth || mouseY <window.innerHeight ){
   composer2.render();
 pills.rotation.z+=0.002;
 
-pigIn()
+// pigIn()
   torusRotate();
-pill();
+// pill();
+stats.update();
 }
 
 // renderer.setAnimationLoop(animate);
 animate();
-//update aspect on resize
