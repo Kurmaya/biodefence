@@ -5,29 +5,35 @@
   <meta name="viewport" content="width=device-width , initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Righteous&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet" crossorigin>
-  <!-- <link href="https://fonts.cdnfonts.com/css/cydonia-century" rel="stylesheet" crossorigin> -->
+  <link href="https://fonts.cdnfonts.com/css/cydonia-century" rel="stylesheet" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./styles/styles.css">
   <meta charset="utf-8">
   <title></title>
 </head>
 
 <body>
-  <video id="video-texture" playsinline muted controls src="./WIP6.mp4"></video>
+  <div class="cursor"></div>
+  <div class="follow"></div>
+  <video id="video-texture" playsinline muted controls crossorigin src="https://ik.imagekit.io/768eoiozf/biodefence/WIP6_1__5uiNCr5RI.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1677766633443"></video>
   <div class="vid-loader">
-    <video src="videos/cant see .mp4" id="load-vid" playsinline muted autoplay>
+    <video src="videos/cant see new .mp4" id="load-vid" playsinline muted autoplay>
 
     </video>
   </div>
   <div class="positions">
-    <button class="active" id="cam1">Home</button>
-    <button id="cam2">Section 2</button>
-    <button id="cam3">Products</button>
-    <button id="cam4">Impact & Sustainablity</button>
-    <button id="cam5">Video</button>
+    <a href="#space"><button id="cam1"><span><img class="one" src="images\icons\home-assistant.png" alt=""><img class="two" src="images\icons\home-assistant (2).png" alt=""></span><p>Home</p></button></a>
+    <a href="#cards"><button id="cam2"><span><img class="one" src="images\icons\future (2).png" alt=""><img class="two" src="images\icons\future (3).png" alt=""></span><p>Section 2</p></button></a>
+    <a href="#veed"><button id="cam4"><span><img class="one" src="images\icons\movie-reel.png" alt=""><img class="two" src="images\icons\film-roll.png" alt=""></span><p>Video</p></button></a>
+    <a href="#prodcuts"><button id="cam3"><span><img class="one" src="images\icons\assembly (1).png" alt=""><img class="two" src="images\icons\assembly.png" alt=""></span><p>Products</p></button></a>
+    <a href="#impact"><button id="cam5"><span><img class="one" src="images\icons\planet-earth (2).png" alt=""><img class="two" src="images\icons\planet-earth.png" alt=""></span><p>Impact & Sustainablity</p></button></a>
+    <a href="#contact"><button id="cam6"><span><img class="one" src="images\icons\communiations (1).png" alt=""><img class="two" src="images\icons\communiations (2).png" alt=""></span><p>Contact Us</p></button></a>
   </div>
-  <div class="back">
+
+  <!-- <div class="back">
     <span class="progressbar"></span>
 
 
@@ -59,76 +65,228 @@
             <h2 class="anim">problem statement</h2>
           </div>
         </section>
-        <!-- <section class="pn4">
-                <div class="holder">
-                <h2  class="anim">problem statement</h2>
-                <h2  class="anim">problem statement</h2>
-                </div>
-              </section>
-              <section class="pn5">
-                <div class="holder">
-                <h2  class="anim">problem statement</h2>
-                <h2  class="anim">problem statement</h2>
-                </div>
-              </section> -->
+
 
       </div>
-    </div>
+    </div> -->
     <canvas class="webgl"></canvas>
+    <div id="space" class="space"></div>
+<div class="cards" id="cards">
+  <div class="swiper mySwiper">
+   <div class="swiper-wrapper">
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+     </div>
+     <div class="swiper-slide">
+       <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+     </div>
+   </div>
+   <div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+   <!-- <div class="swiper-pagination"></div> -->
+ </div>
+  <!-- <div class="cards-cont">
 
+    <div class="card card-1"></div>
+    <div class="card card-2"></div>
+    <div class="card card-3"></div>
 
+  </div> -->
+</div>
 
+<div id="veed" class="veed">
+  <div class="cont">
+    <button id="mute">Mute</button>
+  <button id="play">Play</button>
+</div>
 
-    <div class="back2">
+</div>
+<div id="prodcuts" class="prods">
+  <div class="products-holder">
+  <img src="images/products-background.jpg" alt="">
+  <img id="set2" src="images/sanibot-resized.jpg" alt="">
+  <img id="set3" src="images/hextro-resized.jpg" alt="">
+  <!-- <img id="set4" src="images/Hextro setup.557.png" alt="">
+  <img id="set5" src="images/Hextro setup.558.png" alt=""> -->
+  <div class="trix"></div>
+  <div class="sanibot"></div>
+
+  </div>
+</div>
+<div id="impact" class="impact">
+<h2>Impact & Sustainablity</h2>
+  <div class="imp-vid">
+      <video id="impactVideo" src="https://ik.imagekit.io/768eoiozf/pexels-peter-fowler-6394054_DdO0lKqsE.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1670715380080" autoplay muted loop playsinline crossorigin></video>
+    </div>
+</div>
+
+    <!-- <div class="back2">
       <h2>Products</h2>
       <div class="products-holder">
-        <div class="trix">
-          <img src="images/set1.jpeg" alt="">
-          <img src="images/set2.jpeg" id="set2" alt="">
-          <div class="mouse-hover"></div>
-        </div>
-        <div class="sanibot">
-          <img src="images/set3.jpeg" alt="">
-          <img src="images/set4.jpeg" id="set4" alt="">
-          <div class="mouse-hover"></div>
-        </div>
+      <img src="images/products-background.jpg" alt="">
+      <img id="set2" src="images/sanibot-resized.jpg" alt="">
+      <img id="set3" src="images/hextro-resized.jpg" alt="">
+      <div class="trix"></div>
+      <div class="sanibot"></div>
 
       </div>
 
-    </div>
-    <div class="back3">
+    </div> -->
+    <!-- <div class="back3">
       <h2>Impact And Sustainablity</h2>
       <button id="mute">Mute</button>
       <button id="play">Play</button>
 
 
+    </div> -->
+    <div id="contact" class="contact">
+
     </div>
   </div>
+   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
+    var swiper = new Swiper(".mySwiper", {
+      mousewheel:{
+
+      },
+      effect: "coverflow",
+      // grabCursor: true,
+      centeredSlides: true,
+      loop:true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 60,
+        modifier: 12,
+        slideShadows: false,
+
+      },
+
+      navigation: {
+       nextEl: ".swiper-button-next",
+       prevEl: ".swiper-button-prev",
+     },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
+  <script>
+
+  var buts = document.querySelectorAll('.positions span');
+  var mages = document.querySelectorAll('.positions button');
+  const currentLocation=location.href;
+
+  mages.forEach( item => {
+    if(item.href===currentLocation){
+      // console.log(item.href);
+      item.classList.add('active');
+    }
+  })
+
+  mages.forEach((mage)=>{
+    mage.addEventListener('click',function(){
+      // mages.forEach((i) => {
+      //   i.classList.remove('active');
+      // });
+      // for(let i=0,i<mages.length;i++){
+      //   mages[i].classList.remove('active');
+      // }
+
+
+      mage.classList.add('active');
+      if(mage.classList.contains('active')){
+        mage.querySelector('.two').style.display="block";
+        mage.querySelector('.one').style.display="none";
+        mage.querySelector('p').style.opacity='1';
+        mage.querySelector('p').style.transform='scaleY(1)';
+
+      }
+      if(!mage.classList.contains('active')){
+        mage.querySelector('.two').style.display="none";
+        mage.querySelector('.one').style.display="block";
+        mage.querySelector('p').style.opacity='1';
+        mage.querySelector('p').style.transform='scaleY(1)';
+
+      }
+    })
+
+
+    // mage.addEventListener('mouseover',function(){
+    // // console.log(mage.parentElement.parentElement.querySelector('p'));
+    // // mage.querySelector('.two').style.opacity='1';
+    // // mage.querySelector('.one').style.opacity='0';
+    // mage.querySelector('p').style.opacity='1';
+    // mage.querySelector('p').style.transform='scaleY(1)';
+    // })
+    // mage.addEventListener('mouseleave',function(){
+    // // console.log(mage.parentElement.parentElement.querySelector('p'));
+    // // mage.querySelector('.two').style.opacity='0';
+    // // mage.querySelector('.one').style.opacity='1';
+    // // mage.querySelector('p').style.opacity='0';
+    // // mage.querySelector('p').style.transform='scaleY(0)';
+    // })
+  })
+  document.querySelector('.imp-vid video').playbackRate=".9";
     const vid = document.getElementById('load-vid');
-    vid.playbackRate = 1;
+    vid.playbackRate = 1.5;
     const set2 = document.getElementById('set2');
-    const set4 = document.getElementById('set4');
-    const box1 = document.querySelector('.trix .mouse-hover');
-    const box2 = document.querySelector('.sanibot .mouse-hover');
+    const set3 = document.getElementById('set3');
+    const box1 = document.querySelector('.sanibot');
+    const box2 = document.querySelector('.trix');
 
-
+    //
     box1.addEventListener('click', function() {
       set2.classList.toggle('active');
-      document.querySelector('.trix .mouse-hover').classList.toggle('active');
+      box1.classList.toggle('active');
+      if(!box1.classList.contains('active')){
+box2.style.display='block';
+
+      }
+      else {
+        box2.style.display='none';
+
+      }
+
       document.querySelector('.positions').classList.toggle('active');
-      document.querySelector('.back2 h2').classList.toggle('active');
+      // document.querySelector('.back2 h2').classList.toggle('active');
     })
-    // box1.addEventListener('mouseleave',function(){
-    //   set2.classList.remove('active');
-    //   document.querySelector('.back2 h2').style.opacity="1";
-    //   document.querySelector('.positions').style.opacity="1";
-    // })
+    //
     box2.addEventListener('click', function() {
-      set4.classList.toggle('active');
-      document.querySelector('.sanibot .mouse-hover').classList.toggle('active');
+      set3.classList.toggle('active');
+      box2.classList.toggle('active');
+      if(!box2.classList.contains('active')){
+box1.style.display='block';
+
+      }
+      else {
+        box1.style.display='none';
+
+      }
       document.querySelector('.positions').classList.toggle('active');
-      document.querySelector('.back2 h2').classList.toggle('active');
+      // document.querySelector('.back2 h2').classList.toggle('active');
     })
     // box2.addEventListener('mouseleave',function(){
     //   set4.classList.remove('active');
@@ -138,11 +296,16 @@
 
 
     window.addEventListener("load", function() {
-      const vidLoader = document.querySelector('.vid-loader');
+      // document.body.style.overflow="hidden";
+
       vid.addEventListener('ended', function() {
-        vidLoader.classList.add("hidden");
+        document.querySelector('.vid-loader').classList.add("hidden");
+        // document.body.style.overflowX="hidden";
+        // document.body.style.overflowY="scroll";
+
       })
     });
+
   </script>
   <script type="importmap">
     {
@@ -154,27 +317,11 @@
 </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-  <script src="./scripts/script.js" type="module" charset="utf-8"></script>
+  <!-- <script src="./scripts/script.js" type="module" charset="utf-8"></script> -->
   <!-- <script src="./scripts/test.js" type="module" charset="utf-8"></script> -->
-
-  <!-- <script>
-
-const positions = document.querySelectorAll('.positions button');
-
-positions.forEach((position) => {
-  position.addEventListener('click', function(){
-    positions.forEach((pos) => {
-      pos.classList.remove('active');
-
-    });
-
-    position.classList.add('active');
-  })
-});
+  <script src="./scripts/new.js" type="module"></script>
 
 
-
-</script> -->
 </body>
 
 </html>
