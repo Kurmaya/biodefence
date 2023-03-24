@@ -1,8 +1,8 @@
-import * as THREE from 'https://unpkg.com/three@0.139.1/build/three.module.js';
-import {OrbitControls} from 'https://unpkg.com/three@0.139.1/examples/jsm/controls/OrbitControls'
+import * as THREE from '../modules/three.module.js';
+// import {OrbitControls} from 'https://unpkg.com/three@0.139.1/examples/jsm/controls/OrbitControls'
 import * as dat from "https://cdn.skypack.dev/dat.gui";
-import {GLTFLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/GLTFLoader.js'
-import {RGBELoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/RGBELoader.js'
+import {GLTFLoader} from '../modules/GLTFLoader.js'
+// import {RGBELoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/RGBELoader.js'
 const canvas = document.querySelector('canvas.webgl');
 gsap.registerPlugin(ScrollTrigger);
 const positions = document.querySelectorAll('.positions button');
@@ -96,7 +96,7 @@ const sizes = {
 }
 const scene = new THREE.Scene();
 //camera
-const camera= new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
+const camera= new THREE.PerspectiveCamera(75,sizes.width/sizes.height,.1,1000);
 //renderer
 const renderer = new THREE.WebGLRenderer({antialias:true,canvas:canvas});
 renderer.localClippingEnabled=true;
@@ -252,17 +252,21 @@ scene.add(plane,shadowPlane);
 plane.position.set(0,0,-100);
 //torus
 const torusGeo = new THREE.TorusGeometry(2,.2,30,120);
-const torusGeo2 = new THREE.TorusGeometry(1.7,.2,30,120);
+const torusGeo2 = new THREE.TorusGeometry(1.5,.2,30,120);
 
-const torusMaterial= new THREE.PointsMaterial({size:0.015,transparent:true,opacity:.4,color:0xff0000});
-const torus2Material= new THREE.PointsMaterial({color:0xff0000,size:0.015,clippingPlanes:[localPlane3]});
+const torusMaterial= new THREE.PointsMaterial({size:0.015,map:hex,transparent:true,opacity:.4,color:0xff0000});
+const torus2Material= new THREE.PointsMaterial({color:0xff0000,size:0.015,transparent:true,opacity:0});
 const helper = new THREE.PlaneHelper(localPlane2,2,0x00ff00);
 const helper2 = new THREE.PlaneHelper(localPlane3,2,0x0000ff);
 // scene.add(helper,helper2);
 const torus= new THREE.Points(torusGeo,torusMaterial);
-// const torus2= new THREE.Points(torusGeo2,torus2Material);
+const torus2= new THREE.Points(torusGeo2,torus2Material);
 
-
+scene.add(torus2);
+torus2.position.set(-1.4,-21,-4);
+ // x:-1.4,
+ //  y:-15.5,
+ //  z:-1
 torus.rotation.z=0;
 
 
@@ -293,7 +297,8 @@ dish.material.transparent=true;
   dish.material.opacity=0;
 dish.rotation.y=6;
 dish.wireframe=true;
-group.add(dish,shadowPlane);
+
+group.add(dish,shadowPlane,torus);
 scene.add(group);
 console.log(gltf.scene,dish);
   let sectionFour = gsap.timeline({
@@ -304,6 +309,7 @@ console.log(gltf.scene,dish);
       snap:1,
       scrub:.7,
       ease:'none',
+
     }
   });
 
@@ -341,6 +347,7 @@ console.log(gltf.scene,dish);
     duration:2,
     ease:'none'
   })
+
   .to(dish.position,{
     x:-1.8,
     duration:1.8,
@@ -360,12 +367,24 @@ console.log(gltf.scene,dish);
     duration:1,
     ease:'none'
   })
+  .to(torus2.position,{
+    x:-1.4,
+    y:-15.5,
+    z:-1,
+    ease:'none',
+    duration:2,
+  })
+  .to(torus2Material,{
+    opacity:1,
+    ease:'none',
+    duration:2,
+  })
   gui.add(dish.position,'x',-30,20).name('dish p x');
   gui.add(dish.position,'y',-30,20).name('dish p y');
   gui.add(dish.position,'z',-30,20).name('dish p z');
-  gui.add(dish.rotation,'x',-2,2).name('dish r x');
-  gui.add(dish.rotation,'y',-2,2).name('dish r y');
-  gui.add(dish.rotation,'z',-2,2).name('dish r z');
+  // gui.add(dish.rotation,'x',-2,2).name('dish r x');
+  // gui.add(dish.rotation,'y',-2,2).name('dish r y');
+  // gui.add(dish.rotation,'z',-2,2).name('dish r z');
 
 })
 gLoader.load('./3d/biodef logo.glb',function(gltf){
@@ -404,11 +423,11 @@ console.log(groupTwo);
   // tex.rotation.z= -.001;
   tex.rotation.y=.078;
 
-  gui.add(tex.rotation,'x',-5,5).name('text rotation x');
-gui.add(tex.rotation,'y',-5,5).name('text rotation y');
-gui.add(tex.position,'y',-5,5).name('text position y');
-gui.add(tex.position,'x',-5,5).name('text position x');
-gui.add(tex.rotation,'z',-5,5).name('text rotation z');
+//   gui.add(tex.rotation,'x',-5,5).name('text rotation x');
+// gui.add(tex.rotation,'y',-5,5).name('text rotation y');
+// gui.add(tex.position,'y',-5,5).name('text position y');
+// gui.add(tex.position,'x',-5,5).name('text position x');
+// gui.add(tex.rotation,'z',-5,5).name('text rotation z');
 
 })
 groupTwo.add(tex,torus,bio);
@@ -527,6 +546,7 @@ function animate(){
   requestAnimationFrame(animate);
   camera.updateProjectionMatrix();
   torus.rotation.z+=0.0001;
+  torus2.rotation.z+=0.0001;
   impactVideoCube.rotation.y+=0.001;
   // dish.rotation.z+=.001;
 
@@ -575,8 +595,8 @@ let sectionOne = gsap.timeline({
 sectionOne
 .to(camera.position,{
   y:-1.1,
-  z:-.25,
-  x:1.2,
+  z:-.28,
+  x:1.1,
   duration:4,},"simultaneously")
 
   .to(camera.rotation,{
@@ -609,7 +629,7 @@ sectionOne
   gsap.from('.products-holder',{
     opacity:0,
     xPercent:-100,
-    scrub:true,
+    scrub:.1,
     duration:.8,
     // delay:.8,
     ease:'none',
@@ -709,7 +729,7 @@ let sectionTwoHalf =gsap.timeline({
     start:'top top',
     end:'bottom',
     snap:1,
-    scrub:1,
+    scrub:.1,
     ease:'none'
   }
 });
