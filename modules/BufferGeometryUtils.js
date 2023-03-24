@@ -9,7 +9,7 @@ import {
 	TriangleStripDrawMode,
 	TrianglesDrawMode,
 	Vector3,
-} from './modules/three.module.js';
+} from '../modules/three.module.js';
 
 function computeTangents() {
 
