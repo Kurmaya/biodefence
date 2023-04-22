@@ -418,7 +418,7 @@ mail[1].castShadow=true;
 
     mail[i].material.opacity=0;
     mail[i].material.transparent=true;
-    mail[i].position.set(0,-20,0);
+    mail[i].position.set(0,-20,10);
 
 
   }
@@ -1319,6 +1319,12 @@ sectionThree
 //   // y:50,
 //   top:'75%',
 // },'simultaneously')
+// .to(mail[0].material,{
+//   opacity:0,
+// },'simultaneously')
+// .to(mail[1].material,{
+//   opacity:0,
+// },'simultaneously')
 .to(document.body,{
   overflowX:'hidden',
   overflowY:'scroll'
@@ -1644,6 +1650,12 @@ function addressAnim(){
   gsap.to(phone.position,{
     z:3,
   })
+  gsap.to(mail[0].position,{
+    z:10,
+  })
+  gsap.to(mail[1].position,{
+    z:10,
+  })
   animation
   .to(location.position,{
     x:-.5,
@@ -1675,10 +1687,10 @@ function phoneAnim(){
     z:3,
   })
   gsap.to(mail[0].position,{
-    z:3,
+    z:10,
   })
   gsap.to(mail[1].position,{
-    z:3,
+    z:10,
   })
   gsap.to(location.position,{
     z:3,
