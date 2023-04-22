@@ -1,15 +1,15 @@
-import * as THREE from 'https://unpkg.com/three@0.139.1/build/three.module.js';
+// import * as THREE from 'https://unpkg.com/three@0.139.1/build/three.module.js';
 import {OrbitControls} from 'https://unpkg.com/three@0.139.1/examples/jsm/controls/OrbitControls'
 import * as dat from "https://cdn.skypack.dev/dat.gui";
-import {GLTFLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/GLTFLoader.js'
-import {RGBELoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/RGBELoader.js'
-import {RenderPass} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/RenderPass.js'
-import {EffectComposer} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/EffectComposer.js'
-import {UnrealBloomPass} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/UnrealBloomPass.js'
-import {TTFLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/TTFLoader.js'
-import {FontLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/FontLoader.js'
-import {TextGeometry} from 'https://unpkg.com/three@0.139.1/examples/jsm/geometries/TextGeometry.js'
-import Stats from 'https://unpkg.com/three@0.139.1/examples/jsm/libs/stats.module.js'
+import {GLTFLoader} from './three/examples/jsm/loaders/GLTFLoader.js'
+// import {RGBELoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/RGBELoader.js'
+// import {RenderPass} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/RenderPass.js'
+// import {EffectComposer} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/EffectComposer.js'
+// import {UnrealBloomPass} from 'https://unpkg.com/three@0.139.1/examples/jsm/postprocessing/UnrealBloomPass.js'
+// import {TTFLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/TTFLoader.js'
+// import {FontLoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/FontLoader.js'
+// import {TextGeometry} from 'https://unpkg.com/three@0.139.1/examples/jsm/geometries/TextGeometry.js'
+// import Stats from 'https://unpkg.com/three@0.139.1/examples/jsm/libs/stats.module.js'
 
 
 let stats ;
