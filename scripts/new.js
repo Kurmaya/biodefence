@@ -11,33 +11,33 @@ const positions = document.querySelectorAll('.positions button');
 const ray = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-function down(){
-  if(arrow.classList.contains('active')){
-
-
-    updateDrop.classList.remove('active');
-    setTimeout(function () {
-      document.querySelectorAll('.update-drop.active .update-list').forEach((list)=>{
-        list.classList.remove('active');
-      })
-    }, 100);
-    arrow.classList.remove('active');
-    document.querySelector('.update-drop h2').classList.remove('active');
-  }
-
-  else if(!arrow.classList.contains('active')){
-    updateDrop.classList.add('active');
-    setTimeout(function () {
-      document.querySelectorAll('.update-drop.active .update-list').forEach((list)=>{
-        list.classList.add('active');
-      })
-    }, 1000);
-    arrow.classList.add('active');
-    document.querySelector('.update-drop h2').classList.add('active');
-  }
-}
-
-arrow.addEventListener('click',down)
+// function down(){
+//   if(arrow.classList.contains('active')){
+//
+//
+//     updateDrop.classList.remove('active');
+//     setTimeout(function () {
+//       document.querySelectorAll('.update-drop.active .update-list').forEach((list)=>{
+//         list.classList.remove('active');
+//       })
+//     }, 100);
+//     arrow.classList.remove('active');
+//     document.querySelector('.update-drop h2').classList.remove('active');
+//   }
+//
+//   else if(!arrow.classList.contains('active')){
+//     updateDrop.classList.add('active');
+//     setTimeout(function () {
+//       document.querySelectorAll('.update-drop.active .update-list').forEach((list)=>{
+//         list.classList.add('active');
+//       })
+//     }, 1000);
+//     arrow.classList.add('active');
+//     document.querySelector('.update-drop h2').classList.add('active');
+//   }
+// }
+//
+// arrow.addEventListener('click',down)
 
 
 positions.forEach((position) => {
@@ -441,12 +441,12 @@ gLoader.load('./3d/map_pointer.glb',function(gltf){
   location.material= new THREE.MeshPhysicalMaterial({emissive:0x121212,transparent:true,opacity:0});
     location.position.set(-19.49,.89,10);
   // location.position.set(-1.49,.89,-15);
-  location.rotation.set(0,0,-5.7);
+  location.rotation.set(0,0,-6.2);
   location.scale.set(.1,.1,.1);
   location.castShadow=true;
-  gui.add(location.position,'x',-3,2).name('loca p x');
-  gui.add(location.position,'y',-3,4).name('loca p y');
-  gui.add(location.position,'z',-17.5,-14).name('loca p z');
+  // gui.add(location.position,'x',-3,2).name('loca p x');
+  // gui.add(location.position,'y',-3,4).name('loca p y');
+  // gui.add(location.position,'z',-17.5,-14).name('loca p z');
   // gui.add(location.rotation,'x',-3,2).name('loca r x');
   // gui.add(location.rotation,'y',-3,2).name('loca r y');
   // gui.add(location.rotation,'z',-20,2).name('loca r z');
@@ -639,12 +639,12 @@ scene.add(group);
 
 
 
-  gui.add(dish.position,'x',-3,2).name('dish p x');
-  gui.add(dish.position,'y',-16,-14).name('dish p y');
-  gui.add(dish.position,'z',-3,2).name('dish p z');
-  gui.add(dish.rotation,'x',-2,2).name('dish r x');
-  gui.add(dish.rotation,'y',-2,2).name('dish r y');
-  gui.add(dish.rotation,'z',-2,2).name('dish r z');
+  // gui.add(dish.position,'x',-3,2).name('dish p x');
+  // gui.add(dish.position,'y',-16,-14).name('dish p y');
+  // gui.add(dish.position,'z',-3,2).name('dish p z');
+  // gui.add(dish.rotation,'x',-2,2).name('dish r x');
+  // gui.add(dish.rotation,'y',-2,2).name('dish r y');
+  // gui.add(dish.rotation,'z',-2,2).name('dish r z');
 
 })
 
@@ -710,7 +710,7 @@ pLight.position.set(-3.3,-12,-1.1);
 pLight.castShadow=true;
 scene.add(dirLight,pLight);
 
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 // gui.add(dirLight.position,'x',-15,15).name('dirLight x');
 // gui.add(dirLight.position,'y',-15,15).name('dirLight y');
 // gui.add(dirLight.position,'z',-15,15).name('dirLight z');
@@ -733,12 +733,12 @@ const gui = new dat.GUI();
 // gui.add(localPlane.normal,'x',-10,10).name('plane3 x');
 // gui.add(localPlane.normal,'y',-10,10).name('plane3 y');
 // gui.add(localPlane,'constant',-5,5).name('plane3');
-gui.add(shadowPlane.rotation,'x',-3,3).name('shadowPlane r x');
-gui.add(shadowPlane.rotation,'y',-3,3).name('shadowPlane r y');
-gui.add(shadowPlane.rotation,'z',-3,3).name('shadowPlane r z');
-gui.add(shadowPlane.position,'x',-20,3).name('shadowPlane p x');
-gui.add(shadowPlane.position,'y',-20,3).name('shadowPlane p y');
-gui.add(shadowPlane.position,'z',-20,3).name('shadowPlane p z');
+// gui.add(shadowPlane.rotation,'x',-3,3).name('shadowPlane r x');
+// gui.add(shadowPlane.rotation,'y',-3,3).name('shadowPlane r y');
+// gui.add(shadowPlane.rotation,'z',-3,3).name('shadowPlane r z');
+// gui.add(shadowPlane.position,'x',-20,3).name('shadowPlane p x');
+// gui.add(shadowPlane.position,'y',-20,3).name('shadowPlane p y');
+// gui.add(shadowPlane.position,'z',-20,3).name('shadowPlane p z');
 // gui.add(torus2.position,'x',-20,3).name('torus2 p x');
 // gui.add(torus2.position,'y',-20,3).name('torus2 p y');
 // gui.add(torus2.position,'z',-20,3).name('torus2 p z');
@@ -1592,26 +1592,44 @@ const email = document.querySelector('.email');
 const inp= document.querySelector('.mailer input');
 
 inp.addEventListener('focus',inpAnim);
-inp.addEventListener('keypress',inpAnim2);
-function inpAnim2(){
-  if(inp.value.length>0){
+
+inp.onkeydown = function(){
+  if(event.keyCode== 8 || event.keyCode== 46){
+    gsap.to(dish.rotation,{
+      y:'-=0.2',
+      duration:.5,
+      ease:'power1'
+    })
+
+  }
+  else{
     gsap.to(dish.rotation,{
       y:'+=0.5',
       duration:.5,
       ease:'power1'
     })
-
+  }
 }
-else if(inp.value.length===0){
-  gsap.to(dish.rotation,{
-    y:0,
-    duration:.5,
-    ease:'power1'
-  })
-}
-
-
-}
+// function inpAnim2(e){
+// //   if(inp.value.length>0){
+// //     gsap.to(dish.rotation,{
+// //       y:'+=0.5',
+// //       duration:.5,
+// //       ease:'power1'
+// //     })
+// //
+// //
+// // }
+// // else if(inp.value.length===0){
+// //   gsap.to(dish.rotation,{
+// //     y:0,
+// //     duration:.5,
+// //     ease:'power1'
+// //   })
+// // }
+//
+//
+// }
 function inpAnim(){
   let animation = gsap.timeline();
 
@@ -1704,7 +1722,7 @@ function addressAnim(){
   animation
   .to(location.position,{
     x:-.45,
-    y:2.22,
+    y:2.36,
     z:-15.4,
     duration:1.5,
     ease:'power1.out'
@@ -1742,9 +1760,9 @@ function phoneAnim(){
   })
   animation
   .to(phone.position,{
-    z:-2.2,
+    z:-2.3,
     y:-8.7,
-    x:-12.7,
+    x:-12.65,
     // x:-.4,
     duration:1.2,
     ease:'power1.out'
@@ -1766,13 +1784,13 @@ var timeoutId = null;
 telephone.addEventListener('mouseover',function(){
   timeoutId = window.setTimeout(function(){
     phoneAnim();
-  },1000)
+  },700)
 });
 telephone.addEventListener('mouseleave',clear);
 marker.addEventListener('mouseover',function(){
   timeoutId=window.setTimeout(function(){
     addressAnim();
-  },1000)
+  },700)
 });
 marker.addEventListener('mouseleave',clear);
 
@@ -1782,7 +1800,7 @@ marker.addEventListener('mouseleave',clear);
 email.addEventListener('mouseover',function(){
   timeoutId=window.setTimeout(function(){
     emailAnim();
-  },1000)
+  },700)
 });
 email.addEventListener('mouseleave',clear)
 function clear(){
