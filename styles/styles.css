@@ -688,7 +688,7 @@ display: inline-block;
   width:50%;
   height: 50%;
   position: relative;
-  top:15%;
+  /* top:6%; */
 
 
   margin-left:10%;
@@ -1480,7 +1480,7 @@ width:100vw;
   font-family: 'Josefin sans',sans-serif;
 }
 #real-footer{
-  position:relative;
+  position:absolute;
   display: flex;
   flex-direction: column;
   flex-direction: row;
@@ -1602,12 +1602,26 @@ padding:.5rem 0;
   place-items:center;
   font-size:.75rem;
   bottom:0;
-  position: absolute;
+  /* position: absolute; */
   bottom:0;
   left:8%;
   padding: .5rem 0 0;
 
   /* margin:auto 65% auto auto; */
+}
+.bottom-text{
+  width:100%;
+  display: flex;
+  /* height: 100%; */
+  position: absolute;
+  /* top:100%; */
+  bottom:0;
+  justify-content: space-around;
+  align-items: center;
+  padding: .6rem 0 .2rem ;
+  /* background: rgba(255,255,255,1); */
+
+
 }
 #real-footer .swiper {
    width: 50%;
@@ -1694,7 +1708,7 @@ display: none;
   color:gray;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
   bottom:0;
 
   /* right:10%; */
