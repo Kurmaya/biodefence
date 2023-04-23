@@ -403,7 +403,7 @@ const gLoader = new GLTFLoader();
 // })
 gLoader.load('./3d/mail_icon.glb',function(gltf){
   scene.add(gltf.scene);
-  console.log(gltf.scene);
+  // console.log(gltf.scene);
   mail=gltf.scene.children[0].children[0].children;
   mail[0].material=new THREE.MeshBasicMaterial({transparent:true,opacity:0})
 
@@ -423,6 +423,7 @@ mail[1].castShadow=true;
 
   }
   mail[1].scale.set(.15,.15,.15);
+  mail[1].rotation.set(0,0,6.2);
   mail[0].scale.set(0,0,0);
   console.log(mail[0].material.opacity,mail[0].material.opacity);
 
@@ -496,7 +497,7 @@ scene.add(group);
       start:'1% top',
       end:'bottom',
       snap:1,
-      scrub:true,
+      scrub:.1,
       ease:'none',
 
     }
@@ -968,7 +969,7 @@ sectionOne
     .to(document.body,{
       overflowX:'hidden',
       overflowY:'scroll'
-    },'simultaneously')
+    })
   //swiper animation
   gsap.from('.cards .swiper',{
     opacity:0,
@@ -1001,7 +1002,7 @@ sectionOne
       xPercent:200,
       duration:1,
       stagger:.2,
-      scrub:true,
+      scrub:.1,
       ease:'none',
       scrollTrigger:{
         trigger:'.impact-cont',
@@ -1054,9 +1055,10 @@ sectionOne
     scrollTrigger:{
       trigger:cards,
       start:'top top',
+      // duration:4,
       // pin:true,
       end:'bottom',
-      scrub:true,
+      scrub:.1,
       snap:1,
       // markers:true,
       // pinSpacing:false,
@@ -1169,7 +1171,7 @@ sectionTwoHalf
 .to(camera.position,{
   x:-1,
   y:0,
-  z:-5
+  z:-5,
 },'simultaneously')
 .to(camera.rotation,{
   x:0,
@@ -1205,10 +1207,10 @@ sectionTwoHalf
   // height:'60vh'
 },'simultaneously')
 .to('.holder-1 h2',{
-  rotateZ:0,
+  rotateZ:'90deg',
   opacity:1,
-  fontSize:'1.9rem',
-  top:'75%',
+  fontSize:'1.4rem',
+  top:'45%',
   // y:50,
 },'simultaneously')
 .to('.holder-2 h2',{
@@ -1334,6 +1336,39 @@ sectionThree
 const holder1= document.querySelector('.holder-1');
 const holder2= document.querySelector('.holder-2');
 const holder3= document.querySelector('.holder-3');
+const prodHolder= document.querySelector('.prods-holder');
+prodHolder.onmouseleave = function(){
+  gsap.to(holder1,{
+    width:'30vw'
+  })
+  gsap.to(holder2,{
+    width:'30vw'
+  })
+  gsap.to(holder3,{
+    width:'30vw'
+  })
+  gsap.to('.holder-1 h2',{
+    rotateZ:'90deg',
+    opacity:1,
+    fontSize:'1.4rem',
+    top:'45%',
+    // y:50,
+  },'simultaneously')
+  gsap.to('.holder-2 h2',{
+    rotateZ:'90deg',
+    opacity:1,
+    fontSize:'1.4rem',
+    // y:50,
+    top:'45%',
+  },'simultaneously')
+  gsap.to('.holder-3 h2',{
+    rotateZ:'90deg',
+    opacity:1,
+    fontSize:'1.4rem',
+    // y:50,
+    top:'45%',
+  },'simultaneously')
+}
 holder3.addEventListener('mouseleave',function(){
   gsap.to('.holder-3 .over',{
     background:'rgba(0,0,0,.9)'
@@ -1353,7 +1388,7 @@ holder3.addEventListener('mouseover',function(){
   })
 gsap.to(holder3,{
   width:'90vw',
-  height:'90vh'
+  // height:'90vh'
 
 })
 gsap.to(holder2,{
@@ -1587,7 +1622,7 @@ contain.addEventListener('mouseover',function(){
 })
 //contact details animations
 const telephone = document.querySelector('.phone');
-const marker = document.querySelector('.address');
+const marker = document.querySelectorAll('.address');
 const email = document.querySelector('.email');
 const inp= document.querySelector('.mailer input');
 
@@ -1664,17 +1699,17 @@ function emailAnim(){
     z:3,
   })
   animation
-  .to(mail[0].position,{
-    x:-.5,
-    y:2.2,
-    z:-15.65,
-    duration:1,
-    ease:'power1'
-  },'simultaneously')
-  .to(mail[0].material,{
-    opacity:0,
-    ease:'power1'
-  },'simultaneously')
+  // .to(mail[0].position,{
+  //   x:-.5,
+  //   y:2.2,
+  //   z:-15.65,
+  //   duration:1,
+  //   ease:'power1'
+  // },'simultaneously')
+  // .to(mail[0].material,{
+  //   opacity:0,
+  //   ease:'power1'
+  // },'simultaneously')
   .to(mail[1].position,{
     x:-.45,
     y:2.35,
@@ -1686,16 +1721,10 @@ function emailAnim(){
     opacity:1,
     ease:'power1'
   },'simultaneously')
-  .to(mail[0].rotation,{
-    z:6.2,
-    delay:1,
+  .from(mail[1].rotation,{
+    z:0,
     duration:1
-  },'simultaneously')
-  .to(mail[1].rotation,{
-    z:6.2,
-    delay:1,
-    duration:1
-  },'simultaneously')
+  })
 
 
 
@@ -1784,15 +1813,25 @@ var timeoutId = null;
 telephone.addEventListener('mouseover',function(){
   timeoutId = window.setTimeout(function(){
     phoneAnim();
-  },700)
+  },400)
 });
 telephone.addEventListener('mouseleave',clear);
-marker.addEventListener('mouseover',function(){
-  timeoutId=window.setTimeout(function(){
-    addressAnim();
-  },700)
+// marker.forEach(mark).addEventListener('mouseover',function(){
+//   timeoutId=window.setTimeout(function(){
+//     addressAnim();
+//   },400)
+// });
+marker.forEach((mark) => {
+  mark.onmouseover= function(){
+    timeoutId=window.setTimeout(function(){
+      addressAnim();
+    },400)
+  }
 });
-marker.addEventListener('mouseleave',clear);
+marker.forEach((mark) => {
+  mark.addEventListener('mouseleave',clear)
+  });
+// marker.addEventListener('mouseleave',clear);
 
 // marker.forEach(mark => {
 //   mark.addEventListener('mouseover',addressAnim);
@@ -1800,7 +1839,7 @@ marker.addEventListener('mouseleave',clear);
 email.addEventListener('mouseover',function(){
   timeoutId=window.setTimeout(function(){
     emailAnim();
-  },700)
+  },400)
 });
 email.addEventListener('mouseleave',clear)
 function clear(){
