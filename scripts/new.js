@@ -176,7 +176,7 @@ renderer.shadowMap.type=THREE.PCFShadowMap;
 
  // scene.add(new THREE.GridHelper(16, 16, "yellow", "black"));
 //clipping planes
-const localPlane = new THREE.Plane( new THREE.Vector3( 0,0, .7 ),-.125);
+const localPlane = new THREE.Plane( new THREE.Vector3( 0,0, .2 ),-1.65);
 const localPlane2 = new THREE.Plane(new THREE.Vector3(1,3.4,0),-.14);
 const localPlane3 = new THREE.Plane(new THREE.Vector3(0.16,-.71,0),-.9);
 
@@ -331,7 +331,7 @@ const planeMaterial = new THREE.MeshBasicMaterial({
 
 })
 // const shadowPlaneGeo = new THREE.PlaneBufferGeometry(3,1.5,200,200);
-const shadowPlaneGeo = new THREE.RingGeometry(0,1.2,164);
+const shadowPlaneGeo = new THREE.RingGeometry(0,.5,164);
 const shadowPlaneMat =new THREE.MeshPhongMaterial({side:THREE.FrontSide,transparent:true,opacity:0,emissive:0xececec});
 
 
@@ -339,7 +339,7 @@ const shadowPlane = new THREE.Mesh(shadowPlaneGeo,shadowPlaneMat);
 shadowPlane.receiveShadow=true;
 shadowPlane.castShadow=true;
 // console.log(shadowPlane);
-shadowPlane.position.set(-.6,-16,-2.4);
+shadowPlane.position.set(-0.5,-15.6,-2.4);
 shadowPlane.rotation.x=-1.5;
 const plane = new THREE.Mesh(planeGeometry,planeMaterial);
 
@@ -429,9 +429,10 @@ mail[1].castShadow=true;
 // mail[1].scale.set(.8,.8,.8);
   // mail.scale.set(.5,.5,.5);
   // mail2.scale.set(.5,.5,.5);
-  // gui.add(mail[0].position,'x',-3,2).name('loca p x');
-  // gui.add(mail[0].position,'y',-3,4).name('loca p y');
-  gui.add(mail[0].rotation,'z',-17.5,-14).name('loca r z');
+  // gui.add(mail[1].position,'x',-3,2).name('loca p x');
+  // gui.add(mail[1].position,'y',-3,4).name('loca p y');
+  // gui.add(mail[1].position,'z',-17,4).name('loca p z');
+  // gui.add(mail[1].rotation,'z',-17.5,-14).name('loca r z');
 
 })
 gLoader.load('./3d/map_pointer.glb',function(gltf){
@@ -443,9 +444,9 @@ gLoader.load('./3d/map_pointer.glb',function(gltf){
   location.rotation.set(0,0,-5.7);
   location.scale.set(.1,.1,.1);
   location.castShadow=true;
-  // gui.add(location.position,'x',-3,2).name('loca p x');
-  // gui.add(location.position,'y',-3,4).name('loca p y');
-  // gui.add(location.position,'z',-17.5,-14).name('loca p z');
+  gui.add(location.position,'x',-3,2).name('loca p x');
+  gui.add(location.position,'y',-3,4).name('loca p y');
+  gui.add(location.position,'z',-17.5,-14).name('loca p z');
   // gui.add(location.rotation,'x',-3,2).name('loca r x');
   // gui.add(location.rotation,'y',-3,2).name('loca r y');
   // gui.add(location.rotation,'z',-20,2).name('loca r z');
@@ -460,12 +461,12 @@ gLoader.load('./3d/telephone_receiver.glb',function(gltf){
   phone.scale.set(.4,.4,.4);
   // phone.rotation.set(0,0,0);
   phone.castShadow=true;
-  gui.add(phone.position,'x',-14,-12).name('phone p x');
-  gui.add(phone.position,'y',-15,2).name('phone p y');
-  gui.add(phone.position,'z',-15.5,3).name('phone p z');
-  gui.add(phone.rotation,'x',-3,2).name('phone r x');
-  gui.add(phone.rotation,'y',-3,2).name('phone r y');
-  gui.add(phone.rotation,'z',-20,2).name('phone r z');
+  // gui.add(phone.position,'x',-14,-12).name('phone p x');
+  // gui.add(phone.position,'y',-15,2).name('phone p y');
+  // gui.add(phone.position,'z',-15.5,3).name('phone p z');
+  // gui.add(phone.rotation,'x',-3,2).name('phone r x');
+  // gui.add(phone.rotation,'y',-3,2).name('phone r y');
+  // gui.add(phone.rotation,'z',-20,2).name('phone r z');
   // console.log(phone);
 })
 gLoader.load('./3d/dish 2.glb',function(gltf){
@@ -531,15 +532,16 @@ scene.add(group);
     ease:'none'
   },'simultaneously')
   .to(shadowPlane.material,{
-    opacity:.2,
+    opacity:.8,
     delay:1.2,
     duration:6,
     ease:'none'
   })
+
   .to(dish.position,{
-    x:-.8,
-    y:-15.8,
-    z:-2,
+    x:-.4,
+    y:-15.6,
+    z:-2.2,
     duration:2,
     ease:'none'
   })
@@ -575,9 +577,9 @@ scene.add(group);
 
   },'simultaneously')
   .to(torus2.position,{
-    x:-.6,
-    y:-15,
-    z:-2.1,
+    x:0.4,
+    y:-15.4,
+    z:-1.86,
     duration:4,
     ease:'none',
   })
@@ -649,10 +651,10 @@ scene.add(group);
 gLoader.load('./3d/biologo.glb',function(gltf){
   scene.add(gltf.scene);
   bio = gltf.scene.children[0];
-  gltf.scene.scale.set(.035,.035,.035);
+  gltf.scene.scale.set(.038,.038,.038);
   bio.rotation.z= 1.6;
-  gltf.scene.position.x=-1.9;
-  gltf.scene.position.y=.2;
+  gltf.scene.position.x=-2.1;
+  gltf.scene.position.y=.25;
 
 
 
@@ -662,22 +664,22 @@ gLoader.load('./3d/biologo.glb',function(gltf){
 
 })
 let tex;
-gLoader.load('./3d/protecting.glb',function(gltf){
+gLoader.load('./3d/more 2.glb',function(gltf){
   scene.add(gltf.scene);
   // gltf.scene.scale.set(0.28,.28,28);
   tex= gltf.scene.children[0];
   tex.material= new THREE.MeshBasicMaterial({
     // color:0xff0000,
     color:0x202020,
-    // clippingPlanes:[localPlane],
+    clippingPlanes:[localPlane],
     clipShadows:true
   })
 
 
 // console.log(groupTwo);
-  tex.scale.set(.04,.04,.04);
-  tex.position.z= -.05;
-  tex.position.y= -.09;
+  tex.scale.set(.035,.035,.035);
+  tex.position.z= -.01;
+  tex.position.y= -.01;
   tex.position.x=-0.03;
   // tex.rotation.z= -.001;
   // tex.rotation.y=.01;
@@ -728,15 +730,15 @@ const gui = new dat.GUI();
 // gui.add(localPlane2.normal,'x',-10,10).name('plane2 x');
 // gui.add(localPlane2.normal,'y',-10,10).name('plane2 y');
 // gui.add(localPlane2,'constant',-5,5).name('plane2');
-// gui.add(localPlane3.normal,'x',-10,10).name('plane3 x');
-// gui.add(localPlane3.normal,'y',-10,10).name('plane3 y');
-// gui.add(localPlane3,'constant',-5,5).name('plane3');
-// gui.add(shadowPlane.rotation,'x',-3,3).name('shadowPlane r x');
-// gui.add(shadowPlane.rotation,'y',-3,3).name('shadowPlane r y');
-// gui.add(shadowPlane.rotation,'z',-3,3).name('shadowPlane r z');
-// gui.add(shadowPlane.position,'x',-20,3).name('shadowPlane p x');
-// gui.add(shadowPlane.position,'y',-20,3).name('shadowPlane p y');
-// gui.add(shadowPlane.position,'z',-20,3).name('shadowPlane p z');
+// gui.add(localPlane.normal,'x',-10,10).name('plane3 x');
+// gui.add(localPlane.normal,'y',-10,10).name('plane3 y');
+// gui.add(localPlane,'constant',-5,5).name('plane3');
+gui.add(shadowPlane.rotation,'x',-3,3).name('shadowPlane r x');
+gui.add(shadowPlane.rotation,'y',-3,3).name('shadowPlane r y');
+gui.add(shadowPlane.rotation,'z',-3,3).name('shadowPlane r z');
+gui.add(shadowPlane.position,'x',-20,3).name('shadowPlane p x');
+gui.add(shadowPlane.position,'y',-20,3).name('shadowPlane p y');
+gui.add(shadowPlane.position,'z',-20,3).name('shadowPlane p z');
 // gui.add(torus2.position,'x',-20,3).name('torus2 p x');
 // gui.add(torus2.position,'y',-20,3).name('torus2 p y');
 // gui.add(torus2.position,'z',-20,3).name('torus2 p z');
@@ -1587,7 +1589,50 @@ contain.addEventListener('mouseover',function(){
 const telephone = document.querySelector('.phone');
 const marker = document.querySelector('.address');
 const email = document.querySelector('.email');
+const inp= document.querySelector('.mailer input');
 
+inp.addEventListener('focus',inpAnim);
+inp.addEventListener('keypress',inpAnim2);
+function inpAnim2(){
+  if(inp.value.length>0){
+    gsap.to(dish.rotation,{
+      y:'+=0.5',
+      duration:.5,
+      ease:'power1'
+    })
+
+}
+else if(inp.value.length===0){
+  gsap.to(dish.rotation,{
+    y:0,
+    duration:.5,
+    ease:'power1'
+  })
+}
+
+
+}
+function inpAnim(){
+  let animation = gsap.timeline();
+
+  gsap.to(phone.position,{
+    z:3,
+  })
+
+  gsap.to(location.position,{
+    z:3,
+  })
+  gsap.to(mail[1].position,{
+    z:3,
+  })
+  animation.to(dish.position,{
+    x:-.45,
+    y:-15.6,
+    z:-2.2,
+    duration:2,
+    ease:'none'
+  })
+}
 function emailAnim(){
   let animation = gsap.timeline();
 
@@ -1613,9 +1658,9 @@ function emailAnim(){
     ease:'power1'
   },'simultaneously')
   .to(mail[1].position,{
-    x:-.5,
-    y:2.2,
-    z:-15.65,
+    x:-.45,
+    y:2.35,
+    z:-15.45,
     duration:1,
     ease:'power1'
   },'simultaneously')
@@ -1658,9 +1703,9 @@ function addressAnim(){
   })
   animation
   .to(location.position,{
-    x:-.5,
+    x:-.45,
     y:2.22,
-    z:-15.68,
+    z:-15.4,
     duration:1.5,
     ease:'power1.out'
   },'simultaneously')
@@ -1697,9 +1742,9 @@ function phoneAnim(){
   })
   animation
   .to(phone.position,{
-    z:-2.3,
-    y:-8.8,
-    x:-13,
+    z:-2.2,
+    y:-8.7,
+    x:-12.7,
     // x:-.4,
     duration:1.2,
     ease:'power1.out'
