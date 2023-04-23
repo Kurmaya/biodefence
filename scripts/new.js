@@ -629,7 +629,7 @@ scene.add(group);
   },'simultaneously')
   .to(document.body,{
     overflowX:'hidden',
-    overflowY:'auto'
+    overflowY:'scroll'
   })
   // .to(canvas,{
   //   position:'absolute',
