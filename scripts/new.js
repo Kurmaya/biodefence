@@ -40,16 +40,16 @@ const mouse = new THREE.Vector2();
 // arrow.addEventListener('click',down)
 
 
-positions.forEach((position) => {
-  position.addEventListener('click', function(){
-    positions.forEach((pos) => {
-      pos.classList.remove('active');
-
-    });
-
-    position.classList.add('active');
-  })
-});
+// positions.forEach((position) => {
+//   position.addEventListener('click', function(){
+//     positions.forEach((pos) => {
+//       pos.classList.remove('active');
+//
+//     });
+//
+//     position.classList.add('active');
+//   })
+// });
 //texture
 const textureLoader = new THREE.TextureLoader();
 
@@ -176,7 +176,7 @@ renderer.shadowMap.type=THREE.PCFShadowMap;
 
  // scene.add(new THREE.GridHelper(16, 16, "yellow", "black"));
 //clipping planes
-const localPlane = new THREE.Plane( new THREE.Vector3( 0,0, .2 ),-1.65);
+const localPlane = new THREE.Plane( new THREE.Vector3( 0,0, .1 ),-1.65);
 const localPlane2 = new THREE.Plane(new THREE.Vector3(1,3.4,0),-.14);
 const localPlane3 = new THREE.Plane(new THREE.Vector3(0.16,-.71,0),-.9);
 
@@ -254,9 +254,14 @@ let geomPar= {
   width:11,
   height:6
 };
-if(window.innerWidth<800){
-  geomPar.width=7;
-  geomPar.height=4;
+if(window.innerWidth<800 && window.innerWidth>611){
+  geomPar.width=4.7;
+  geomPar.height=2.8;
+}
+else if(window.innerWidth<610){
+  geomPar.width=3;
+  geomPar.height=2;
+  params.bendDepth=.3
 }
 let geom = new THREE.PlaneGeometry(geomPar.width, geomPar.height, 200, 200);
 planeCurve(geom, params.bendDepth);
@@ -270,9 +275,10 @@ let mat = new THREE.MeshBasicMaterial({
   opacity:0,
   reflectivity:1.4,
 });
-if(window.innerWidth < 600){
-  geom = new THREE.PlaneGeometry(6, 4, 200, 200);
-}
+// if(window.innerWidth < 600){
+//   geom = new THREE.PlaneGeometry(6, 4, 200, 200);
+//   planeCurve(geom, params.bendDepth);
+// }
 let curvedPanel = new THREE.Mesh(geom, mat);
 curvedPanel.receiveShadow=true;
 curvedPanel.castShadow=true;
@@ -339,22 +345,29 @@ const shadowPlane = new THREE.Mesh(shadowPlaneGeo,shadowPlaneMat);
 shadowPlane.receiveShadow=true;
 shadowPlane.castShadow=true;
 // console.log(shadowPlane);
+
 shadowPlane.position.set(-0.5,-15.6,-2.4);
 shadowPlane.rotation.x=-1.5;
 const plane = new THREE.Mesh(planeGeometry,planeMaterial);
 
 scene.add(plane,shadowPlane);
 plane.position.set(0,0,-100);
-let torR= 2;
+let tor1= 2;
+let tor2=.2;
+let tor3= 30;
+let tor4=120;
 if(window.innerWidth<800){
   impactVideoGeometry= new THREE.BoxGeometry(1.5,1.5,1.5,10,10,10);
-  torR=1.7;
+  tor1=1.7;
 }
 if(window.innerWidth<600){
-  torR=.8;
+  tor1=1;
+  tor2=.12;
+  tor3=50;
+  tor4=80;
 }
 //torus
-let torusGeo = new THREE.TorusGeometry(torR,.2,30,120);
+let torusGeo = new THREE.TorusGeometry(tor1,tor2,tor3,tor4);
 // let torusGeo2 = new THREE.TorusGeometry(1.5,.2,20,120);
 let torusGeo2 = new THREE.TorusGeometry(1.4,.2,20,70);
 
@@ -386,21 +399,6 @@ camera.position.set(0,0,5);
 let bio, dish, location,phone,mail,mail2;
 
 const gLoader = new GLTFLoader();
-// gLoader.load('./3d/envelope.glb',function(gltf){
-//   scene.add(gltf.scene);
-//   mail=gltf.scene.children[0].children[0].children[0].children[0].children[0];
-// mail.scale.set(100,300,100);
-// mail.material=new THREE.MeshBasicMaterial({color:0xff0000});
-//
-//
-// console.log(mail.rotation);
-//
-// gui.add(mail.rotation,'x',-3,3).name('mail r x');
-//
-//
-//
-//
-// })
 gLoader.load('./3d/mail_icon.glb',function(gltf){
   scene.add(gltf.scene);
   // console.log(gltf.scene);
@@ -504,6 +502,7 @@ scene.add(group);
 
   });
 
+if(window.innerWidth>1000){
   sectionFour
   .to(document.body,{
     overflow:'hidden',
@@ -632,6 +631,143 @@ scene.add(group);
     overflowX:'hidden',
     overflowY:'scroll'
   })
+}
+else if(window.innerWidth<1000){
+  sectionFour
+  .to(document.body,{
+    overflow:'hidden',
+
+  },'simultaneously')
+
+  .to(dirLight.position,{
+    x:2.5,
+    y:2,
+    z:3.5
+  })
+
+  .to(impactVideoCube.rotation,{
+    y:2,
+    duration:1.8,
+    ease:'none'
+  })
+  .to(impactVideoCube.position,{
+    z:5,
+    duration:2.5,
+    ease:'power1'
+  })
+
+  .to(impactVideoMat,{
+    opacity:0,
+    duration:1,
+    ease:'none'
+  },'simultaneously')
+  .to(shadowPlane.position,{
+    x:-1.1,
+    duration:1,
+    ease:'power1',
+  },'simultaneously')
+  .to(shadowPlane.material,{
+    opacity:.8,
+    delay:1.2,
+    duration:6,
+    ease:'none'
+  })
+
+  .to(dish.position,{
+    x:-.9,
+    y:-15.6,
+    z:-2.2,
+    duration:2,
+    ease:'none'
+  })
+
+  .to(dish.position,{
+    x:-1.1,
+    duration:1.8,
+    ease:'power2'
+  })
+
+  .to(dish.rotation,{
+    y:-.1,
+    duration:5.8,
+    ease:'none'
+  })
+  .to(camera,{
+    fov:75,
+  },'simultaneously')
+  .to(dish.material,{
+    opacity:.3,
+    delay:1
+  },'simultaneously')
+  .to(torus2Material,{
+    opacity:1,
+    ease:'none',
+    duration:2,
+  },'simultaneously')
+  .to(torus2.rotation,{
+    x:1,
+    y:-.6,
+    z:-1,
+    duration:10,
+
+  },'simultaneously')
+  .to(torus2.position,{
+    x:-0.15,
+    y:-15.1,
+    z:-1.86,
+    duration:4,
+    ease:'none',
+  })
+  .to(dish.material,{
+    opacity:1,
+    duration:1,
+    ease:'none'
+  })
+  .to(phone.position,{
+    z:3,
+    duration:1.5,
+    ease:'power1.out'
+  },'simultaneously')
+  .to(location.position,{
+    z:3,
+    duration:1.5,
+    ease:'power1.out'
+  },'simultaneously')
+  .to('.holder-1',{
+    width:'50vw',
+
+  },'simultaneously')
+
+  .to('.holder-2',{
+    width:'50vw',
+  },'simultaneously')
+  .to('.holder-1 h2',{
+    rotateZ:0,
+    opacity:1,
+    fontSize:'1.4rem',
+    top:'75%',
+    // y:50,
+  },'simultaneously')
+  .to('.holder-2 h2',{
+    rotateZ:0,
+    opacity:1,
+    fontSize:'1.9rem',
+    // y:50,
+    top:'25%',
+  },'simultaneously')
+  .to('.holder-3 h2',{
+    rotateZ:0,
+    opacity:1,
+    fontSize:'1.9rem',
+    // y:50,
+    top:'75%',
+  },'simultaneously')
+  .to(document.body,{
+    overflowX:'hidden',
+    overflowY:'scroll'
+  })
+}
+
   // .to(canvas,{
   //   position:'absolute',
   //   bottom:'100%',
@@ -640,9 +776,9 @@ scene.add(group);
 
 
 
-  // gui.add(dish.position,'x',-3,2).name('dish p x');
-  // gui.add(dish.position,'y',-16,-14).name('dish p y');
-  // gui.add(dish.position,'z',-3,2).name('dish p z');
+  gui.add(dish.position,'x',-3,2).name('dish p x');
+  gui.add(dish.position,'y',-16,-14).name('dish p y');
+  gui.add(dish.position,'z',-3,2).name('dish p z');
   // gui.add(dish.rotation,'x',-2,2).name('dish r x');
   // gui.add(dish.rotation,'y',-2,2).name('dish r y');
   // gui.add(dish.rotation,'z',-2,2).name('dish r z');
@@ -652,10 +788,25 @@ scene.add(group);
 gLoader.load('./3d/biologo.glb',function(gltf){
   scene.add(gltf.scene);
   bio = gltf.scene.children[0];
+  if(window.innerWidth<600){
+  gltf.scene.scale.set(.02,.02,.02);
+  gltf.scene.position.x=-1.1;
+  gltf.scene.position.y=.15;
+  }
+  else if(window.innerWidth<800 && window.innerWidth> 601){
+  gltf.scene.scale.set(.035,.035,.035);
+  gltf.scene.position.y=.25;
+  gltf.scene.position.x=-1.92;
+  }
+  else if(window.innerWidth>801){
   gltf.scene.scale.set(.038,.038,.038);
-  bio.rotation.z= 1.6;
   gltf.scene.position.x=-2.1;
   gltf.scene.position.y=.25;
+  }
+
+  bio.rotation.z= 1.6;
+
+
 
 
 
@@ -665,35 +816,64 @@ gLoader.load('./3d/biologo.glb',function(gltf){
 
 })
 let tex;
+
 gLoader.load('./3d/more 2.glb',function(gltf){
   scene.add(gltf.scene);
   // gltf.scene.scale.set(0.28,.28,28);
+
   tex= gltf.scene.children[0];
+  console.log(localPlane.normal.z);
+
+  if(window.innerWidth<600){
+  localPlane.normal.z=.1;
+  tex.scale.set(.018,.018,.018);
+  tex.position.z= -.01;
+  tex.position.y= .05;
+  tex.position.x=-0.01;
+
+
+  }
+
+  else if(window.innerWidth>601 && window.innerWidth<800){
+    localPlane.normal.z=.16;
+    tex.scale.set(.029,.029,.029);
+    tex.position.z= -.01;
+    tex.position.y= .15;
+    tex.position.x=0.1;
+    // tex.rotation.z= -.001;
+    tex.rotation.y=.01;
+  }
+  else if(window.innerWidth>1000){
+    tex.scale.set(.035,.035,.035);
+    tex.position.z= -.01;
+    tex.position.y= -.01;
+    tex.position.x=-0.03;
+    tex.rotation.z= -.001;
+    tex.rotation.y=.01;
+    localPlane.normal.z=.2;
+  }
+
   tex.material= new THREE.MeshBasicMaterial({
     // color:0xff0000,
     color:0x202020,
     clippingPlanes:[localPlane],
     clipShadows:true
   })
-
-
 // console.log(groupTwo);
-  tex.scale.set(.035,.035,.035);
-  tex.position.z= -.01;
-  tex.position.y= -.01;
-  tex.position.x=-0.03;
-  // tex.rotation.z= -.001;
-  // tex.rotation.y=.01;
+
   function texAnim(){
     requestAnimationFrame(texAnim)
     tex.rotation.y+=0.002;
   }
 // texAnim();
-//   gui.add(tex.rotation,'x',-5,5).name('text rotation x');
+  gui.add(tex.rotation,'x',-5,5).name('text rotation x');
 // gui.add(tex.rotation,'y',-5,5).name('text rotation y');
-// gui.add(tex.position,'y',-5,5).name('text position y');
-// gui.add(tex.position,'x',-5,5).name('text position x');
-// gui.add(tex.rotation,'z',-5,5).name('text rotation z');
+gui.add(tex.position,'y',-5,5).name('text position y');
+gui.add(tex.scale,'x',.02,.05).name('text scale x');
+gui.add(tex.scale,'y',.02,.05).name('text scale y');
+gui.add(tex.scale,'z',.02,.05).name('text scale z');
+gui.add(tex.position,'x',-5,5).name('text position x');
+gui.add(tex.rotation,'z',-5,5).name('text rotation z');
 
 })
 groupTwo.add(tex,torus,bio);
@@ -711,7 +891,7 @@ pLight.position.set(-3.3,-12,-1.1);
 pLight.castShadow=true;
 scene.add(dirLight,pLight);
 
-// const gui = new dat.GUI();
+const gui = new dat.GUI();
 // gui.add(dirLight.position,'x',-15,15).name('dirLight x');
 // gui.add(dirLight.position,'y',-15,15).name('dirLight y');
 // gui.add(dirLight.position,'z',-15,15).name('dirLight z');
@@ -740,9 +920,9 @@ scene.add(dirLight,pLight);
 // gui.add(shadowPlane.position,'x',-20,3).name('shadowPlane p x');
 // gui.add(shadowPlane.position,'y',-20,3).name('shadowPlane p y');
 // gui.add(shadowPlane.position,'z',-20,3).name('shadowPlane p z');
-// gui.add(torus2.position,'x',-20,3).name('torus2 p x');
-// gui.add(torus2.position,'y',-20,3).name('torus2 p y');
-// gui.add(torus2.position,'z',-20,3).name('torus2 p z');
+gui.add(torus2.position,'x',-20,3).name('torus2 p x');
+gui.add(torus2.position,'y',-20,3).name('torus2 p y');
+gui.add(torus2.position,'z',-20,3).name('torus2 p z');
 // gui.add(torus2.rotation,'x',-3,3).name('torus2 r x');
 // gui.add(torus2.rotation,'y',-3,3).name('torus2 r y');
 // gui.add(torus2.rotation,'z',-3,3).name('torus2 r z');
@@ -908,10 +1088,92 @@ let sectionOne = gsap.timeline({
   }
 
 });
+if( window.innerWidth<600 && window.innerWidth>280){
+  console.log('mobile');
+  sectionOne
+  .to('.scroll',{
+    opacity:0,
+    scale:0,
+    delay:.5,
+  })
+  .to(document.body,{
+    overflow:'hidden',
+  })
+
+  .to(camera.position,{
+    y:-.2,
+    z:-.01,
+    x:.8,
+    duration:4,},"simultaneously")
+    .to(camera,{
+      fov:75,
+    },'simultaneously')
+    .to(camera.rotation,{
+      x:.08,
+      y:-.75,
+      z:-0.3,
+      duration:4,
+    },"simultaneously")
+    .to(torusMaterial.color,{
+        r:1,
+        g:.05,
+        b:.1,
+        duration:2,
+        ease:'power1',
+      })
+      .to(torusMaterial,{
+          size:.003,
+        },'simultaneously')
+      .to('.holder-1',{
+        width:'50vw',
+
+      },'simultaneously')
+      .to('.holder-2',{
+        width:'50vw',
+
+      },'simultaneously')
+      .to('.holder-3',{
+        width:'50vw',
+      },'simultaneously')
+      .to('.holder-1 h2',{
+        rotateZ:0,
+        opacity:1,
+        fontSize:'1.9rem',
+        top:'75%',
+        // y:50,
+      },'simultaneously')
+      .to('.holder-2 h2',{
+        rotateZ:0,
+        opacity:1,
+        fontSize:'1.9rem',
+        // y:50,
+        top:'25%',
+      },'simultaneously')
+      .to('.holder-3 h2',{
+        rotateZ:0,
+        opacity:1,
+        fontSize:'1.9rem',
+        // y:50,
+        top:'75%',
+      },'simultaneously')
+
+      .to(document.body,{
+        overflowX:'hidden',
+        overflowY:'scroll'
+      })
+}
+if(window.innerWidth>1000){
+
 sectionOne
+.to('.scroll',{
+  opacity:0,
+  scale:0,
+  delay:.5,
+})
 .to(document.body,{
   overflow:'hidden',
 })
+
 .to(camera.position,{
   y:-1.1,
   z:-.28,
@@ -970,6 +1232,79 @@ sectionOne
       overflowX:'hidden',
       overflowY:'scroll'
     })
+  }
+  else if( window.innerWidth<1000 && window.innerWidth>600){
+    console.log('tab');
+    sectionOne
+    .to('.scroll',{
+      opacity:0,
+      scale:0,
+      delay:.5,
+    })
+    .to(document.body,{
+      overflow:'hidden',
+    })
+
+    .to(camera.position,{
+      y:-.8,
+      z:-.28,
+      x:1,
+      duration:4,},"simultaneously")
+      .to(camera,{
+        fov:75,
+      },'simultaneously')
+      .to(camera.rotation,{
+        x:.2,
+        y:-1.4,
+        z:-0.2,
+        duration:4,
+      },"simultaneously")
+      .to(torusMaterial.color,{
+          r:1,
+          g:.05,
+          b:.1,
+          duration:2,
+          ease:'power1',
+        })
+        .to('.holder-1',{
+          width:'50vw',
+
+        },'simultaneously')
+        .to('.holder-2',{
+          width:'50vw',
+
+        },'simultaneously')
+        .to('.holder-3',{
+          width:'50vw',
+        },'simultaneously')
+        .to('.holder-1 h2',{
+          rotateZ:0,
+          opacity:1,
+          fontSize:'1.9rem',
+          top:'75%',
+          // y:50,
+        },'simultaneously')
+        .to('.holder-2 h2',{
+          rotateZ:0,
+          opacity:1,
+          fontSize:'1.9rem',
+          // y:50,
+          top:'25%',
+        },'simultaneously')
+        .to('.holder-3 h2',{
+          rotateZ:0,
+          opacity:1,
+          fontSize:'1.9rem',
+          // y:50,
+          top:'75%',
+        },'simultaneously')
+
+        .to(document.body,{
+          overflowX:'hidden',
+          overflowY:'scroll'
+        })
+  }
+
   //swiper animation
   gsap.from('.cards .swiper',{
     opacity:0,
@@ -1168,6 +1503,7 @@ sectionTwoHalf
 .to(document.body,{
   overflow:'hidden',
 })
+
 .to(camera.position,{
   x:-1,
   y:0,
@@ -1290,6 +1626,7 @@ sectionThree
   opacity:1,
 
 },'simultaneously')
+
 // .to('.holder-1',{
 //   width:'90vw',
 //
@@ -1432,6 +1769,7 @@ gsap.to(holder2.querySelector('img'),{
 })
 holder1.addEventListener('mouseleave',function(){
   holder1.querySelector('video').pause();
+
   gsap.to('.holder-1 .over',{
     background:'rgba(255,255,255,.9)'
   })
@@ -1441,57 +1779,60 @@ holder1.addEventListener('mouseleave',function(){
 })
 holder1.addEventListener('mouseover',function(){
   holder1.querySelector('video').play();
-  gsap.to('.holder-1 .over',{
-    background:'rgba(0,0,0,0)'
+  // if(window.innerWidth>801){
+    gsap.to('.holder-1 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-1 .writeup',{
+      opacity:1,
+
+
+    })
+  gsap.to(holder1,{
+    width:'90vw',
+    height:'90vh'
   })
-  gsap.to('.holder-1 .writeup',{
+  gsap.to(holder2,{
+    width:'8vw',
+    // height:'60vh'
+  })
+  gsap.to(holder3,{
+    width:'8vw',
+    // height:'60vh'
+  })
+  gsap.to(holder2.querySelector('h2'),{
     opacity:1,
-
+    fontSize:'1.4rem',
+    rotateZ:'90deg',
+    width:300,
+    // y:'500%',
+    top:'50%',
 
   })
-gsap.to(holder1,{
-  width:'90vw',
-  height:'90vh'
-})
-gsap.to(holder2,{
-  width:'8vw',
-  // height:'60vh'
-})
-gsap.to(holder3,{
-  width:'8vw',
-  // height:'60vh'
-})
-gsap.to(holder2.querySelector('h2'),{
-  opacity:1,
-  fontSize:'1.4rem',
-  rotateZ:'90deg',
-  width:300,
-  // y:'500%',
-  top:'50%',
+  gsap.to(holder3.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1.4rem',
+    rotateZ:'90deg',
+    width:300,
+    // y:'500%',
+    top:'50%',
 
-})
-gsap.to(holder3.querySelector('h2'),{
-  opacity:1,
-  fontSize:'1.4rem',
-  rotateZ:'90deg',
-  width:300,
-  // y:'500%',
-  top:'50%',
+  })
 
-})
+  gsap.to(holder1.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1.9rem',
+  })
 
-gsap.to(holder1.querySelector('h2'),{
-  rotateZ:0,
-  opacity:0,
-  fontSize:'1.9rem',
-})
+  gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+  })
+  gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+  })
+  // }
 
-gsap.to(holder1.querySelector('img'),{
-  opacity:1,
-})
-gsap.to(holder2.querySelector('img'),{
-  opacity:0,
-})
 })
 holder2.addEventListener('mouseleave',function(){
   holder2.querySelector('video').pause();
@@ -1635,13 +1976,37 @@ inp.onkeydown = function(){
       duration:.5,
       ease:'power1'
     })
+    gsap.to(dish.scale,{
+      x:.035,
+      y:.035,
+      z:.035,
+      duration:.1,
+    })
+    gsap.to(dish.scale,{
+      x:.04,
+      y:.04,
+      z:.04,
+      duration:.1,
+    })
 
   }
   else{
     gsap.to(dish.rotation,{
-      y:'+=0.5',
+      y:'+=0.2',
       duration:.5,
       ease:'power1'
+    })
+    gsap.to(dish.scale,{
+      x:.045,
+      y:.045,
+      z:.045,
+      duration:.1,
+    })
+    gsap.to(dish.scale,{
+      x:.04,
+      y:.04,
+      z:.04,
+      duration:.1,
     })
   }
 }
@@ -1677,6 +2042,10 @@ function inpAnim(){
   })
   gsap.to(mail[1].position,{
     z:3,
+
+  })
+  gsap.to(mail[1].material,{
+    opacity:0
   })
   animation.to(dish.position,{
     x:-.45,
@@ -1742,11 +2111,12 @@ function addressAnim(){
   gsap.to(phone.position,{
     z:3,
   })
-  gsap.to(mail[0].position,{
-    z:10,
-  })
+
   gsap.to(mail[1].position,{
-    z:10,
+    z:3,
+  })
+  gsap.to(mail[1].material,{
+    opacity:0
   })
   animation
   .to(location.position,{
@@ -1783,6 +2153,10 @@ function phoneAnim(){
   })
   gsap.to(mail[1].position,{
     z:10,
+    y:-10
+  })
+  gsap.to(mail[1].material,{
+    opacity:0
   })
   gsap.to(location.position,{
     z:3,
