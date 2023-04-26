@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Bitter:wght@100;200;300;400;500;600;700;800;900&family=Josefin+Sans:wght@300;400;500;600;700&family=Merriweather+Sans:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700;900&family=PT+Serif:wght@400;700&family=Quantico:ital,wght@0,700;1,400&family=Righteous&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+  <!-- <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet" crossorigin>
+  <link href="https://fonts.cdnfonts.com/css/cydonia-century" rel="stylesheet" crossorigin> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <link rel="stylesheet" href="./styles/styles.css">
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <div class="page">
+    <ul class="navigation">
+      <li class="selected"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <div class="update-drop">
+
+       <img src="images/arrow-black-trans.png" class="arrow" alt="">
+
+      <h2>Updates</h2>
+      <div class="update-list">
+        <h3>Update 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, aliquid?</p>
+
+      </div>
+      <div class="update-list">
+        <h3>Update 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, aliquid?</p>
+
+      </div>
+      <div class="update-list">
+        <!-- <i class="fa-solid fa-exclamation fa-beat" style="color: #ff0000;"></i> -->
+        <h3>Update 3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, aliquid?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum distinctio impedit atque ea, illo dicta. Cumque aliquid totam atque deserunt vero, eum doloremque est
+          repellendus consequatur. Dolor nam temporibus soluta!</p>
+
+      </div>
+
+    </div>
+    <div class="cursor"></div>
+    <div class="follow"></div>
+    <video id="video-texture" playsinline muted controls crossorigin src="https://ik.imagekit.io/768eoiozf/biodefence/WIP6_1__5uiNCr5RI.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1677766633443" poster="images/thumbnail.jpg"></video>
+    <div class="vid-loader">
+      <video src="videos/Load Video.mp4" id="load-vid" playsinline muted autoplay>
+
+      </video>
+    </div>
+    <div class="positions">
+      <a href="#"><button><span><img class="two" src="images\icons\new icons\food1.png" style="width:40px;"  alt=""></span>
+          <p>Fresh Food</p>
+        </button></a>
+        <a href="#"><button id="cam4"><span><img class="two" src="images\icons\new icons\safe_sm.png" style="width:30px;" alt=""></span>
+            <p>Safe Spaces</p>
+          </button></a>
+          <a href="#"><button><span><img class="two" src="images\icons\new icons\custom2.png" style="width:35px;" alt=""></span>
+              <p>Made For You</p>
+            </button></a>
+      <a href="index.html"><button id="cam1" class='active'><span><img class="two" src="images\icons\new icons\home_sm.png" style="width:50px;" alt=""></span>
+          <p>BioDefense</p>
+        </button></a>
+        <a href="#"><button id="cam5"><span><img class="two" src="images\icons\new icons\impact1.png"style="width:40px;" alt=""></span>
+            <p>Our Impact</p>
+          </button></a>
+      <!-- <a href="#cards"><button id="cam2"><span><img class="one" src="images\icons\future (2).png" alt=""><img class="two" src="images\icons\future (3).png" alt=""></span><p>Section 2</p></button></a> -->
+
+      <a href="#"><button id="cam3"><span><img class="two" src="images\icons\new icons\handshake.png" style="width:35px;" alt=""></span>
+          <p>You & Us</p>
+        </button></a>
+
+      <a href="#"><button id="cam6"><span><img class="two" style="width:40px;" src="images\icons\new icons\whats_sm.png" alt=""></span>
+          <p>What's New</p>
+        </button></a>
+    </div>
+
+    <canvas class="webgl"></canvas>
+    <section id="space" class="space">
+      <div class="news news1">
+        <h2>Large multi-country Listeria outbreak linked to trout...</h2>
+        <div class="updates">
+
+          <p> A Listeria outbreak that affected more than 50 people was the biggest fish product related incident in Germany, according to reseachers.
+          The large outbreak affected Germany , Austria , Denmark and Switzerland...</p>
+        </div>
+      </div>
+      <div class="news news2">
+        <h2>Large multi-country Listeria outbreak linked to trout...</h2>
+        <div class="updates">
+
+          <p> A Listeria outbreak that affected more than 50 people was the biggest fish product related incident in Germany, according to reseachers.
+          The large outbreak affected Germany , Austria , Denmark and Switzerland...</p>
+        </div>
+      </div>
+      <div class="news news3">
+        <h2>Large multi-country Listeria outbreak linked to trout...</h2>
+        <div class="updates">
+
+          <p> A Listeria outbreak that affected more than 50 people was the biggest fish product related incident in Germany, according to reseachers.
+          The large outbreak affected Germany , Austria , Denmark and Switzerland...</p>
+        </div>
+      </div>
+      <!-- <div class="news2">
+        <h2>Updates</h2>
+        <div class="updates">
+          <h3>Update 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, non.</p>
+        </div>
+      </div> -->
+      <div class="scroll">
+        <div class="scroll-button">
+          <p>Scroll</p>
+          <i class="fa-regular fa-down fa-fade" style="color: #ff0000;"></i>
+        </div>
+
+      </div>
+    </section>
+    <section class="cards" id="cards">
+      <div class="swiper mySwiper">
+
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images\new images\food.png" />
+            <h3>Innovating food production to <br> achieve zero hunger?</h3>
+
+          </div>
+          <div class="swiper-slide">
+            <img src="images\new images\Robot Arm.jpeg" />
+            <h3>Scaling novel agriculture to <br> feed the growing population?</h3>
+            <!-- <a href="https://www.freepik.com/free-photo/smart-robotic-farmers-concept-robot-farmers-agriculture-technology-farm-automation_21347424.htm#query=agritech&position=12&from_view=search&track=sph">Image by user6702303</a> on Freepik -->
+          </div>
+          <div class="swiper-slide">
+            <img src="images\new images\syringe.png" />
+            <h3>Researching cutting edge medicine to <br> cure the toughest disease?</h3>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images\new images\biotech.png" />
+            <h3> Inventing new bio-technology to <br> save lives?</h3>
+          </div>
+          <div class="swiper-slide">
+            <img src="images\new images\shield.png" />
+            <h3>Upgrading indoor environmental quality <br>for good health & well-being?</h3>
+          </div>
+          <div class="swiper-slide">
+            <img src="images\new images\health.png" />
+            <h3>Setting new hygiene standards to <br> minimize infection?</h3>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images\new images\implants.png" />
+            <h3>Developing new implants to <br>empower the differently-abled?</h3>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images\new images\water.png" />
+            <h3>Exploring new avenues to <br> combat water scarcity?</h3>
+          </div>
+
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <h2>Whatever you do, we have your microbial safety issues covered</h2>
+
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <hr>
+    </section>
+
+    <section id="veed" class="veed">
+      <div class="cont">
+        <button id="mute"><img src="images/unmute1.png" alt=""></button>
+        <button id="play"><img src="images/play1.png" alt=""></button>
+      </div>
+
+    </section>
+    <section id="prodcuts" class="prods">
+      <div class="prods-holder">
+        <div class="holder-2">
+          <div class="over">
+            <div class="writeup">
+
+              <!-- <h3>Safe Food,</h3>
+              <h3>Save Food,</h3>
+              <h3>Now We Can Have Both</h3> -->
+
+              <h3>Safe Food, Save Food,<br> Now We Can Have Both</h3>
+              <hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rem cupiditate, quibusdam molestiae, nam blanditiis quos, optio esse aperiam assumenda sunt nesciunt.</p>
+            </div>
+          </div>
+          <h2>Safe And Fresh Food</h2>
+          <video src="videos/save-food.mp4" muted loop playsinline >
+
+          </video>
+
+        </div>
+        <div class="holder-1">
+          <div class="over">
+            <div class="writeup">
+              <h3>World's First Smart Indoor <br> Microbial Safety Solution</h3>
+              <hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rem cupiditate, quibusdam molestiae, nam blanditiis quos, optio esse aperiam assumenda sunt nesciunt, expedita voluptatem ipsum nostrum rerum ipsam itaque repellendus.</p>
+            </div>
+          </div>
+          <h2>Indoor Microbial Safety</h2>
+          <video src="videos\Hospi_compressed_2.mp4" muted loop playsinline  >
+
+          </video>
+
+        </div>
+
+        <div class="holder-3">
+          <div class="over">
+            <div class="writeup">
+              <h3>Microbial Safety Solutions <br> Customized Just For You</h3>
+              <hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rem cupiditate, quibusdam molestiae, nam blanditiis quos, optio esse aperiam assumenda sunt nesciunt, expedita voluptatem ipsum nostrum rerum ipsam itaque repellendus.</p>
+            </div>
+          </div>
+          <h2>Customized for you</h2>
+          <video src="videos/solutions1.mp4" muted loop playsinline >
+        </div>
+      </div>
+      <!-- <div class="products-holder">
+  <img src="images/products-background.jpg" alt="">
+  <img id="set2" src="images/sanibot-resized.jpg" alt="">
+  <img id="set3" src="images/hextro-resized.jpg" alt="">
+
+  <div class="trix"></div>
+  <div class="sanibot"></div>
+
+  </div>
+</div> -->
+
+
+
+</section>
+    <section id="impact" class="impact">
+
+      <div class="impact-cont">
+        <h2>Impact & Sustainablity</h2>
+        <ul>
+          <li>
+            <h3 id="save">Saving food is saving the planet </h3>
+          </li>
+          <li>
+            <h3 id="contain">Contain antimicrobial resistance </h3>
+          </li>
+          <li>
+            <h3 id="good">Good health and well-being for all </h3>
+          </li>
+          <li>
+            <h3 id="free">Contamination-free biotechnology </h3>
+          </li>
+          <li>
+            <h3 id="zero">Minimize food waste for zero hunger </h3>
+          </li>
+          <li>
+            <h3 id="control">Control indoor and Hospital Acquired Infection </h3>
+          </li>
+
+        </ul>
+
+
+
+
+
+
+      </div>
+      <div class="imp-vid">
+        <video id="impactVideo" src="Extras\vid-textures\contain.mp4" autoplay muted loop playsinline crossorigin></video>
+        <video id="impactVideo1" src="Extras\vid-textures\old.mp4" autoplay muted loop playsinline crossorigin></video>
+        <video id="impactVideo2" src="Extras\vid-textures\contamination-free.mp4" autoplay muted loop playsinline crossorigin></video>
+        <video id="impactVideo3" src="Extras\vid-textures\min-food-waste.mp4" autoplay muted loop playsinline crossorigin></video>
+        <video id="impactVideo4" src="Extras\vid-textures\saving.mp4" autoplay muted loop playsinline crossorigin></video>
+        <video id="impactVideo5" src="Extras\vid-textures\control indoor.mp4" autoplay muted loop playsinline crossorigin></video>
+        <video id="mainBG" src="Extras\vid-textures\f2 (1).mp4" autoplay muted loop playsinline>
+
+        </video>
+
+      </div>
+    </section>
+    <section id="contact" class="contact">
+
+
+      <div class="contact-section-wrap">
+        <h2>Let's Talk</h2>
+<h4>TRANSFORM MICROBIAL SAFETY FOR YOUR BUSINESS</h4>
+
+<!-- <form action="" method="POST">
+  <h3>LEAVE US A LINE</h3>
+
+  <input type="text" id="fname" name="fname" value="" placeholder="First Name"><br><br>
+
+  <input type="text" id="lname" name="lname" value=""placeholder="Last Name"><br><br>
+
+  <input type="text" name="email" placeholder="email"><br><br>
+  <textarea name="name" placeholder="Message"></textarea>
+  <input type="submit" value="Submit">
+</form> -->
+<!-- <hr> -->
+<div class="mailer">
+  <input type="email" name="" value=""placeholder="name@example.com"required>
+  <button type="button" name="button">let's talk</button>
+</div>
+
+      </div>
+
+
+
+
+      <!-- <div class="contact-details">
+        <div class="phone details">
+          <i class="fa-brands fa-whatsapp"></i> <span> <a href="https://wa.me/+6597209700" target="_blank">: +65 9720 9700</a></span>
+        </div>
+        <div class="email details">
+          <i class="fa-solid fa-at"></i> <span><a href="mailto:@contact@biodefence.co" target="_blank"> : contact@biodefence.co</a> </span>
+        </div>
+        <div class="address details">
+          <span><i class="fa-sharp fa-solid fa-location-dot"></i>: Launchpad @ One-North</span><br>
+          <span> Singapore 139951</span>
+        </div>
+        <div class="address details">
+          <span><i class="fa-sharp fa-solid fa-location-dot"></i> : BioValley, AMTZ Campus</span> <br>
+          <span>Visakhapatnam 530031</span>
+        </div>
+
+      </div> -->
+      <div id="real-footer">
+        <div class="bio-logo">
+        <a href="https://sg.linkedin.com/company/biodefense"><img src="images\linkdin.png" alt="">  </a>
+        </div>
+
+        <div class="contact-details">
+          <div class="phone details">
+            <i class="fa-brands fa-whatsapp"></i> <span> <a href="https://wa.me/+6597209700" target="_blank">: +65 9720 9700</a></span>
+          </div>
+          <div class="email details">
+            <i class="fa-solid fa-at"></i> <span><a href="mailto:@contact@biodefence.co" target="_blank"> : contact@biodefense.co</a> </span>
+          </div>
+        </div>
+        <div class="contact-details">
+
+          <div class="address details">
+            <span> Launchpad @ One-North</span><br>
+            <span> Singapore 139951</span>
+          </div>
+
+
+        </div>
+        <div class="contact-details">
+          <div class="address details">
+            <span> BioValley, AMTZ Campus</span> <br>
+            <span>Visakhapatnam 530031</span>
+          </div>
+        </div>
+
+      <div class="footer-swiper-wrap">
+
+      <div class="header-cont">
+      <h3>Supported by</h3>
+      </div>
+
+        <div class="swiper mySwiper2">
+
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images\footer slide images\Enterprise-SG-Logo.png" alt="BioDefence Enterprise-SG-LOGO"></div>
+        <!-- <div class="swiper-slide"><img src="images\footer slide images\DORF KETAL.jpeg" alt="BioDefence-Footer-DORF-KETAL-LOGO"></div> -->
+        <div class="swiper-slide"><img src="images\footer slide images\AMTZ.jpeg" alt="BioDefence-Footer-AMTZ-GREEN-LOGO"></div>
+
+        <!-- <div class="swiper-slide"><img src="images\footer slide images\singapore-water-association-swa-logo-7083F94E44-seeklogo.com_.png" alt="BioDefence-Footer-SINGAPORE-WATER-ASSOCIATION-SWA-LOGO"></div> -->
+        <div class="swiper-slide"><img src="images\footer slide images\Plug_and_Play_Logo_HR.png" alt="BioDefence-Footer-PLUG-AND-PLAY-LOGO"></div>
+        <div class="swiper-slide"><img src="images\footer slide images\2020_ACE-Logo_Black-Font-1024x398-1.png" alt="BioDefence-Footer-ACE-LOGO"></div>
+        <!-- <div class="swiper-slide"><img src="images\footer slide images\AO_MASTER-LOGO.png" alt="BioDefence-Footer-AO-MASTER-LOGO"></div> -->
+        <!-- <div class="swiper-slide"><img src="images\footer slide images\SNBC-logo.png" alt="BioDefence-Footer-SNBC-LOGO"></div> -->
+        <!-- <div class="swiper-slide"><img src="images\footer slide images\R2WI.png" alt="BioDefence-Footer-R2WI-LOGO"></div> -->
+        <div class="swiper-slide"><img src="images\footer slide images\Temasek-Foundation_FC-scaled-e1641523668772.jpg" alt="BioDefence-Footer-TEMASEK-Foundation-FC-LOGO"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+      <div class="bottom-text">
+      <span class="foot">Ⓒ 2023 BIODEFENSE PRIVATE LIMITED, Singapore. All Rights Reserved.</span>
+          <!-- <div class="links">
+          <ul>
+            <li><a href="index.html">Biodefence</a></li>
+            <li><a href="#">Solutions</a></li>
+            <li><a href="#">Updates</a></li>
+            <li><a href="#">Connect</a></li>
+
+          </ul>
+          </div> -->
+
+          <div class="copy">
+
+        <ul>
+
+        <li>Terms of Use</li>
+        <li>Privacy Policy</li>
+        <li>Cookie Policy</li>
+        <li>Disclaimer</li>
+        <li>SiteMap</li>
+
+        </ul>
+
+        </div>
+      </div>
+
+
+
+      </div>
+  </section>
+
+
+  <!-- <script type="text/javascript">
+
+if (screen.width <= 699) {
+document.location = "http://www.biodefence.co";
+}
+
+</script> -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper2", {
+      autoplay:{
+        pauseOnMouseEnter:true,
+      },
+      effect: "cube",
+      loop: true,
+      speed: 1000,
+      grabCursor: true,
+      cubeEffect: {
+        shadow: false,
+        centeredSlides: true,
+        // slideShadows: true,
+        // shadowOffset: 20,
+        // shadowScale: 1,
+
+      },
+      // slidesPerView: 'auto',
+      // spaceBetween: 100,
+      // slidesPerGroup: 2,
+      // centeredSlides: true,
+      // loop: true,
+      // autoplay: true,
+    // loopFillGroupWithBlank: true,
+      pagination: {
+        el: "#real-footer .swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+       nextEl: "#real-footer .swiper-button-next",
+       prevEl: "#real-footer .swiper-button-prev",
+     },
+    });
+  </script>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      autoplay: {
+        pauseOnMouseEnter: true,
+      },
+      effect: "cube",
+      loop: true,
+      speed: 1000,
+      grabCursor: true,
+      cubeEffect: {
+        shadow: true,
+        centeredSlides: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 1,
+
+      },
+      navigation: {
+        nextEl: ".cards .swiper-button-next",
+        prevEl: ".cards .swiper-button-prev",
+      },
+      pagination: {
+        el: ".cards .swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+  <script>
+  const sections = document.querySelectorAll('section');
+  const navigation = document.querySelector('.navigation');
+  const news = document.querySelectorAll('.news');
+
+  const nUpdates= document.querySelectorAll('.updates');
+
+news.forEach(function(ew){
+  ew.addEventListener('mouseover',function(){
+
+  if(this.classList.contains('news1')){
+      document.querySelector('.news2').style.top="50%";
+      document.querySelector('.news3').style.top="60%";
+  }
+  else if(this.classList.contains('news2')){
+    document.querySelector('.news3').style.top="60%";
+  }
+
+    ew.classList.add('active');
+
+    ew.querySelector('.updates').classList.add('active');
+})
+
+})
+news.forEach(function(ew){
+  ew.addEventListener('mouseleave',function(){
+
+      document.querySelector('.news2').style.top="25%";
+      document.querySelector('.news3').style.top="35%";
+
+    ew.classList.remove('active');
+    ew.querySelector('.updates').classList.remove('active');
+})
+})
+
+
+function reset(){
+  for(let i=0;i<navigation.children.length;i++){
+  navigation.children[i].classList.remove('selected');
+  }
+
+}
+  window.addEventListener('scroll',function(){
+    const scrollTop= window.scrollY;
+    sections.forEach(function(section,i){
+      if(section.offsetTop < scrollTop + window.innerHeight/2 && scrollTop< section.offsetTop + window.innerHeight/2 ){
+        reset();
+        navigation.children[i].classList.add('selected');
+
+      }
+    })
+  })
+  document.querySelectorAll('.navigation li').forEach(function(item,i){
+    item.addEventListener('click',function(){
+      window.scrollTo({
+
+
+
+          top: (i * window.innerHeight),
+          behavior: 'smooth'
+
+
+      })
+    })
+  })
+    var buts = document.querySelectorAll('.positions span');
+    var mages = document.querySelectorAll('.positions button');
+    const currentLocation = location.href;
+// mages.forEach((mage)=>{
+//   mage.addEventListener('click',function(){
+//     if(this.classList.contains('active')){
+//         this.querySelector('p').classList.add('active');
+//     }
+//   })
+// })
+    mages.forEach(item => {
+      // if(item.classList.contains('active')){
+      //   item.querySelector('p').classList.add('active');
+      // }
+      if (item.href === currentLocation) {
+        // console.log(item.href);
+        item.classList.add('active');
+        // console.log(item);
+      }
+    })
+
+
+
+
+      // mage.addEventListener('mouseover',function(){
+      // // console.log(mage.parentElement.parentElement.querySelector('p'));
+      // // mage.querySelector('.two').style.opacity='1';
+      // // mage.querySelector('.one').style.opacity='0';
+      // mage.querySelector('p').style.opacity='1';
+      // mage.querySelector('p').style.transform='scaleY(1)';
+      // })
+      // mage.addEventListener('mouseleave',function(){
+      // // console.log(mage.parentElement.parentElement.querySelector('p'));
+      // // mage.querySelector('.two').style.opacity='0';
+      // // mage.querySelector('.one').style.opacity='1';
+      // // mage.querySelector('p').style.opacity='0';
+      // // mage.querySelector('p').style.transform='scaleY(0)';
+      // })
+    // })
+    document.querySelector('.imp-vid video').playbackRate = ".9";
+    const vid = document.getElementById('load-vid');
+    vid.playbackRate = 1.5;
+    const set2 = document.getElementById('set2');
+    const set3 = document.getElementById('set3');
+    const box1 = document.querySelector('.sanibot');
+    const box2 = document.querySelector('.trix');
+
+    //
+
+    // box2.addEventListener('mouseleave',function(){
+    //   set4.classList.remove('active');
+    //   document.querySelector('.back2 h2').style.opacity="1";
+    //   document.querySelector('.positions').style.opacity="1";
+    // })
+
+
+    window.addEventListener("load", function() {
+      // document.body.style.overflow="hidden";
+      document.body.style.overflow="hidden";
+
+      vid.addEventListener('ended', function() {
+        document.querySelector('.vid-loader').classList.add("hidden");
+        document.body.style.overflowX="hidden";
+        document.body.style.overflowY="scroll";
+
+
+      })
+    });
+  </script>
+  <!-- <script type="importmap">
+    {
+    "imports": {
+      "three": "https://unpkg.com/three@0.139.1/build/three.module",
+      "three/": "https://unpkg.com/three@0.139.1/"
+    }
+  }
+</script> -->
+  <script type="module" src="./modules/three.module.js">
+
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <!-- <script src="./scripts/script.js" type="module" charset="utf-8"></script> -->
+  <!-- <script src="./scripts/test.js" type="module" charset="utf-8"></script> -->
+  <script src="./scripts/new.js" type="module"></script>
+
+
+</body>
+
+</html>
