@@ -1556,6 +1556,9 @@ transition: 2s ease;
 
 
 }
+.mobile-details{
+  display: none;
+}
 #real-footer .contact-details{
   display: flex;
   flex-direction: column;
@@ -1784,6 +1787,9 @@ display: none;
     height: 30%;
     width:80%;
 
+  }
+  .mobile-details{
+    display: none;
   }
   .news{
     animation: none;
