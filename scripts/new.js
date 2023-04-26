@@ -325,7 +325,7 @@ function planeCurve(g, z){
 }
 
 //world plane
-const planeGeometry = new THREE.PlaneBufferGeometry(300,150,100,100);
+const planeGeometry = new THREE.PlaneBufferGeometry(300,200,100,100);
 const planeMaterial = new THREE.MeshBasicMaterial({
   // color:0x1e6dae,
   // color:0x89CFF0,
@@ -776,9 +776,9 @@ else if(window.innerWidth<1000){
 
 
 
-  gui.add(dish.position,'x',-3,2).name('dish p x');
-  gui.add(dish.position,'y',-16,-14).name('dish p y');
-  gui.add(dish.position,'z',-3,2).name('dish p z');
+  // gui.add(dish.position,'x',-3,2).name('dish p x');
+  // gui.add(dish.position,'y',-16,-14).name('dish p y');
+  // gui.add(dish.position,'z',-3,2).name('dish p z');
   // gui.add(dish.rotation,'x',-2,2).name('dish r x');
   // gui.add(dish.rotation,'y',-2,2).name('dish r y');
   // gui.add(dish.rotation,'z',-2,2).name('dish r z');
@@ -866,14 +866,14 @@ gLoader.load('./3d/more 2.glb',function(gltf){
     tex.rotation.y+=0.002;
   }
 // texAnim();
-  gui.add(tex.rotation,'x',-5,5).name('text rotation x');
+  // gui.add(tex.rotation,'x',-5,5).name('text rotation x');
 // gui.add(tex.rotation,'y',-5,5).name('text rotation y');
-gui.add(tex.position,'y',-5,5).name('text position y');
-gui.add(tex.scale,'x',.02,.05).name('text scale x');
-gui.add(tex.scale,'y',.02,.05).name('text scale y');
-gui.add(tex.scale,'z',.02,.05).name('text scale z');
-gui.add(tex.position,'x',-5,5).name('text position x');
-gui.add(tex.rotation,'z',-5,5).name('text rotation z');
+// gui.add(tex.position,'y',-5,5).name('text position y');
+// gui.add(tex.scale,'x',.02,.05).name('text scale x');
+// gui.add(tex.scale,'y',.02,.05).name('text scale y');
+// gui.add(tex.scale,'z',.02,.05).name('text scale z');
+// gui.add(tex.position,'x',-5,5).name('text position x');
+// gui.add(tex.rotation,'z',-5,5).name('text rotation z');
 
 })
 groupTwo.add(tex,torus,bio);
@@ -892,6 +892,12 @@ pLight.castShadow=true;
 scene.add(dirLight,pLight);
 
 const gui = new dat.GUI();
+gui.add(camera.position,'x',-2,2).name('camera p x');
+gui.add(camera.position,'y',-2,2).name('camera p y');
+gui.add(camera.position,'z',-2,2).name('camera p z');
+gui.add(camera.rotation,'x',-2,2).name('camera r x');
+gui.add(camera.rotation,'y',-2,2).name('camera r y');
+gui.add(camera.rotation,'z',-2,2).name('camera r z');
 // gui.add(dirLight.position,'x',-15,15).name('dirLight x');
 // gui.add(dirLight.position,'y',-15,15).name('dirLight y');
 // gui.add(dirLight.position,'z',-15,15).name('dirLight z');
@@ -920,9 +926,9 @@ const gui = new dat.GUI();
 // gui.add(shadowPlane.position,'x',-20,3).name('shadowPlane p x');
 // gui.add(shadowPlane.position,'y',-20,3).name('shadowPlane p y');
 // gui.add(shadowPlane.position,'z',-20,3).name('shadowPlane p z');
-gui.add(torus2.position,'x',-20,3).name('torus2 p x');
-gui.add(torus2.position,'y',-20,3).name('torus2 p y');
-gui.add(torus2.position,'z',-20,3).name('torus2 p z');
+// gui.add(torus2.position,'x',-20,3).name('torus2 p x');
+// gui.add(torus2.position,'y',-20,3).name('torus2 p y');
+// gui.add(torus2.position,'z',-20,3).name('torus2 p z');
 // gui.add(torus2.rotation,'x',-3,3).name('torus2 r x');
 // gui.add(torus2.rotation,'y',-3,3).name('torus2 r y');
 // gui.add(torus2.rotation,'z',-3,3).name('torus2 r z');
@@ -1234,7 +1240,7 @@ sectionOne
     })
   }
   else if( window.innerWidth<1000 && window.innerWidth>600){
-    console.log('tab');
+    // console.log('tab');
     sectionOne
     .to('.scroll',{
       opacity:0,
@@ -1246,17 +1252,17 @@ sectionOne
     })
 
     .to(camera.position,{
-      y:-.8,
-      z:-.28,
-      x:1,
+      y:-1.3,
+      z:.45,
+      x:-0.8,
       duration:4,},"simultaneously")
       .to(camera,{
         fov:75,
       },'simultaneously')
       .to(camera.rotation,{
-        x:.2,
-        y:-1.4,
-        z:-0.2,
+        x:0.2,
+        y:-0.4,
+        z:-2,
         duration:4,
       },"simultaneously")
       .to(torusMaterial.color,{
@@ -1499,74 +1505,220 @@ let sectionTwoHalf =gsap.timeline({
     ease:'none'
   }
 });
-sectionTwoHalf
-.to(document.body,{
-  overflow:'hidden',
-})
+if(window.innerWidth>600 && window.innerWidth<1000){
+  sectionTwoHalf
+  .to(document.body,{
+    overflow:'hidden',
+  })
 
-.to(camera.position,{
-  x:-1,
-  y:0,
-  z:-5,
-},'simultaneously')
-.to(camera.rotation,{
-  x:0,
-  y:0,
-  z:0,
-},'simultaneously')
-.to(curvedPanel.material,{
-  opacity:0,
-},'simultaneously')
-.to('#play',{
-  opacity:0,
-  xPercent:-1000
-},'simultaneously')
-.to('#mute',{
-  opacity:0,
-  xPercent:1000
-},'simultaneously')
-.to('.holder-1',{
-  width:'30vw',
+  .to(camera.position,{
+    x:-1,
+    y:0,
+    z:-5,
+  },'simultaneously')
+  .to(camera.rotation,{
+    x:0,
+    y:0,
+    z:0,
+  },'simultaneously')
+  .to(curvedPanel.material,{
+    opacity:0,
+  },'simultaneously')
+  .to('#play',{
+    opacity:0,
+    xPercent:-1000
+  },'simultaneously')
+  .to('#mute',{
+    opacity:0,
+    xPercent:1000
+  },'simultaneously')
+  .to('.holder-1',{
+    width:'70vw',
+    height:'20vh'
 
 
-},'simultaneously')
-.to('.holder-2',{
-  width:'30vw',
-  // height:'60vh'
+  },'simultaneously')
+  .to('.holder-2',{
+    width:'70vw',
+    height:'20vh'
 
-},'simultaneously')
-// .to('.holder-1 .over',{
-//   background:'none'
-// },'simultaneously')
-.to('.holder-3',{
-  width:'30vw',
-  // height:'60vh'
-},'simultaneously')
-.to('.holder-1 h2',{
-  rotateZ:'90deg',
-  opacity:1,
-  fontSize:'1.4rem',
-  top:'45%',
-  // y:50,
-},'simultaneously')
-.to('.holder-2 h2',{
-  rotateZ:'90deg',
-  opacity:1,
-  fontSize:'1.4rem',
-  // y:50,
-  top:'45%',
-},'simultaneously')
-.to('.holder-3 h2',{
-  rotateZ:'90deg',
-  opacity:1,
-  fontSize:'1.4rem',
-  // y:50,
-  top:'45%',
-},'simultaneously')
-.to(document.body,{
-  overflowX:'hidden',
-  overflowY:'scroll'
-})
+  },'simultaneously')
+  // .to('.holder-1 .over',{
+  //   background:'none'
+  // },'simultaneously')
+  .to('.holder-3',{
+    width:'70vw',
+    height:'20vh'
+  },'simultaneously')
+  .to('.holder-1 h2',{
+    rotateZ:'0deg',
+    opacity:1,
+    fontSize:'1rem',
+    top:'50%',
+    // y:50,
+  },'simultaneously')
+  .to('.holder-2 h2',{
+    rotateZ:'0deg',
+    opacity:1,
+    fontSize:'1rem',
+    // y:50,
+    top:'50%',
+  },'simultaneously')
+  .to('.holder-3 h2',{
+    rotateZ:'0deg',
+    opacity:1,
+    fontSize:'1rem',
+    // y:50,
+    top:'50%',
+  },'simultaneously')
+  .to(document.body,{
+    overflowX:'hidden',
+    overflowY:'scroll'
+  })
+}
+else if(window.innerWidth>1000){
+  sectionTwoHalf
+  .to(document.body,{
+    overflow:'hidden',
+  })
+
+  .to(camera.position,{
+    x:-1,
+    y:0,
+    z:-5,
+  },'simultaneously')
+  .to(camera.rotation,{
+    x:0,
+    y:0,
+    z:0,
+  },'simultaneously')
+  .to(curvedPanel.material,{
+    opacity:0,
+  },'simultaneously')
+  .to('#play',{
+    opacity:0,
+    xPercent:-1000
+  },'simultaneously')
+  .to('#mute',{
+    opacity:0,
+    xPercent:1000
+  },'simultaneously')
+  .to('.holder-1',{
+    width:'30vw',
+
+
+  },'simultaneously')
+  .to('.holder-2',{
+    width:'30vw',
+    // height:'60vh'
+
+  },'simultaneously')
+  // .to('.holder-1 .over',{
+  //   background:'none'
+  // },'simultaneously')
+  .to('.holder-3',{
+    width:'30vw',
+    // height:'60vh'
+  },'simultaneously')
+  .to('.holder-1 h2',{
+    rotateZ:'90deg',
+    opacity:1,
+    fontSize:'1.4rem',
+    top:'45%',
+    // y:50,
+  },'simultaneously')
+  .to('.holder-2 h2',{
+    rotateZ:'90deg',
+    opacity:1,
+    fontSize:'1.4rem',
+    // y:50,
+    top:'45%',
+  },'simultaneously')
+  .to('.holder-3 h2',{
+    rotateZ:'90deg',
+    opacity:1,
+    fontSize:'1.4rem',
+    // y:50,
+    top:'45%',
+  },'simultaneously')
+  .to(document.body,{
+    overflowX:'hidden',
+    overflowY:'scroll'
+  })
+}
+else if(window.innerWidth>280 && window.innerWidth<600){
+  console.log('yes');
+  sectionTwoHalf
+  .to(document.body,{
+    overflow:'hidden',
+  })
+
+  .to(camera.position,{
+    x:-1,
+    y:0,
+    z:-5,
+  },'simultaneously')
+  .to(camera.rotation,{
+    x:0,
+    y:0,
+    z:0,
+  },'simultaneously')
+  .to(curvedPanel.material,{
+    opacity:0,
+  },'simultaneously')
+  .to('#play',{
+    opacity:0,
+    xPercent:-1000
+  },'simultaneously')
+  .to('#mute',{
+    opacity:0,
+    xPercent:1000
+  },'simultaneously')
+  .to('.holder-1',{
+    width:'70vw',
+    height:'20vh'
+
+
+  },'simultaneously')
+  .to('.holder-2',{
+    width:'70vw',
+    height:'20vh'
+
+  },'simultaneously')
+  // .to('.holder-1 .over',{
+  //   background:'none'
+  // },'simultaneously')
+  .to('.holder-3',{
+    width:'70vw',
+    height:'20vh'
+  },'simultaneously')
+  .to('.holder-1 h2',{
+    rotateZ:'0deg',
+    opacity:1,
+    fontSize:'1rem',
+    top:'50%',
+    // y:50,
+  },'simultaneously')
+  .to('.holder-2 h2',{
+    rotateZ:'0deg',
+    opacity:1,
+    fontSize:'1rem',
+    // y:50,
+    top:'50%',
+  },'simultaneously')
+  .to('.holder-3 h2',{
+    rotateZ:'0deg',
+    opacity:1,
+    fontSize:'1rem',
+    // y:50,
+    top:'50%',
+  },'simultaneously')
+  .to(document.body,{
+    overflowX:'hidden',
+    overflowY:'scroll'
+  })
+}
+
 // sectionTwoHalf
 // .from('.products-holder',{
 //   xPercent:-100,
@@ -1675,6 +1827,9 @@ const holder2= document.querySelector('.holder-2');
 const holder3= document.querySelector('.holder-3');
 const prodHolder= document.querySelector('.prods-holder');
 prodHolder.onmouseleave = function(){
+  if(window.innerWidth>1000){
+
+
   gsap.to(holder1,{
     width:'30vw'
   })
@@ -1706,6 +1861,43 @@ prodHolder.onmouseleave = function(){
     top:'45%',
   },'simultaneously')
 }
+else if(window.innerWidth<600 && window.innerWidth>280){
+
+    gsap.to(holder1,{
+      width:'90vw',
+      height:'30vh'
+    })
+    gsap.to(holder2,{
+      width:'90vw',
+      height:'30vh'
+    })
+    gsap.to(holder3,{
+      width:'90vw',
+      height:'30vh'
+    })
+    gsap.to('.holder-1 h2',{
+      rotateZ:'0deg',
+      opacity:1,
+      fontSize:'1rem',
+      top:'45%',
+      // y:50,
+    },'simultaneously')
+    gsap.to('.holder-2 h2',{
+      rotateZ:'0deg',
+      opacity:1,
+      fontSize:'1rem',
+      // y:50,
+      top:'45%',
+    },'simultaneously')
+    gsap.to('.holder-3 h2',{
+      rotateZ:'0deg',
+      opacity:1,
+      fontSize:'1rem',
+      // y:50,
+      top:'45%',
+    },'simultaneously')
+}
+}
 holder3.addEventListener('mouseleave',function(){
   gsap.to('.holder-3 .over',{
     background:'rgba(0,0,0,.9)'
@@ -1717,55 +1909,160 @@ holder3.addEventListener('mouseleave',function(){
 })
 holder3.addEventListener('mouseover',function(){
   holder3.querySelector('video').play();
-  gsap.to('.holder-3 .over',{
-    background:'rgba(0,0,0,0)'
+  if(window.innerWidth>600 && window.innerWidth<1000){
+    gsap.to('.holder-3 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-3 .writeup',{
+      opacity:1,
+    })
+  gsap.to(holder3,{
+    width:'90vw',
+    height:'90vh'
   })
-  gsap.to('.holder-3 .writeup',{
-    opacity:1
+  gsap.to(holder1,{
+    width:'90vw',
+    height:'8vh'
   })
-gsap.to(holder3,{
-  width:'90vw',
-  // height:'90vh'
+  gsap.to(holder2,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder2.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
 
-})
-gsap.to(holder2,{
-  width:'8vw',
-  // height:'60vh'
-})
-gsap.to(holder1,{
-  width:'8vw',
-  // height:'60vh'
-})
-gsap.to(holder2.querySelector('h2'),{
-  opacity:1,
-  fontSize:'1.4rem',
-  rotateZ:'90deg',
-  width:300,
-  // y:'500%',
-  top:'50%',
+  })
+  gsap.to(holder1.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
 
-})
-gsap.to(holder1.querySelector('h2'),{
-  fontSize:'1.4rem',
-  opacity:1,
-  fontSize:'1.4rem',
-  rotateZ:'90deg',
-  width:300,
-  // y:'-500%',
-  top:'50%'
+  })
 
-})
-gsap.to(holder3.querySelector('h2'),{
-  rotateZ:0,
-  opacity:0,
-  fontSize:'1.9rem',
-})
-gsap.to(holder1.querySelector('img'),{
-  opacity:1,
-})
-gsap.to(holder2.querySelector('img'),{
-  opacity:0,
-})
+  gsap.to(holder3.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1rem',
+  })
+
+  gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+  })
+  gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+  })
+  }
+   else if(window.innerWidth>1000){
+    gsap.to('.holder-3 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-3 .writeup',{
+      opacity:1
+    })
+    gsap.to(holder3,{
+    width:'90vw',
+    // height:'90vh'
+
+    })
+    gsap.to(holder2,{
+    width:'8vw',
+    // height:'60vh'
+    })
+    gsap.to(holder1,{
+    width:'8vw',
+    // height:'60vh'
+    })
+    gsap.to(holder2.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1.4rem',
+    rotateZ:'90deg',
+    width:300,
+    // y:'500%',
+    top:'50%',
+
+    })
+    gsap.to(holder1.querySelector('h2'),{
+    fontSize:'1.4rem',
+    opacity:1,
+    fontSize:'1.4rem',
+    rotateZ:'90deg',
+    width:300,
+    // y:'-500%',
+    top:'50%'
+
+    })
+    gsap.to(holder3.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1.9rem',
+    })
+    gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+    })
+    gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+    })
+  }
+  else if(window.innerWidth<600 && window.innerWidth>280){
+    gsap.to('.holder-3 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-3 .writeup',{
+      opacity:1,
+    })
+  gsap.to(holder3,{
+    width:'90vw',
+    height:'90vh'
+  })
+  gsap.to(holder1,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder2,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder1.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+  gsap.to(holder2.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+
+  gsap.to(holder3.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1rem',
+  })
+
+  gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+  })
+  gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+  })
+  }
+
 })
 holder1.addEventListener('mouseleave',function(){
   holder1.querySelector('video').pause();
@@ -1779,7 +2076,58 @@ holder1.addEventListener('mouseleave',function(){
 })
 holder1.addEventListener('mouseover',function(){
   holder1.querySelector('video').play();
-  // if(window.innerWidth>801){
+  if(window.innerWidth>600 && window.innerWidth<1000){
+    gsap.to('.holder-1 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-1 .writeup',{
+      opacity:1,
+    })
+  gsap.to(holder1,{
+    width:'90vw',
+    height:'90vh'
+  })
+  gsap.to(holder2,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder3,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder2.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+  gsap.to(holder3.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+
+  gsap.to(holder1.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1rem',
+  })
+
+  gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+  })
+  gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+  })
+  }
+  else if(window.innerWidth>1000){
     gsap.to('.holder-1 .over',{
       background:'rgba(0,0,0,0)'
     })
@@ -1831,11 +2179,63 @@ holder1.addEventListener('mouseover',function(){
   gsap.to(holder2.querySelector('img'),{
     opacity:0,
   })
-  // }
+  }
+  else if(window.innerWidth<600 && window.innerWidth>280){
+    gsap.to('.holder-1 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-1 .writeup',{
+      opacity:1,
+    })
+  gsap.to(holder1,{
+    width:'90vw',
+    height:'90vh'
+  })
+  gsap.to(holder2,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder3,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder2.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+  gsap.to(holder3.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+
+  gsap.to(holder1.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1rem',
+  })
+
+  gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+  })
+  gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+  })
+  }
 
 })
 holder2.addEventListener('mouseleave',function(){
   holder2.querySelector('video').pause();
+
   gsap.to('.holder-2 .over',{
     background:'rgba(0,0,0,.7)'
   })
@@ -1846,6 +2246,60 @@ holder2.addEventListener('mouseleave',function(){
 
 holder2.addEventListener('mouseover',function(){
   holder2.querySelector('video').play();
+  if(window.innerWidth>600 && window.innerWidth<1000){
+    gsap.to('.holder-2 .over',{
+      background:'rgba(0,0,0,0)'
+    })
+    gsap.to('.holder-2 .writeup',{
+      opacity:1,
+    })
+  gsap.to(holder2,{
+    width:'90vw',
+    height:'90vh'
+  })
+  gsap.to(holder1,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder3,{
+    width:'90vw',
+    height:'8vh'
+  })
+  gsap.to(holder1.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+  gsap.to(holder3.querySelector('h2'),{
+    opacity:1,
+    fontSize:'1rem',
+    rotateZ:'0deg',
+    width:300,
+    // y:'500%',
+    top:'40%',
+
+  })
+
+  gsap.to(holder2.querySelector('h2'),{
+    rotateZ:0,
+    opacity:0,
+    fontSize:'1rem',
+  })
+
+  gsap.to(holder1.querySelector('img'),{
+    opacity:1,
+  })
+  gsap.to(holder2.querySelector('img'),{
+    opacity:0,
+  })
+  }
+  else if(window.innerWidth>1000){
+
+
   gsap.to('.holder-2 .over',{
     background:'rgba(0,0,0,0)'
   })
@@ -1895,7 +2349,58 @@ gsap.to(holder2.querySelector('h2'),{
   opacity:0,
   fontSize:'1.9rem',
 })
+}
+else if(window.innerWidth<600 && window.innerWidth>280){
+  gsap.to('.holder-2 .over',{
+    background:'rgba(0,0,0,0)'
+  })
+  gsap.to('.holder-2 .writeup',{
+    opacity:1,
+  })
+gsap.to(holder2,{
+  width:'90vw',
+  height:'90vh'
+})
+gsap.to(holder1,{
+  width:'90vw',
+  height:'8vh'
+})
+gsap.to(holder3,{
+  width:'90vw',
+  height:'8vh'
+})
+gsap.to(holder1.querySelector('h2'),{
+  opacity:1,
+  fontSize:'1rem',
+  rotateZ:'0deg',
+  width:300,
+  // y:'500%',
+  top:'40%',
 
+})
+gsap.to(holder3.querySelector('h2'),{
+  opacity:1,
+  fontSize:'1rem',
+  rotateZ:'0deg',
+  width:300,
+  // y:'500%',
+  top:'40%',
+
+})
+
+gsap.to(holder2.querySelector('h2'),{
+  rotateZ:0,
+  opacity:0,
+  fontSize:'1rem',
+})
+
+gsap.to(holder1.querySelector('img'),{
+  opacity:1,
+})
+gsap.to(holder2.querySelector('img'),{
+  opacity:0,
+})
+}
 })
 //impact cube animations
 
@@ -2032,7 +2537,30 @@ inp.onkeydown = function(){
 // }
 function inpAnim(){
   let animation = gsap.timeline();
+  if(window.innerWidth<600 && window.innerWidth>280){
+    gsap.to(phone.position,{
+      z:3,
+    })
 
+    gsap.to(location.position,{
+      z:3,
+    })
+    gsap.to(mail[1].position,{
+      z:3,
+
+    })
+    gsap.to(mail[1].material,{
+      opacity:0
+    })
+    animation.to(dish.position,{
+      x:-1.1,
+      y:-15.6,
+      z:-2.2,
+      duration:2,
+      ease:'none'
+    })
+  }
+else if(window.innerWidth>1000){
   gsap.to(phone.position,{
     z:3,
   })
@@ -2054,6 +2582,9 @@ function inpAnim(){
     duration:2,
     ease:'none'
   })
+}
+
+
 }
 function emailAnim(){
   let animation = gsap.timeline();
