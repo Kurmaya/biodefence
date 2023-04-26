@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Bitter:wght@100;200;300;400;500;600;700;800;900&family=Josefin+Sans:wght@300;400;500;600;700&family=Merriweather+Sans:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700;900&family=PT+Serif:wght@400;700&family=Quantico:ital,wght@0,700;1,400&family=Righteous&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+<!-- <link href="https://fonts.cdnfonts.com/css/eagle-4" rel="stylesheet" crossorigin>
+<link href="https://fonts.cdnfonts.com/css/dm-sans" rel="stylesheet"crossorigin> -->
 
 
   <!-- <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet" crossorigin>
@@ -21,6 +22,9 @@
 
 <body>
   <div class="page">
+    <div class="drop">
+      <h3>MENU</h3>
+    </div>
     <ul class="navigation">
       <li class="selected"></li>
       <li></li>
@@ -87,6 +91,7 @@
       <a href="#"><button id="cam6"><span><img class="two" style="width:40px;" src="images\icons\new icons\whats_sm.png" alt=""></span>
           <p>What's New</p>
         </button></a>
+        <span class='close'>&times</span>
     </div>
 
     <canvas class="webgl"></canvas>
@@ -125,7 +130,10 @@
       <div class="scroll">
         <div class="scroll-button">
           <p>Scroll</p>
-          <i class="fa-regular fa-down fa-fade" style="color: #ff0000;"></i>
+          <div class="scroll-image">
+          <img src="images/arrow-black-trans.png" alt="">
+          </div>
+
         </div>
 
       </div>
@@ -145,7 +153,7 @@
             <!-- <a href="https://www.freepik.com/free-photo/smart-robotic-farmers-concept-robot-farmers-agriculture-technology-farm-automation_21347424.htm#query=agritech&position=12&from_view=search&track=sph">Image by user6702303</a> on Freepik -->
           </div>
           <div class="swiper-slide">
-            <img src="images\new images\syringe.png" />
+            <img src="images\new images\Syringe.png" />
             <h3>Researching cutting edge medicine to <br> cure the toughest disease?</h3>
           </div>
 
@@ -195,7 +203,7 @@
     </section>
     <section id="prodcuts" class="prods">
       <div class="prods-holder">
-        <div class="holder-2">
+        <div class="holder-2 holder">
           <div class="over">
             <div class="writeup">
 
@@ -206,6 +214,7 @@
               <h3>Safe Food, Save Food,<br> Now We Can Have Both</h3>
               <hr>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rem cupiditate, quibusdam molestiae, nam blanditiis quos, optio esse aperiam assumenda sunt nesciunt.</p>
+              <a href=""> <button type="button" name="button">Learn More</button></a>
             </div>
           </div>
           <h2>Safe And Fresh Food</h2>
@@ -214,27 +223,32 @@
           </video>
 
         </div>
-        <div class="holder-1">
+        <div class="holder-1 holder">
           <div class="over">
             <div class="writeup">
               <h3>World's First Smart Indoor <br> Microbial Safety Solution</h3>
               <hr>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rem cupiditate, quibusdam molestiae, nam blanditiis quos, optio esse aperiam assumenda sunt nesciunt, expedita voluptatem ipsum nostrum rerum ipsam itaque repellendus.</p>
+            <a href=""> <button type="button" name="button">Learn More</button></a>
             </div>
+
           </div>
+
           <h2>Indoor Microbial Safety</h2>
+
           <video src="videos\Hospi_compressed_2.mp4" muted loop playsinline  >
 
           </video>
 
         </div>
 
-        <div class="holder-3">
+        <div class="holder-3 holder">
           <div class="over">
             <div class="writeup">
               <h3>Microbial Safety Solutions <br> Customized Just For You</h3>
               <hr>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rem cupiditate, quibusdam molestiae, nam blanditiis quos, optio esse aperiam assumenda sunt nesciunt, expedita voluptatem ipsum nostrum rerum ipsam itaque repellendus.</p>
+              <a href=""> <button type="button" name="button">Learn More</button></a>
             </div>
           </div>
           <h2>Customized for you</h2>
@@ -320,7 +334,7 @@
 </form> -->
 <!-- <hr> -->
 <div class="mailer">
-  <input type="email" name="" value=""placeholder="name@example.com"required>
+  <input type="email" name="" value="" placeholder="name@example.com"required>
   <button type="button" name="button">let's talk</button>
 </div>
 
@@ -353,10 +367,10 @@
 
         <div class="contact-details">
           <div class="phone details">
-            <i class="fa-brands fa-whatsapp"></i> <span> <a href="https://wa.me/+6597209700" target="_blank">: +65 9720 9700</a></span>
+            <i class="fa-brands fa-whatsapp"></i> <span> <a href="https://wa.me/+6597209700" target="_blank"> +65 9720 9700</a></span>
           </div>
           <div class="email details">
-            <i class="fa-solid fa-at"></i> <span><a href="mailto:@contact@biodefence.co" target="_blank"> : contact@biodefense.co</a> </span>
+            <i class="fa-solid fa-at"></i> <span><a href="mailto:@contact@biodefence.co" target="_blank"> contact@biodefense.co</a> </span>
           </div>
         </div>
         <div class="contact-details">
@@ -374,7 +388,31 @@
             <span>Visakhapatnam 530031</span>
           </div>
         </div>
+<div class="mobile-details">
+  <div class="contact-details-mobile">
+    <div class="mobile-phone mobile">
+      <span> <a href="https://wa.me/+6597209700" target="_blank"> +65 9720 9700</a></span>
+    </div>
+    <div class="mobile-email mobile">
+    <span><a href="mailto:@contact@biodefence.co" target="_blank"> contact@biodefense.co</a> </span>
+    </div>
+  </div>
 
+
+    <div class="mobile-address mobile">
+      <span> Launchpad @ One-North<br>
+       Singapore 139951</span>
+    </div>
+
+
+
+
+    <div class="mobile-address mobile">
+      <span> BioValley, AMTZ Campus <br>
+      Visakhapatnam 530031</span>
+    </div>
+
+</div>
       <div class="footer-swiper-wrap">
 
       <div class="header-cont">
@@ -510,18 +548,53 @@ document.location = "http://www.biodefence.co";
   const sections = document.querySelectorAll('section');
   const navigation = document.querySelector('.navigation');
   const news = document.querySelectorAll('.news');
-
+  const drop =document.querySelector('.drop');
   const nUpdates= document.querySelectorAll('.updates');
+  const close = document.querySelector('.close');
+
+drop.onclick=function(){
+  drop.classList.add('hide');
+  document.querySelector('.positions').classList.add('active');
+}
+close.onclick=function(){
+  document.querySelector('.positions').classList.remove('active');
+  drop.classList.remove('hide');
+}
 
 news.forEach(function(ew){
   ew.addEventListener('mouseover',function(){
 
   if(this.classList.contains('news1')){
+    if(window.innerWidth<1000){
+      // document.querySelector('.news2').style.top="10%";
+      // document.querySelector('.news3').style.top="10%";
+      document.querySelector('.news3').style.opacity="0";
+      document.querySelector('.news2').style.opacity="0";
+    }
+    else if(window.innerWidth>1000){
       document.querySelector('.news2').style.top="50%";
       document.querySelector('.news3').style.top="60%";
+    }
+
+  }
+  else if(this.classList.contains('news3')){
+    if(window.innerWidth<1000){
+      document.querySelector('.news1').style.opacity="0";
+      document.querySelector('.news2').style.opacity="0";
+    }
+
   }
   else if(this.classList.contains('news2')){
+    if(window.innerWidth<1000){
+      // document.querySelector('.news3').style.top="10%";
+      document.querySelector('.news3').style.opacity="0";
+      document.querySelector('.news1').style.opacity="0";
+    }
+    else if(window.innerWidth>1000){
     document.querySelector('.news3').style.top="60%";
+    }
+
+
   }
 
     ew.classList.add('active');
@@ -532,9 +605,18 @@ news.forEach(function(ew){
 })
 news.forEach(function(ew){
   ew.addEventListener('mouseleave',function(){
-
+    if(window.innerWidth<1000){
+      // document.querySelector('.news2').style.top="10%";
+      // document.querySelector('.news3').style.top="10%";
+      document.querySelector('.news3').style.opacity="1";
+      document.querySelector('.news2').style.opacity="1";
+      document.querySelector('.news1').style.opacity="1";
+    }
+    else if(window.innerWidth>1000){
       document.querySelector('.news2').style.top="25%";
       document.querySelector('.news3').style.top="35%";
+    }
+
 
     ew.classList.remove('active');
     ew.querySelector('.updates').classList.remove('active');
@@ -612,7 +694,7 @@ function reset(){
     // })
     document.querySelector('.imp-vid video').playbackRate = ".9";
     const vid = document.getElementById('load-vid');
-    vid.playbackRate = 1.5;
+    vid.playbackRate = 2;
     const set2 = document.getElementById('set2');
     const set3 = document.getElementById('set3');
     const box1 = document.querySelector('.sanibot');
@@ -629,12 +711,12 @@ function reset(){
 
     window.addEventListener("load", function() {
       // document.body.style.overflow="hidden";
-      document.body.style.overflow="hidden";
+
 
       vid.addEventListener('ended', function() {
         document.querySelector('.vid-loader').classList.add("hidden");
-        document.body.style.overflowX="hidden";
-        document.body.style.overflowY="scroll";
+        // document.body.style.overflowX="hidden";
+        // document.body.style.overflowY="scroll";
 
 
       })
