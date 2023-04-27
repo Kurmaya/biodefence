@@ -153,7 +153,7 @@
             <!-- <a href="https://www.freepik.com/free-photo/smart-robotic-farmers-concept-robot-farmers-agriculture-technology-farm-automation_21347424.htm#query=agritech&position=12&from_view=search&track=sph">Image by user6702303</a> on Freepik -->
           </div>
           <div class="swiper-slide">
-            <img src="images\new images\Syringe.png" />
+            <img src="images\new images\syringe.png" />
             <h3>Researching cutting edge medicine to <br> cure the toughest disease?</h3>
           </div>
 
@@ -551,14 +551,18 @@ document.location = "http://www.biodefence.co";
   const drop =document.querySelector('.drop');
   const nUpdates= document.querySelectorAll('.updates');
   const close = document.querySelector('.close');
+  const scr= document.querySelector('.scroll');
 
 drop.onclick=function(){
   drop.classList.add('hide');
   document.querySelector('.positions').classList.add('active');
+  document.body.style.overflow='hidden';
 }
 close.onclick=function(){
   document.querySelector('.positions').classList.remove('active');
   drop.classList.remove('hide');
+  document.body.style.overflowX='hidden';
+  document.body.style.overflowY='scroll';
 }
 
 news.forEach(function(ew){
@@ -630,6 +634,13 @@ function reset(){
   }
 
 }
+scr.onclick=function(){
+  window.scrollTo({
+
+    top:(window.innerHeight),
+    behavior:'smooth'
+  })
+}
   window.addEventListener('scroll',function(){
     const scrollTop= window.scrollY;
     sections.forEach(function(section,i){
@@ -640,6 +651,7 @@ function reset(){
       }
     })
   })
+
   document.querySelectorAll('.navigation li').forEach(function(item,i){
     item.addEventListener('click',function(){
       window.scrollTo({
