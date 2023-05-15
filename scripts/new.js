@@ -325,7 +325,7 @@ function planeCurve(g, z){
 }
 
 //world plane
-const planeGeometry = new THREE.PlaneBufferGeometry(300,200,100,100);
+const planeGeometry = new THREE.PlaneBufferGeometry(400,200,100,100);
 const planeMaterial = new THREE.MeshBasicMaterial({
   // color:0x1e6dae,
   // color:0x89CFF0,
@@ -373,7 +373,7 @@ let torusGeo2 = new THREE.TorusGeometry(1.4,.2,20,70);
 
 
 const torusMaterial= new THREE.PointsMaterial({size:0.01,transparent:true,opacity:.6,color:0xff0000});
-const torus2Material= new THREE.PointsMaterial({color:0xff0000,size:0.015,transparent:true,opacity:0});
+const torus2Material= new THREE.PointsMaterial({color:0xff0000,size:0.008,transparent:true,opacity:0});
 const helper = new THREE.PlaneHelper(localPlane2,2,0x00ff00);
 const helper2 = new THREE.PlaneHelper(localPlane3,2,0x0000ff);
 // scene.add(helper,helper2);
@@ -492,7 +492,7 @@ scene.add(group);
   let sectionFour = gsap.timeline({
     scrollTrigger:{
       trigger:'.impact',
-      start:'1% top',
+      start:'top top',
       end:'bottom',
       snap:1,
       scrub:.1,
@@ -844,13 +844,15 @@ gLoader.load('./3d/more 2.glb',function(gltf){
     tex.rotation.y=.01;
   }
   else if(window.innerWidth>1000){
-    tex.scale.set(.035,.035,.035);
+    tex.scale.set(.0315,.0315,.0315);
     tex.position.z= -.01;
-    tex.position.y= -.01;
-    tex.position.x=-0.03;
+    // tex.position.y= -.01;
+    tex.position.y= .2;
+    // tex.position.x=-0.07;
+    tex.position.x=0.15;
     tex.rotation.z= -.001;
     tex.rotation.y=.01;
-    localPlane.normal.z=.2;
+    localPlane.normal.z=.18;
   }
 
   tex.material= new THREE.MeshBasicMaterial({
@@ -1498,7 +1500,8 @@ sectionOne
 let sectionTwoHalf =gsap.timeline({
   scrollTrigger:{
     trigger:'.veed',
-    start:'1% top',
+    start:'top top',
+    // start:'top top',
     end:'bottom',
     snap:1,
     scrub:true,
@@ -1730,7 +1733,8 @@ else if(window.innerWidth>280 && window.innerWidth<600){
 let sectionThree = gsap.timeline({
   scrollTrigger:{
     trigger:'.prods',
-    start:'1% top',
+    // start:'5% top',
+    start:'top top',
     // endTrigger:'.impact',
     end:'bottom',
     makers:true,
@@ -1774,11 +1778,14 @@ sectionThree
   y:2.3,
   z:0
 },'simultaneously')
+// .to(impactVideoMat,{
+//   opacity:1,
+//
+// },'simultaneously')
 .to(impactVideoMat,{
-  opacity:1,
+  opacity:0,
 
 },'simultaneously')
-
 // .to('.holder-1',{
 //   width:'90vw',
 //
@@ -1907,7 +1914,7 @@ holder3.addEventListener('mouseleave',function(){
   })
   holder3.querySelector('video').pause();
 })
-holder3.addEventListener('mouseover',function(){
+holder3.addEventListener('click',function(){
   holder3.querySelector('video').play();
   if(window.innerWidth>600 && window.innerWidth<1000){
     gsap.to('.holder-3 .over',{
@@ -2074,7 +2081,7 @@ holder1.addEventListener('mouseleave',function(){
     opacity:0
   })
 })
-holder1.addEventListener('mouseover',function(){
+holder1.addEventListener('click',function(){
   holder1.querySelector('video').play();
   if(window.innerWidth>600 && window.innerWidth<1000){
     gsap.to('.holder-1 .over',{
@@ -2244,7 +2251,7 @@ holder2.addEventListener('mouseleave',function(){
   })
 })
 
-holder2.addEventListener('mouseover',function(){
+holder2.addEventListener('click',function(){
   holder2.querySelector('video').play();
   if(window.innerWidth>600 && window.innerWidth<1000){
     gsap.to('.holder-2 .over',{
