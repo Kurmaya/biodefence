@@ -2,11 +2,13 @@ import * as THREE from '../modules/three.module.js';
 // import {OrbitControls} from 'https://unpkg.com/three@0.139.1/examples/jsm/controls/OrbitControls'
 import * as dat from "https://cdn.skypack.dev/dat.gui";
 import {GLTFLoader} from '../modules/GLTFLoader.js'
+
 // import {RGBELoader} from 'https://unpkg.com/three@0.139.1/examples/jsm/loaders/RGBELoader.js'
 const canvas = document.querySelector('canvas.webgl');
 const updateDrop= document.querySelector('.update-drop');
 const arrow = document.querySelector('.arrow');
 gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(Timeline);
 const positions = document.querySelectorAll('.positions button');
 const ray = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
@@ -101,6 +103,7 @@ impactVideoTexture.magFilter= THREE.LinearFilter;
 const mute = document.getElementById('mute');
 const play = document.getElementById('play');
 veedeeo.muted=false;
+
 play.addEventListener('click',function(){
   play.classList.toggle('active');
   if(play.classList.contains('active')){
@@ -121,12 +124,23 @@ play.addEventListener('click',function(){
     // play.textContent="Play"
     play.children[0].src='images/play1.png';
     gsap.to(play,{
-      background:'rgba(150,150,150,.6)',
+      background:'rgba(150,150,150,.4)',
       duration:1,
       ease:'power1'
     })
   }
 })
+if(veedeeo.addEventListener('ended',function(){
+  play.children[0].src='images/play1.png';
+  play.classList.remove('active');
+  gsap.to(play,{
+    background:'rgba(150,150,150,.4)',
+    duration:1,
+    ease:'power1'
+  })
+  veedeeo.load();
+
+}))
 mute.addEventListener('click', function(){
   mute.classList.toggle('muted');
 
@@ -136,7 +150,7 @@ mute.addEventListener('click', function(){
 
      mute.children[0].src='images/unmute1.png'
      gsap.to(mute,{
-       background:'rgba(150,150,150,.6)',
+       background:'rgba(150,150,150,.4)',
        duration:1,
        ease:'power1'
      })
@@ -186,7 +200,7 @@ const particlesMaterial =new THREE.PointsMaterial({
   // map: zz,
   transparent:true,
   opacity:.48,
-  alpha:true,
+  // alpha:true,
   // color: 0x85CDFD
   color:0x222222
 });
@@ -266,7 +280,7 @@ else if(window.innerWidth<610){
 let geom = new THREE.PlaneGeometry(geomPar.width, geomPar.height, 200, 200);
 planeCurve(geom, params.bendDepth);
 let mat = new THREE.MeshBasicMaterial({
-  castShadow:true,
+  // castShadow:true,
 	// wireframe: true,
   map: videoTexture,
   side:THREE.FrontSide,
@@ -325,7 +339,7 @@ function planeCurve(g, z){
 }
 
 //world plane
-const planeGeometry = new THREE.PlaneBufferGeometry(400,200,100,100);
+const planeGeometry = new THREE.PlaneGeometry(400,200,100,100);
 const planeMaterial = new THREE.MeshBasicMaterial({
   // color:0x1e6dae,
   // color:0x89CFF0,
@@ -352,7 +366,7 @@ const plane = new THREE.Mesh(planeGeometry,planeMaterial);
 
 scene.add(plane,shadowPlane);
 plane.position.set(0,0,-100);
-let tor1= 2;
+let tor1= 1.95;
 let tor2=.2;
 let tor3= 30;
 let tor4=120;
@@ -785,7 +799,7 @@ else if(window.innerWidth<1000){
 
 })
 
-gLoader.load('./3d/biologo.glb',function(gltf){
+gLoader.load('./3d/biodef logo.glb',function(gltf){
   scene.add(gltf.scene);
   bio = gltf.scene.children[0];
   if(window.innerWidth<600){
@@ -844,10 +858,10 @@ gLoader.load('./3d/more 2.glb',function(gltf){
     tex.rotation.y=.01;
   }
   else if(window.innerWidth>1000){
-    tex.scale.set(.0315,.0315,.0315);
+    tex.scale.set(.033,.0315,.0315);
     tex.position.z= -.01;
     // tex.position.y= -.01;
-    tex.position.y= .2;
+    tex.position.y= .29;
     // tex.position.x=-0.07;
     tex.position.x=0.15;
     tex.rotation.z= -.001;
@@ -868,14 +882,14 @@ gLoader.load('./3d/more 2.glb',function(gltf){
     tex.rotation.y+=0.002;
   }
 // texAnim();
-  // gui.add(tex.rotation,'x',-5,5).name('text rotation x');
-// gui.add(tex.rotation,'y',-5,5).name('text rotation y');
-// gui.add(tex.position,'y',-5,5).name('text position y');
-// gui.add(tex.scale,'x',.02,.05).name('text scale x');
-// gui.add(tex.scale,'y',.02,.05).name('text scale y');
-// gui.add(tex.scale,'z',.02,.05).name('text scale z');
-// gui.add(tex.position,'x',-5,5).name('text position x');
-// gui.add(tex.rotation,'z',-5,5).name('text rotation z');
+  gui.add(tex.rotation,'x',-5,5).name('text rotation x');
+gui.add(tex.rotation,'y',-5,5).name('text rotation y');
+gui.add(tex.position,'y',-5,5).name('text position y');
+gui.add(tex.scale,'x',.02,.05).name('text scale x');
+gui.add(tex.scale,'y',.02,.05).name('text scale y');
+gui.add(tex.scale,'z',.02,.05).name('text scale z');
+gui.add(tex.position,'x',-1,1).name('text position x');
+gui.add(tex.rotation,'z',-1,1).name('text rotation z');
 
 })
 groupTwo.add(tex,torus,bio);
@@ -1091,7 +1105,8 @@ let sectionOne = gsap.timeline({
     // snap:space.bottom,
     // markers:true,
     // pinSpacing:false,
-    ease:'none'
+    ease:'none',
+
 
   }
 
@@ -1402,7 +1417,7 @@ sectionOne
       // pin:true,
       end:'bottom',
       scrub:.1,
-      snap:1,
+      snap:.95,
       // markers:true,
       // pinSpacing:false,
       ease:'none',
@@ -1503,7 +1518,7 @@ let sectionTwoHalf =gsap.timeline({
     start:'top top',
     // start:'top top',
     end:'bottom',
-    snap:1,
+    snap:.977,
     scrub:true,
     ease:'none'
   }
@@ -1739,7 +1754,7 @@ let sectionThree = gsap.timeline({
     end:'bottom',
     makers:true,
     scrub:true,
-    snap:1,
+    snap:.99,
     ease:'none',
 
   }
@@ -2253,6 +2268,7 @@ holder2.addEventListener('mouseleave',function(){
 
 holder2.addEventListener('click',function(){
   holder2.querySelector('video').play();
+  holder2.querySelector('video').classList.add('active');
   if(window.innerWidth>600 && window.innerWidth<1000){
     gsap.to('.holder-2 .over',{
       background:'rgba(0,0,0,0)'
@@ -2345,6 +2361,7 @@ gsap.to(holder3.querySelector('h2'),{
   top:'50%',
 
 })
+
 // gsap.to(holder1.querySelector('img'),{
 //   opacity:0,
 // })
@@ -2400,6 +2417,9 @@ gsap.to(holder2.querySelector('h2'),{
   opacity:0,
   fontSize:'1rem',
 })
+// gsap.to(holder2.querySelector('video'),{
+//   objectPosition:'0px 0px !important',
+// })
 
 gsap.to(holder1.querySelector('img'),{
   opacity:1,
