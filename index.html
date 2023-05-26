@@ -138,6 +138,42 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, non.</p>
         </div>
       </div> -->
+      <div class="swiper mySwiper3">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="slide-wrap">
+          <h2>Large multi-country Listeria outbreak linked to trout</h2>
+          <p> A Listeria outbreak that affected more than 50 people was the biggest fish product related incident in Germany, according to reseachers.
+          The large outbreak affected Germany , Austria , Denmark and Switzerland</p>
+          <a href="#">Read More</a>
+        </div>
+        <!-- <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> -->
+
+      </div>
+      <div class="swiper-slide">
+        <div class="slide-wrap">
+          <h2>Large multi-country Listeria outbreak linked to trout</h2>
+          <p> A Listeria outbreak that affected more than 50 people was the biggest fish product related incident in Germany, according to reseachers.
+          The large outbreak affected Germany , Austria , Denmark and Switzerland</p>
+          <a href="#">Read More</a>
+        </div>
+        <!-- <img src="https://swiperjs.com/demos/images/nature-2.jpg" /> -->
+      </div>
+      <div class="swiper-slide">
+        <div class="slide-wrap">
+          <h2>Large multi-country Listeria outbreak linked to trout</h2>
+          <p> A Listeria outbreak that affected more than 50 people was the biggest fish product related incident in Germany, according to reseachers.
+          The large outbreak affected Germany , Austria , Denmark and Switzerland</p>
+          <a href="#">Read More</a>
+        </div>
+        <!-- <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> -->
+      </div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
       <div class="flip-news">
         <div class="flip-wrap">
         <div class="flip-front"><img src="images\icons\new icons\lysteria.jpeg" alt="">
@@ -528,6 +564,51 @@ document.location = "http://www.biodefence.co";
 
 </script> -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper3", {
+      effect: "cube",
+      // loop:true,
+      // grabCursor: true,
+      cubeEffect: {
+        shadow: false,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      },
+      pagination: {
+        el: ".mySwiper3 .swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+       nextEl: ".mySwiper3 .swiper-button-next",
+       prevEl: ".mySwiper3 .swiper-button-prev",
+     },
+    });
+    const slides = document.querySelectorAll('.mySwiper3 .swiper-slide');
+    slides.forEach((item,i) => {
+      item.addEventListener('mouseover',function(){
+        console.log(i);
+        slides[i].classList.add('active');
+        // if(item)
+        // console.log(item.querySelector('p'));
+        item.querySelector('p').classList.add('active');
+        item.querySelector('h2').classList.add('active');
+        item.querySelector('a').classList.add('active');
+
+      })
+      item.addEventListener('mouseleave',function(){
+        slides[i].classList.remove('active');
+        // console.log(item.querySelector('p'));
+        item.querySelector('p').classList.remove('active');
+        item.querySelector('h2').classList.remove('active');
+        item.querySelector('a').classList.remove('active');
+
+      })
+
+    });
+
+
+  </script>
   <script>
     var swiper = new Swiper(".mySwiper2", {
       autoplay:{
