@@ -326,17 +326,33 @@
 
 </section>
     <section id="impact" class="impact">
+      <div class="bgImg-cont">
+
+      <img src="images\new images\heroes3-resized.png" alt="">
+      <img src="images\new images\heroes4-resized.png" alt="">
+      <img src="images\new images\heroes5-resized.png" alt="">
+      <img src="images\new images\heroes6-resized.png" alt="">
+      <img src="images\new images\heroes7-resized.png" alt="">
+      <img src="images\new images\heroes8-resized.png" alt="">
+
+      </div>
       <div class="imp-cont-new">
+        <!-- <img src="https://ik.imagekit.io/768eoiozf/biodefence/heroes2-resized_6eSBA8XTk.png?updatedAt=1685195210100" alt=""> -->
+
+        <img class='there active' src="images\new images\heroes2-resized-new.png" alt="">
+        <img class='there' src="images\new images\heroes1-resized-new.png" alt="">
+
+
         <button><h4>Are You A superhero, yet?</h4></button>
         <div class="text-cont">
           <h4 class="first">Have you ever wondered... </h4>
           <h4 class="second">What is mankind’s greatest threat?</h4>
           <div class="next-cont">
-          <h5 class="next">An asteroid hurtling towards earth</h5>
-          <h5 class="next">Weapons of mass destruction</h5>
-           <h5 class="next">Global-warming induced climate change</h5>
-           <h5 class="next">Out-of-control artificial intelligence</h5>
-           <h5 class="next"> Or is it our own extreme selves </h5>
+          <h5 class="next oone">An asteroid hurtling towards earth</h5>
+          <h5 class="next ttwo">Weapons of mass destruction</h5>
+           <h5 class="next tthree">Global-warming induced climate change</h5>
+           <h5 class="next ffour">Out-of-control artificial intelligence</h5>
+           <h5 class="next ffive"> Or is it our own extreme selves </h5>
            </div>
           <!-- <h4 class="continue">What now?</h4> -->
           <h4 class="continue">How can you help!?</h4>
@@ -812,23 +828,101 @@ scr.onclick=function(){
     const impCont= document.querySelector('.imp-cont-new button');
     const conti=document.querySelector('.continue');
     const nxt=document.querySelectorAll('.next');
+    function fear(){
+      document.querySelectorAll('.bgImg-cont img').forEach((item)=>{
+        item.classList.remove('active');
+
+      })
+    }
 nxt.forEach((nx)=>{
+  nxt.forEach((items,i)=>{
+    items.addEventListener('mouseover',function(e){
+      document.querySelectorAll('.there').forEach((item)=>{
+        item.classList.remove('active');
+        item.classList.add('hide');
+      })
+
+      // if(e.target.nxt[i]=0){
+        // document.querySelector('.bgImg-cont img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes3-resized_tayEJsZpF.png?updatedAt=1685195210065';
+        // console.log(document.querySelector('.bgImg-cont img').src);
+        // console.log(e.target);
+      // }
+      // console.log(nxt[i]);
+if(e.target.classList.contains('oone')){
+  // console.log(document.querySelector('.bgImg-cont img').src);
+  // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes3-resized_tayEJsZpF.png?updatedAt=1685195210065';
+  fear();
+  document.querySelectorAll('.bgImg-cont img')[i].classList.add('active');
+   document.querySelector('.imp-cont-new img').style.opacity='0';
+}
+else if(e.target.classList.contains('ttwo')){
+  fear();
+  // console.log(document.querySelector('.bgImg-cont img').src);
+  // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes4-resized_M0Y4H5sGPC.png?updatedAt=1685195210091';
+  document.querySelectorAll('.bgImg-cont img')[i].classList.add('active');
+   document.querySelector('.imp-cont-new img').style.opacity='0';
+}
+else if(e.target.classList.contains('tthree')){
+  fear();
+  // console.log(document.querySelector('.bgImg-cont img').src);
+  // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes5-resized_9yKZR-f8Lq.png?updatedAt=1685195210094';
+  document.querySelectorAll('.bgImg-cont img')[i].classList.add('active');
+   document.querySelector('.imp-cont-new img').style.opacity='0';
+}
+else if(e.target.classList.contains('ffour')){
+  fear();
+  // console.log(document.querySelector('.bgImg-cont img').src);
+  // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes6-resized_18t3KL09y.png?updatedAt=1685195210053';
+  document.querySelectorAll('.bgImg-cont img')[i].classList.add('active');
+   document.querySelector('.imp-cont-new img').style.opacity='0';
+}
+else if(e.target.classList.contains('ffive')){
+  fear();
+  // console.log(document.querySelector('.bgImg-cont img').src);
+  // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes7-resized_WdGf5z8hOj.png?updatedAt=1685195210069';
+  document.querySelectorAll('.bgImg-cont img')[i].classList.add('active');
+   document.querySelector('.imp-cont-new img').style.opacity='0';
+}
+    })
+  })
   nx.addEventListener('click',function(){
+
     // console.log(nx.classList)
     nx.classList.remove('next');
+    setTimeout(function(){
     nx.classList.add('move');
+  },300)
+  setTimeout(function(){
+    nx.classList.add('active');
+document.querySelector('.imp-cont-new img').style.opacity='0'
+    // nx.style.position='absolute';
+    // nx.style.transform="translateY:(-150%)";
+  },500)
 
-    document.querySelector('.first').innerText=nx.innerText;
+
+
+setTimeout(function(){
+  document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes8-resized_4jZd7QmZ6M.png?updatedAt=1685195210238';
+  // document.querySelectorAll('.there')[1].classList.add('active');
+  document.querySelector('.imp-cont-new img').classList.add('active');
+  fear();
+},4000);
+
+    // document.querySelector('.first').innerText=nx.innerText;
     // for(let i=0;i=nxt.length;i++){
     //   if(!nxt[i].classList.contains('move')){
     //     console.log(nxt[i]);
     //   }
     // }
-    nxt.forEach((item)=>{
+    nxt.forEach((item,i)=>{
+
       if(item.classList.contains('next')){
-      item.style.display='none'  ;
+      // item.style.display='none'  ;
+      item.classList.add('active');
+
       }
     });
+
     setTimeout(function(){
       document.querySelector('.text-cont p').classList.add('active');
       // conti.style.display='inline-block';
@@ -867,9 +961,22 @@ document.querySelector('.second').onanimationend = ()=>{
   // }, 31000 // length of the whole show in milliseconds
   //   );
     impCont.addEventListener('click',function(){
-    setTimeout(function(){document.querySelector('.imp-cont-new').classList.toggle('active');
+      impCont.addEventListener('mouseleave',function(){
+        // document.querySelector('.imp-cont-new').classList.remove('show');
+        // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes1-resized_E2MMS5U0Ra.png?updatedAt=1685195210178';
+        document.querySelectorAll('.there')[1].classList.add('active');
+        document.querySelectorAll('.there')[0].classList.remove('active');
+
+
+      })
+      // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes1-resized_E2MMS5U0Ra.png?updatedAt=1685195210178';
+    setTimeout(function(){
+      document.querySelector('.imp-cont-new').classList.add('active');
     document.querySelector('.text-cont').classList.toggle('active');
-    setTimeout(function(){impCont.classList.add('active')});
+
+      impCont.classList.add('active');
+
+
   },300)
 
 
@@ -878,7 +985,26 @@ document.querySelector('.second').onanimationend = ()=>{
 
 
     })
+
+    impCont.addEventListener('mouseover',function(){
+      // impCont.style.background.src='https://ik.imagekit.io/768eoiozf/biodefence/hero-2-resize_jDmlBEbAz.jpg?updatedAt=1684682752207';
+      // document.querySelector('.imp-cont-new').style.background="url(https://ik.imagekit.io/768eoiozf/biodefence/hero-2-resize_jDmlBEbAz.jpg?updatedAt=1684682752207)";
+      // document.querySelector('.imp-cont-new').classList.add('show');
+      // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes1-resized_E2MMS5U0Ra.png?updatedAt=1685195210178';
+      document.querySelectorAll('.there')[1].classList.add('active');
+      document.querySelectorAll('.there')[0].classList.remove('active');
+    })
+    impCont.addEventListener('mouseleave',function(){
+      // document.querySelector('.imp-cont-new').classList.remove('show');
+      // document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes2-resized_6eSBA8XTk.png?updatedAt=1685195210100';
+      // document.querySelectorAll('imp-cont-new img')[0].classList.remove('active');
+      document.querySelectorAll('.there')[1].classList.remove('active');
+      document.querySelectorAll('.there')[0].classList.add('active');
+
+
+    })
     conti.addEventListener('click',function(){
+
       conti.classList.add('hide');
       conti.classList.remove('active');
       document.querySelector('.p-cont').classList.toggle('active');
@@ -886,22 +1012,15 @@ document.querySelector('.second').onanimationend = ()=>{
       document.querySelector('.first').style.display='none';
       document.querySelector('.second').style.display='none';
       document.querySelector('.move').style.display='none';
+
+
       setTimeout(function(){
-      document.querySelector('.ready').classList.add('active');
+
+
+        document.querySelector('.ready').classList.add('active');
+        document.querySelector('.imp-cont-new img').src='https://ik.imagekit.io/768eoiozf/biodefence/heroes1-resized_E2MMS5U0Ra.png?updatedAt=1685195210178';
     },1200);
 
-
-      // document.querySelector('.text-cont').style.height='80%';
-      // document.querySelector('.text-cont p').style.opacity='1';
-      // conti.style.opacity=0;
-    })
-    impCont.addEventListener('mouseover',function(){
-      // impCont.style.background.src='https://ik.imagekit.io/768eoiozf/biodefence/hero-2-resize_jDmlBEbAz.jpg?updatedAt=1684682752207';
-      // document.querySelector('.imp-cont-new').style.background="url(https://ik.imagekit.io/768eoiozf/biodefence/hero-2-resize_jDmlBEbAz.jpg?updatedAt=1684682752207)";
-      document.querySelector('.imp-cont-new').classList.add('show');
-    })
-    impCont.addEventListener('mouseleave',function(){
-      document.querySelector('.imp-cont-new').classList.remove('show');
     })
     const currentLocation = location.href;
 // mages.forEach((mage)=>{
