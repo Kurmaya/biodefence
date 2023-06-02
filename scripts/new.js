@@ -197,10 +197,10 @@ const localPlane3 = new THREE.Plane(new THREE.Vector3(0.16,-.71,0),-.9);
 //particles
 const particlesMaterial =new THREE.PointsMaterial({
   size : 0.01,
-  // map: zz,
+  map: zz,
   transparent:true,
   opacity:.48,
-  // alpha:true,
+  alpha:true,
   // color: 0x85CDFD
   color:0x222222
 });
@@ -882,14 +882,14 @@ gLoader.load('./3d/more 2.glb',function(gltf){
     tex.rotation.y+=0.002;
   }
 // texAnim();
-  gui.add(tex.rotation,'x',-5,5).name('text rotation x');
-gui.add(tex.rotation,'y',-5,5).name('text rotation y');
-gui.add(tex.position,'y',-5,5).name('text position y');
-gui.add(tex.scale,'x',.02,.05).name('text scale x');
-gui.add(tex.scale,'y',.02,.05).name('text scale y');
-gui.add(tex.scale,'z',.02,.05).name('text scale z');
-gui.add(tex.position,'x',-1,1).name('text position x');
-gui.add(tex.rotation,'z',-1,1).name('text rotation z');
+//   gui.add(tex.rotation,'x',-5,5).name('text rotation x');
+// gui.add(tex.rotation,'y',-5,5).name('text rotation y');
+// gui.add(tex.position,'y',-5,5).name('text position y');
+// gui.add(tex.scale,'x',.02,.05).name('text scale x');
+// gui.add(tex.scale,'y',.02,.05).name('text scale y');
+// gui.add(tex.scale,'z',.02,.05).name('text scale z');
+// gui.add(tex.position,'x',-1,1).name('text position x');
+// gui.add(tex.rotation,'z',-1,1).name('text rotation z');
 
 })
 groupTwo.add(tex,torus,bio);
@@ -907,13 +907,13 @@ pLight.position.set(-3.3,-12,-1.1);
 pLight.castShadow=true;
 scene.add(dirLight,pLight);
 
-const gui = new dat.GUI();
-gui.add(camera.position,'x',-2,2).name('camera p x');
-gui.add(camera.position,'y',-2,2).name('camera p y');
-gui.add(camera.position,'z',-2,2).name('camera p z');
-gui.add(camera.rotation,'x',-2,2).name('camera r x');
-gui.add(camera.rotation,'y',-2,2).name('camera r y');
-gui.add(camera.rotation,'z',-2,2).name('camera r z');
+// const gui = new dat.GUI();
+// gui.add(camera.position,'x',-2,2).name('camera p x');
+// gui.add(camera.position,'y',-2,2).name('camera p y');
+// gui.add(camera.position,'z',-2,2).name('camera p z');
+// gui.add(camera.rotation,'x',-2,2).name('camera r x');
+// gui.add(camera.rotation,'y',-2,2).name('camera r y');
+// gui.add(camera.rotation,'z',-2,2).name('camera r z');
 // gui.add(dirLight.position,'x',-15,15).name('dirLight x');
 // gui.add(dirLight.position,'y',-15,15).name('dirLight y');
 // gui.add(dirLight.position,'z',-15,15).name('dirLight z');
@@ -1100,7 +1100,7 @@ let sectionOne = gsap.timeline({
     start:'top top',
     end:"bottom",
     scrub:true,
-    snap:1,
+    snap:.98,
     // pin:true,
     // snap:space.bottom,
     // markers:true,
@@ -1416,8 +1416,8 @@ sectionOne
       // duration:4,
       // pin:true,
       end:'bottom',
-      scrub:.1,
-      snap:.95,
+      scrub:0,
+      snap:.96,
       // markers:true,
       // pinSpacing:false,
       ease:'none',
@@ -1754,6 +1754,7 @@ let sectionThree = gsap.timeline({
     end:'bottom',
     makers:true,
     scrub:true,
+    // snap:1,
     snap:.99,
     ease:'none',
 
@@ -1986,9 +1987,9 @@ holder3.addEventListener('click',function(){
     gsap.to('.holder-3 .over',{
       background:'rgba(0,0,0,0)'
     })
-    gsap.to('.holder-3 .writeup',{
-      opacity:1
-    })
+    // gsap.to('.holder-3 .writeup',{
+    //   opacity:1
+    // })
     gsap.to(holder3,{
     width:'90vw',
     // height:'90vh'
@@ -2037,9 +2038,9 @@ holder3.addEventListener('click',function(){
     gsap.to('.holder-3 .over',{
       background:'rgba(0,0,0,0)'
     })
-    gsap.to('.holder-3 .writeup',{
-      opacity:1,
-    })
+    // gsap.to('.holder-3 .writeup',{
+    //   opacity:1,
+    // })
   gsap.to(holder3,{
     width:'90vw',
     height:'90vh'
@@ -2092,9 +2093,9 @@ holder1.addEventListener('mouseleave',function(){
   gsap.to('.holder-1 .over',{
     background:'rgba(255,255,255,.9)'
   })
-  gsap.to('.holder-1 .writeup',{
-    opacity:0
-  })
+  // gsap.to('.holder-1 .writeup',{
+  //   opacity:0
+  // })
 })
 holder1.addEventListener('click',function(){
   holder1.querySelector('video').play();
@@ -2258,12 +2259,12 @@ holder1.addEventListener('click',function(){
 holder2.addEventListener('mouseleave',function(){
   holder2.querySelector('video').pause();
 
-  gsap.to('.holder-2 .over',{
-    background:'rgba(0,0,0,.7)'
-  })
-  gsap.to('.holder-2 .writeup',{
-    opacity:0
-  })
+  // gsap.to('.holder-2 .over',{
+  //   background:'rgba(0,0,0,.7)'
+  // })
+  // gsap.to('.holder-2 .writeup',{
+  //   opacity:0
+  // })
 })
 
 holder2.addEventListener('click',function(){
