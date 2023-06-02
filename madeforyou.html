@@ -14,6 +14,9 @@
     <title>BioDefence - Made For You</title>
   </head>
   <body>
+    <div class="drop">
+      <h3>MENU</h3>
+    </div>
     <div class="positions">
       <a href="freshfood.html"><button><span><img class="two" src="images\icons\new icons\food1.png" style="width:40px;"  alt=""></span>
           <p>Fresh Food</p>
@@ -159,30 +162,43 @@
 
     </div>
 
-<script>
-  // const links =document.querySelectorAll('.positions a');
-  var mages = document.querySelectorAll('.positions a');
-  const currentLocation = location.href;
-// mages.forEach((mage)=>{
-//   mage.addEventListener('click',function(){
-//     if(this.classList.contains('active')){
-//         this.querySelector('p').classList.add('active');
-//     }
-//   })
-// })
-  mages.forEach(item => {
-    // if(item.classList.contains('active')){
-    //   item.querySelector('p').classList.add('active');
-    // }
-    // console.log(item.href);
-    if (item.href === currentLocation) {
-      // console.log(item.href);
-      item.querySelector('button').classList.add('active');
-      // console.log(item);
-    }
-  })
+    <script>
+      const drop =document.querySelector('.drop');
+      const close = document.querySelector('.close');
+      var mages = document.querySelectorAll('.positions a');
+      const currentLocation = location.href;
+    // mages.forEach((mage)=>{
+    //   mage.addEventListener('click',function(){
+    //     if(this.classList.contains('active')){
+    //         this.querySelector('p').classList.add('active');
+    //     }
+    //   })
+    // })
+      mages.forEach(item => {
+        // if(item.classList.contains('active')){
+        //   item.querySelector('p').classList.add('active');
+        // }
+        // console.log(item.href);
+        if (item.href === currentLocation) {
+          // console.log(item.href);
+          item.querySelector('button').classList.add('active');
+          // console.log(item);
+        }
+      })
+      drop.onclick=function(){
+        drop.classList.add('hide');
+        document.querySelector('.positions').classList.add('active');
+        document.body.style.overflow='hidden';
+        }
+        close.onclick=function(){
+        document.querySelector('.positions').classList.remove('active');
+        drop.classList.remove('hide');
+        document.body.style.overflowX='hidden';
+        document.body.style.overflowY='scroll';
+        }
 
-</script>
+
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
   var swiper = new Swiper(".mySwiper2", {
