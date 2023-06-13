@@ -44,10 +44,14 @@
         </button></a>
         <span class='close'>&times</span>
     </div>
+    <canvas class="webgl"></canvas>
     <div class="sanit">
-      <h1>We are sanitizing this webpage at the moment.<br> Please subscribe for us to notify you when it is ready. </h1>
+      <h1>We are sanitizing this webpage at the moment. </h1>
+      <!-- <h1>Please subscribe for us to notify you when it is ready. </h1> -->
+      <h1>Let us notify you when it is ready. </h1>
       <div class="mailer">
-        <a href="mailto:contact@BioDefence.co"><button type="button" name="button" >Subscribe</button></a>
+        <input type="email" name="" value="" placeholder="name@example.com"required>
+        <a href="mailto:contact@BioDefence.co"><button type="button" name="button">Submit</button></a>
       </div>
     </div>
     <div id="real-footer">
@@ -234,5 +238,10 @@
    },
   });
 </script>
+<script type="module" src="./modules/three.module.js">
+
+
+</script>
+<script src="./scripts/other.js" type='module' charset="utf-8"></script>
   </body>
 </html>
