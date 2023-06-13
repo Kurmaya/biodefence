@@ -13,52 +13,14 @@ const positions = document.querySelectorAll('.positions button');
 const ray = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-// function down(){
-//   if(arrow.classList.contains('active')){
-//
-//
-//     updateDrop.classList.remove('active');
-//     setTimeout(function () {
-//       document.querySelectorAll('.update-drop.active .update-list').forEach((list)=>{
-//         list.classList.remove('active');
-//       })
-//     }, 100);
-//     arrow.classList.remove('active');
-//     document.querySelector('.update-drop h2').classList.remove('active');
-//   }
-//
-//   else if(!arrow.classList.contains('active')){
-//     updateDrop.classList.add('active');
-//     setTimeout(function () {
-//       document.querySelectorAll('.update-drop.active .update-list').forEach((list)=>{
-//         list.classList.add('active');
-//       })
-//     }, 1000);
-//     arrow.classList.add('active');
-//     document.querySelector('.update-drop h2').classList.add('active');
-//   }
-// }
-//
-// arrow.addEventListener('click',down)
-
-
-// positions.forEach((position) => {
-//   position.addEventListener('click', function(){
-//     positions.forEach((pos) => {
-//       pos.classList.remove('active');
-//
-//     });
-//
-//     position.classList.add('active');
-//   })
-// });
 //texture
 const textureLoader = new THREE.TextureLoader();
 
 
 const planeTexture = textureLoader.load('./textures/world.5292.png');
 const hex = textureLoader.load('./textures/hex2.png');
-const zz = textureLoader.load('./textures/zz.png');
+// const zz = textureLoader.load('./textures/zz.png');
+const zz = textureLoader.load('./textures/hexagon-removebg.png');
 const cubeTexture = textureLoader.load('./textures/cube map.png');
 const def = textureLoader.load('./textures/biodefence-nav-logo-red.png');
 const veedeeo= document.getElementById('video-texture');
@@ -196,8 +158,8 @@ const localPlane3 = new THREE.Plane(new THREE.Vector3(0.16,-.71,0),-.9);
 
 //particles
 const particlesMaterial =new THREE.PointsMaterial({
-  size : 0.01,
-  map: zz,
+  size : 0.02,
+  // map: zz,
   transparent:true,
   opacity:.48,
   alpha:true,
@@ -269,7 +231,7 @@ let geomPar= {
   height:6
 };
 if(window.innerWidth<800 && window.innerWidth>611){
-  geomPar.width=4.7;
+  geomPar.width=5.7;
   geomPar.height=2.8;
 }
 else if(window.innerWidth<610){
@@ -299,7 +261,7 @@ curvedPanel.castShadow=true;
 scene.add(curvedPanel);
 
 curvedPanel.position.set(-30,0,-9.5);
-curvedPanel.rotation.set(1.2,2,0);
+curvedPanel.rotation.set(0,0,0);
 
 // bending the plane
 function planeCurve(g, z){
@@ -386,7 +348,7 @@ let torusGeo = new THREE.TorusGeometry(tor1,tor2,tor3,tor4);
 let torusGeo2 = new THREE.TorusGeometry(1.4,.2,20,70);
 
 
-const torusMaterial= new THREE.PointsMaterial({size:0.01,transparent:true,opacity:.6,color:0xff0000});
+const torusMaterial= new THREE.PointsMaterial({size:0.01,transparent:true,alpha:true,opacity:.6,color:0xff0000});
 const torus2Material= new THREE.PointsMaterial({color:0xff0000,size:0.008,transparent:true,opacity:0});
 const helper = new THREE.PlaneHelper(localPlane2,2,0x00ff00);
 const helper2 = new THREE.PlaneHelper(localPlane3,2,0x0000ff);
@@ -418,6 +380,8 @@ gLoader.load('./3d/mail_icon.glb',function(gltf){
   // console.log(gltf.scene);
   mail=gltf.scene.children[0].children[0].children;
   mail[0].material=new THREE.MeshBasicMaterial({transparent:true,opacity:0})
+  // console.log(mail[1]);
+  mail2=mail[1];
 
   // mail[0].material.color.r=1;
   // mail[0].material.color.b=1;
@@ -437,7 +401,7 @@ mail[1].castShadow=true;
   mail[1].scale.set(.15,.15,.15);
   mail[1].rotation.set(0,0,6.2);
   mail[0].scale.set(0,0,0);
-  console.log(mail[0].material.opacity,mail[0].material.opacity);
+  // console.log(mail[0].material.opacity,mail[0].material.opacity);
 
 // mail[1].scale.set(.8,.8,.8);
   // mail.scale.set(.5,.5,.5);
@@ -448,6 +412,7 @@ mail[1].castShadow=true;
   // gui.add(mail[1].rotation,'z',-17.5,-14).name('loca r z');
 
 })
+
 gLoader.load('./3d/map_pointer.glb',function(gltf){
   scene.add(gltf.scene);
   location= gltf.scene.children[0].children[0].children[0];
@@ -612,6 +577,11 @@ if(window.innerWidth>1000){
     duration:1.5,
     ease:'power1.out'
   },'simultaneously')
+  // .to(mail.position,{
+  //   x:0,
+  //   y:-20,
+  //   z:10,
+  // },'simultaneously')
   .to('.holder-1',{
     width:'50vw',
 
@@ -831,16 +801,19 @@ gLoader.load('./3d/biodef logo.glb',function(gltf){
 })
 let tex;
 
-gLoader.load('./3d/more 2.glb',function(gltf){
+// gLoader.load('./3d/more 2.glb',function(gltf){
+gLoader.load('./3d/new text.glb',function(gltf){
   scene.add(gltf.scene);
   // gltf.scene.scale.set(0.28,.28,28);
+  // console.log(gltf.scene);
 
   tex= gltf.scene.children[0];
-  console.log(localPlane.normal.z);
-
+  // console.log(localPlane.normal.z);
+console.log(tex);
+// tex.material= new THREE.MeshBasicMaterial({color:0x0000});
   if(window.innerWidth<600){
   localPlane.normal.z=.1;
-  tex.scale.set(.018,.018,.018);
+  tex.scale.set(.02,.02,.02);
   tex.position.z= -.01;
   tex.position.y= .05;
   tex.position.x=-0.01;
@@ -848,32 +821,34 @@ gLoader.load('./3d/more 2.glb',function(gltf){
 
   }
 
-  else if(window.innerWidth>601 && window.innerWidth<800){
-    localPlane.normal.z=.16;
-    tex.scale.set(.029,.029,.029);
+  else if(window.innerWidth>601 && window.innerWidth<1000){
+    // localPlane.normal.z=.16;
+    tex.scale.set(.035,.035,.035);
     tex.position.z= -.01;
-    tex.position.y= .15;
-    tex.position.x=0.1;
+    tex.position.y= .1;
+    // tex.position.x=0.1;
     // tex.rotation.z= -.001;
-    tex.rotation.y=.01;
+    // tex.rotation.y=.01;
   }
   else if(window.innerWidth>1000){
-    tex.scale.set(.033,.0315,.0315);
+    // tex.scale.set(.033,.0315,.0315);
+    tex.scale.set(.038,.038,.038);
     tex.position.z= -.01;
     // tex.position.y= -.01;
-    tex.position.y= .29;
+    tex.position.y= 0.1;
     // tex.position.x=-0.07;
     tex.position.x=0.15;
-    tex.rotation.z= -.001;
-    tex.rotation.y=.01;
+    tex.position.x=0;
+    // tex.rotation.z= -.001;
+    // tex.rotation.y=.01;
     localPlane.normal.z=.18;
   }
 
   tex.material= new THREE.MeshBasicMaterial({
     // color:0xff0000,
     color:0x202020,
-    clippingPlanes:[localPlane],
-    clipShadows:true
+    // clippingPlanes:[localPlane],
+    // clipShadows:true
   })
 // console.log(groupTwo);
 
@@ -1080,7 +1055,7 @@ particlesMesh.rotation.z= -.009 *elapsedTime;
 if(mouseX < window.innerWidth || mouseY <window.innerHeight ){
 particlesMesh.rotation.x = -(mouseY *0.00005);
 particlesMesh.rotation.y = -(mouseX *0.00003);
-curvedPanel.rotation.y= -(mouseX *0.00001)+2;
+curvedPanel.rotation.y= -(mouseX *0.00001);
 // curvedPanel.rotation.z= -(mouseY *0.00001);
 
 }
@@ -1101,6 +1076,7 @@ let sectionOne = gsap.timeline({
     end:"bottom",
     scrub:true,
     snap:.98,
+    // snap:1,
     // pin:true,
     // snap:space.bottom,
     // markers:true,
@@ -1417,7 +1393,7 @@ sectionOne
       // pin:true,
       end:'bottom',
       scrub:0,
-      snap:.96,
+      snap:.98,
       // markers:true,
       // pinSpacing:false,
       ease:'none',
@@ -1438,25 +1414,22 @@ sectionOne
   .to(camera.position,{
     x:0,
     y:0,
-    z:-10,
+    z:-15,
     duration:2,
 
   },"simultaneously")
   .to(camera.rotation,{
-    x:1.2,
-    y:2,
+    x:0,
+    y:0,
     z:0,
     duration:2,
 
   },"simultaneously")
-  .to(mat,{
 
-    opacity:1
-  },"simultaneously")
   .to(curvedPanel.position,{
-    x:-5,
-    y:-2.1,
-    z:-9.2,
+    x:0,
+    y:.1,
+    z:-20,
   },"simultaneously")
   .to(scene.background,{
     r:0,
@@ -1476,6 +1449,12 @@ sectionOne
     opacity:0,
 
   },'simultaneously')
+  .to(mat,{
+
+    opacity:1,
+    duration:1,
+    ease:'power1',
+  })
   .to('.holder-1',{
     width:'50vw',
 
@@ -1777,12 +1756,12 @@ sectionThree
 .to(camera,{
   fov:50,
 })
-.from('.impact-cont',{
-  xPercent:150,
-  delay:2,
-  duration:2,
-  ease:'none',
-})
+// .from('.impact-cont',{
+//   xPercent:150,
+//   delay:2,
+//   duration:2,
+//   ease:'none',
+// })
 .to(impactVideoCube.position,{
   x:-10,
   y:-15,
@@ -1845,6 +1824,7 @@ sectionThree
   overflowX:'hidden',
   overflowY:'scroll'
 })
+
 const holder1= document.querySelector('.holder-1');
 const holder2= document.querySelector('.holder-2');
 const holder3= document.querySelector('.holder-3');
@@ -2439,61 +2419,61 @@ const save = document.getElementById('save');
 const control = document.getElementById('control');
 const contain = document.getElementById('contain');
 
-good.addEventListener('mouseover',function(){
-  gsap.to(impactVideoCube.rotation,{
-    x:-0.1,
-    y:3.,
-    z:-0.24,
-    duration:2,
-    ease:'power1.inOut',
-  })
-})
-
-save.addEventListener('mouseover',function(){
-  gsap.to(impactVideoCube.rotation,{
-    x:5.1,
-    y:1.3,
-    z:1.1,
-    duration:2,
-    ease:'power1.inOut',
-  })
-})
-zero.addEventListener('mouseover', function(){
-  gsap.to(impactVideoCube.rotation,{
-    x:1.5,
-    y:3.4,
-    z:4.5,
-    duration:2,
-    ease:'power2.inOut',
-  })
-})
-free.addEventListener('mouseover',function(){
-  gsap.to(impactVideoCube.rotation,{
-    x:1.5,
-    y:.3,
-    z:-1.4,
-    duration:2,
-    ease:'power2.inOut',
-  })
-})
-control.addEventListener('mouseover',function(){
-  gsap.to(impactVideoCube.rotation,{
-    x:-0.8,
-    y:-1.85,
-    z:-0.7,
-    duration:2,
-    ease:'power2.inOut',
-  })
-})
-contain.addEventListener('mouseover',function(){
-  gsap.to(impactVideoCube.rotation,{
-    x:0,
-    y:-0.2,
-    z:0.3,
-    duration:2,
-    ease:'power1.inOut',
-  })
-})
+// good.addEventListener('mouseover',function(){
+//   gsap.to(impactVideoCube.rotation,{
+//     x:-0.1,
+//     y:3.,
+//     z:-0.24,
+//     duration:2,
+//     ease:'power1.inOut',
+//   })
+// })
+//
+// save.addEventListener('mouseover',function(){
+//   gsap.to(impactVideoCube.rotation,{
+//     x:5.1,
+//     y:1.3,
+//     z:1.1,
+//     duration:2,
+//     ease:'power1.inOut',
+//   })
+// })
+// zero.addEventListener('mouseover', function(){
+//   gsap.to(impactVideoCube.rotation,{
+//     x:1.5,
+//     y:3.4,
+//     z:4.5,
+//     duration:2,
+//     ease:'power2.inOut',
+//   })
+// })
+// free.addEventListener('mouseover',function(){
+//   gsap.to(impactVideoCube.rotation,{
+//     x:1.5,
+//     y:.3,
+//     z:-1.4,
+//     duration:2,
+//     ease:'power2.inOut',
+//   })
+// })
+// control.addEventListener('mouseover',function(){
+//   gsap.to(impactVideoCube.rotation,{
+//     x:-0.8,
+//     y:-1.85,
+//     z:-0.7,
+//     duration:2,
+//     ease:'power2.inOut',
+//   })
+// })
+// contain.addEventListener('mouseover',function(){
+//   gsap.to(impactVideoCube.rotation,{
+//     x:0,
+//     y:-0.2,
+//     z:0.3,
+//     duration:2,
+//     ease:'power1.inOut',
+//   })
+// })
 //contact details animations
 const telephone = document.querySelector('.phone');
 const marker = document.querySelectorAll('.address');
